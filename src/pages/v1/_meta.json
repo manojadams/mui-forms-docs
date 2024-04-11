@@ -1,0 +1,38 @@
+{
+    "getting-started": "Getting Started",
+    "installation": "Installation",
+    "forms": "Forms",
+    "simple-forms": "Simple Forms",
+    "grouped-forms": "Grouped Forms",
+    "fields": "Fields",
+    "custom-fields": "Custom Fields",
+    "footer": "Footer",
+    "field-dependencies": "Field relationships",
+    "field-events": "Field events",
+    "meta-api": "Meta APIs",
+    "layouting": "Layouting",
+    "spacing": "Field Spacing",
+    "styling": "Styling",
+    "schema": "Schema",
+    "about": {
+        "title": "About",
+        "type": "page",
+        "display": "hidden"
+    },
+    "json-to-schema": {
+        "title": "Json to Schema",
+        "display": "hidden"
+    },
+    "examples": "Examples",
+    "examples2": {
+        "title": "Examples",
+        "type": "page",
+        "href": "/examples"
+    },
+    "feedback": {
+        "title": "Feedback",
+        "type": "page",
+        "href": "https://github.com/manojadams/mui-forms/issues/new?title=Feedback%20for%20%E2%80%9CMui%20Forms%E2%80%9D&labels=feedback",
+        "newWindow": true
+    }
+}

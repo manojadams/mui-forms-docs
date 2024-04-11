@@ -1,0 +1,34 @@
+# Stepper Forms
+
+import Stepper from "@/components/grouped-forms/Stepper";
+import { JsonViewer } from "@textea/json-viewer";
+import schema from "@/components/grouped-forms/Stepper/schema.json";
+
+<Stepper />
+
+## Schema:
+
+<JsonViewer value={schema} />
+
+## Usage:
+
+```tsx
+import React from "react";
+import schema from "<your_schema.json>";
+import MuiForms from "mui-forms";
+
+function MyWizard() {
+    return (
+        <MuiForms
+            sectionLayout="stepper"
+            config={{
+                variant: "filled"
+            }}
+            schema={schema}
+            onSubmit={() => {
+                // do nothing
+            }}
+        />
+    );
+}
+```

@@ -1,0 +1,82 @@
+:root {
+    --primary: rgba(60, 132, 206, 1);
+    --bg-primary: #132f4c;
+    --md-theme-bg: rgba(0, 93, 199, 0.05);
+    --md-theme-text: lab(47.8876% 63.025 42.31);
+    --md-theme-text-val: lab(49.1367% -42.0409 31.8582);
+}
+
+input[data-focus-visible-added],
+input:focus-visible {
+    box-shadow: none;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.blue {
+    color: #007fff;
+}
+
+.black {
+    color: black;
+}
+
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.border-24 {
+    border-radius: 24px;
+}
+
+.nextra-nav-container > div {
+    background-color: transparent;
+}
+
+.mf-logo {
+    /* background: linear-gradient(315deg, rgba(60,132,206,5) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(60,132,206,1) 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed; */
+    color: #132f4c;
+}
+
+.mjson-viewer {
+    padding: 16px;
+}
+
+.logo-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 120px;
+    justify-content: center;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/**
+ * Custom styles  
+ */
+.pie-container {
+    max-width: 35%;
+    margin: auto;
+}
+
+.text-center {
+    text-align: center;
+}

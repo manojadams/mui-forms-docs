@@ -1,0 +1,152 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    padding-top: 64px;
+}
+
+.gradient {
+    background: linear-gradient(
+        315deg,
+        rgba(60, 132, 206, 5) 3%,
+        rgba(60, 132, 206, 1) 38%,
+        rgba(48, 238, 226, 1) 68%,
+        rgba(60, 132, 206, 1) 98%
+    );
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+.text_block {
+    margin: 120px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 21px;
+    @media (max-width: 576px) {
+        margin: 0;
+    }
+}
+
+.get_started_block {
+    display: flex;
+    justify-content: center;
+}
+
+.main_content {
+    max-width: 90rem;
+    margin: auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card_wrapper {
+    flex: 1;
+    padding-top: 40px;
+}
+
+/* .wave_wrapper {
+    position: relative;
+    height: 160px;
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: absolute;
+    width: 200%;
+    height: 12rem;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave2 {
+    bottom: -1.25rem;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.wave3 {
+    bottom: -1.25rem;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+    z-index: -1;
+}
+
+
+.wave2 {
+    background: rgb(255, 255, 255 / 25%);
+} */
+
+.features {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 48px;
+    margin-bottom: 32px;
+    padding: 12px;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.features_title {
+    font-size: 48px;
+    text-align: center;
+}
+
+.features_column {
+    padding: 0 12px;
+    min-width: 220px;
+    margin: 24px 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+.features_divider {
+    margin-bottom: 12px;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+    25% {
+        transform: translateX(-25%);
+    }
+    50% {
+        transform: translateX(-50%);
+    }
+    75% {
+        transform: translateX(-25%);
+    }
+    100% {
+        transform: translateX(1);
+    }
+}
+
+@media (max-width: 400px) {
+    .wave {
+        height: 4rem;
+    }
+}

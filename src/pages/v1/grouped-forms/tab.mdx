@@ -1,0 +1,41 @@
+# Tabbed forms
+
+import schema from "@/components/grouped-forms/Tab/schema.json";
+import Tab from "@/components/grouped-forms/Tab";
+import { JsonViewer } from "@textea/json-viewer";
+
+<Tab />
+
+## Schema:
+
+<JsonViewer value={schema} />
+
+## Usage
+
+```tsx
+import React from "react";
+import schema from "./schema.json";
+import MuiForms from "mui-forms";
+
+function MyTab() {
+    return (
+        <MuiForms
+            schema={schema}
+            onSubmit={() => {
+                // do nothing
+            }}
+        />
+    );
+}
+```
+
+## Disable tab navigation
+
+import schemaDisabledTabs from "@/components/grouped-forms/Tab/schema-disabled-tabs.json";
+import DisabledTab from "@/components/grouped-forms/Tab/DisabledTab";
+
+<DisabledTab />
+
+## Schema:
+
+<JsonViewer value={schemaDisabledTabs} />

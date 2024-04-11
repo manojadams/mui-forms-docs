@@ -1,0 +1,30 @@
+{
+    "index": {
+        "title": "Home",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": false,
+            "toc": false
+        }
+    },
+    "v1": {
+        "title": "Version 1.x.x",
+        "display": "hidden",
+        "type": "page"
+    },
+    "versions": {
+        "title": "Versions",
+        "type": "menu",
+        "items": {
+            "version2": {
+                "title": "Version 2.0.1 (Latest)",
+                "href": "/getting-started2"
+            },
+            "version1": {
+                "title": "Version 1.X.X",
+                "href": "/v1/getting-started"
+            }
+        }
+    }
+}
