@@ -1,0 +1,25 @@
+# Animation Templates
+
+## Slide up animation using framer-motion
+
+import { Tabs } from "nextra/components";
+
+<Tabs items={["View", "Code"]}>
+    <Tabs.Tab>
+        
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```jsx
+        <motion.div
+            animate={{ y: -100, opacity: 1 }}
+            transition={{ ease: "easeOut", duration: 0.4 }}
+            style={{opacity:0, marginTop: 100}}
+        >
+            <MuiForms
+                ... 
+                ...
+            />
+        </motion.div>
+        ```
+    </Tabs.Tab>
+</Tabs>

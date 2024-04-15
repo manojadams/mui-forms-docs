@@ -8,6 +8,8 @@
             "toc": false
         }
     },
+    "getting-started2": "Getting Started",
+    "release-v2": "Release - Version 2.0",
     "v1": {
         "title": "Version 1.x.x",
         "display": "hidden",

@@ -86,13 +86,13 @@ function LandingPage(props: IProps) {
                                 <li>
                                     <ArrowRightAltIcon />
                                     <a href="/fields/select-field#how-to-load-options-from-remote-api">
-                                        Load data from API
+                                        Material icons support
                                     </a>
                                 </li>
                                 <li>
                                     <ArrowRightAltIcon />
                                     <a href="/fields/select-field#how-to-load-options-from-remote-api">
-                                        Material icons support
+                                        Load data from API
                                     </a>
                                 </li>
                                 <li>
@@ -121,29 +121,8 @@ function LandingPage(props: IProps) {
                                 </li>
                             </ul>
                         </div>
-                        <div className={"mcol " + css.features_column}>
-                            <ul>
-                                <li>
-                                    <ArrowRightAltIcon />
-                                    <a href="/simple-forms/default">Simple forms</a>
-                                </li>
-                                <li>
-                                    <ArrowRightAltIcon />
-                                    <a href="/grouped-forms/stepper">Stepper forms</a>
-                                </li>
-                                <li>
-                                    <ArrowRightAltIcon />
-                                    <a href="/grouped-forms/wizard">Wizard forms</a>
-                                </li>
-                            </ul>
-                        </div>
                     </Row>
                 </div>
-                {/* <div className={css.wave_wrapper}>
-                    <div className={css.wave} />
-                    <div className={`${css.wave} ${css.wave2}`} />
-                    <div className={`${css.wave} ${css.wave3}`} />
-                </div> */}
                 <Footer />
             </div>
         </>

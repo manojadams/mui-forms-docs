@@ -1,6 +1,7 @@
 import React from "react";
-import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
+import { DocsThemeConfig, useConfig } from "@manojadams/nextra-theme-docs";
 import Footer from "./src/components/LandingPage/Footer";
+import Search from "@/components/Search";
 
 const config: DocsThemeConfig = {
     logo: (
@@ -20,6 +21,18 @@ const config: DocsThemeConfig = {
         defaultTheme: "light"
     },
     darkMode: false,
+    banner: {
+        key: '2.0-release',
+        text: (
+          <a href="/release-v2" target="_blank">
+            🎉 MuiForms 2.0 is released. Read more →
+          </a>
+        )
+    },
+    versions: [{
+        name: "version1",
+        dir: "v1"
+    }],
     head: () => {
         const { title } = useConfig();
         return (
