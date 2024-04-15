@@ -1,19 +1,18 @@
-import React from "react";
-import schema from "./schema.json";
 import MuiForms from "mui-forms";
+import schema from "./schema.json";
 import { useClient } from "@/common/hooks";
 
-function SelectField() {
+function FileField() {
     const render = useClient();
 
     return render && (
         <MuiForms
             schema={schema}
             onSubmit={() => {
-                // do nothing
+                // TODO
             }}
         />
-    );
+    )
 }
 
-export default SelectField;
+export default FileField;

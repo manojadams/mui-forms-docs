@@ -1,3 +1,5 @@
+@import 'material-icons/iconfont/material-icons.css';
+
 :root {
     --primary: rgba(60, 132, 206, 1);
     --bg-primary: #132f4c;
@@ -8,7 +10,7 @@
 
 input[data-focus-visible-added],
 input:focus-visible {
-    box-shadow: none;
+    box-shadow: none!important;
 }
 
 .underline {

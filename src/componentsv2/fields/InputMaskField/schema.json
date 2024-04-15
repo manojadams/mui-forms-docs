@@ -1,0 +1,27 @@
+{
+    "fields": [{
+        "name": "aadhaar_header",
+        "prop": null,
+        "meta": {
+            "displayType": "header",
+            "displayName": "Aadhaar Card"
+        }
+    }, {
+        "name": "aadhaar_number",
+        "meta": {
+            "config": {
+                "mask": "9999-9999-9999",
+                "maskChar": "",
+                "placeholder": "e.g. 1681-1111-1234-1123"
+            },
+            "displayType": "input-mask",
+            "displayName": "Aadhaar Number",
+            "validation": {
+                "required": true,
+                "infoDetail": {
+                    "infoMsg": "Enter your 12 digit Aadhaar number"
+                }
+            }
+        }
+    }]
+}

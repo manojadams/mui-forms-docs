@@ -1,0 +1,93 @@
+{
+    "fields": [{
+        "name": "aadhaar-file-details",
+        "prop": "aadhaar-card",
+        "meta": {
+            "type": "section",
+            "displayName": "Aadhaar Card"
+        },
+        "fields": [{
+            "name": "aadhaar_header",
+            "prop": null,
+            "meta": {
+                "displayType": "header",
+                "displayName": "Aadhaar Card"
+            }
+        }, {
+            "name": "aadhaar_file_front",
+            "meta": {
+                "config": {
+                    "accept": "image/jpeg,image/png",
+                    "filePreview": true,
+                    "blob": true
+                },
+                "displayType": "file",
+                "displayName": "Aadhaar Card Front",
+                "validation": {
+                    "required": true
+                }
+            }
+        }, {
+            "name": "aadhaar_file_back",
+            "meta": {
+                "config": {
+                    "accept": "image/jpeg,image/png",
+                    "filePreview": true,
+                    "blob": true
+                },
+                "displayType": "file",
+                "displayName": "Aadhaar Card Back",
+                "validation": {
+                    "required": true
+                }
+            }
+        }]
+    }, {
+        "name": "pan-file-details",
+        "prop": "pancard",
+        "meta": {
+            "type": "section",
+            "displayName": "Pan Card"
+        },
+        "fields": [{
+            "name": "pan-card-header",
+            "prop": null,
+            "meta": {
+                "displayType": "header",
+                "displayName": "Pan Card"
+            }
+        }, {
+            "name": "pancard_file",
+            "meta": {
+                "config": {
+                    "accept": "image/jpeg,image/png",
+                    "filePreview": true,
+                    "blob": true
+                },
+                "displayType": "file",
+                "displayName": "Pan Card",
+                "validation": {
+                    "required": true
+                }
+            }
+        }]
+    }],
+    "buttons": [{
+        "name": "previous",
+        "meta": {
+            "type": "previous"
+        }
+    }, {
+        "name": "next",
+        "meta": {
+            "className": "bg-gray-800",
+            "type": "next"
+        }
+    }, {
+        "name": "submit",
+        "meta": {
+            "type": "submit",
+            "className": "bg-gray-800"
+        }
+    }]
+}

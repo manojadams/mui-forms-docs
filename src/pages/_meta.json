@@ -8,8 +8,10 @@
             "toc": false
         }
     },
-    "getting-started2": "Getting Started",
-    "release-v2": "Release - Version 2.0",
+    "getting-started": "Getting Started",
+    "fields": "Fields",
+    "icons": "Icons",
+    "animation": "Animation",
     "v1": {
         "title": "Version 1.x.x",
         "display": "hidden",
@@ -28,5 +30,6 @@
                 "href": "/v1/getting-started"
             }
         }
-    }
+    },
+    "release-v2": "Release - Version 2.0"
 }

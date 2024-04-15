@@ -1,0 +1,23 @@
+# Icons
+Icons are now supported but needs to be setup menually.
+
+## Setup steps
+- Install material icons with command `npm install material-icons`
+- Import css file from material-icons to a globally used stylesheet with `@import 'material-icons/iconfont/material-icons.css';`
+
+## Default form with icons
+
+import FormWithIcons from "@/componentsv2/fields/FormWithIcons";
+
+<FormWithIcons />
+
+## Schema details
+
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/componentsv2/fields/FormWithIcons/schema.json";
+
+<SchemaViewer value={schema} />
+
+
+## Reference
+- https://developers.google.com/fonts/docs/material_icons
