@@ -1,10 +1,13 @@
 import React from "react";
-import MaterialMetaform from "mui-forms";
+import MuiForms from "mui-forms";
 import schema from "./schema.json";
+import { useClient } from "@/common/hooks";
 
 function TwoGridLayout() {
-    return (
-        <MaterialMetaform
+    const render = useClient();
+
+    return render && (
+        <MuiForms
             schema={schema}
             onSubmit={() => {
                 // do nothing

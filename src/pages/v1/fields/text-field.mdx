@@ -8,7 +8,7 @@ import schemaRequired from "@/components/fields/TextField/schema-required.json";
 import schemaPattern from "@/components/fields/TextField/schema-pattern.json";
 import schemaMinMax from "@/components/fields/TextField/schema-minmax.json";
 import schemaInfo from "@/components/fields/TextField/schema-info.json";
-import MaterialForms from "mui-forms";
+import FormField from "@/componentsv2/fields/FormField";
 import Field from "@/components/fields/Field";
 import SchemaViewer from "@/components/SchemaViewer";
 import CommonProperties from "./common-properties.mdx";
@@ -35,7 +35,7 @@ Properties used by this field (inside meta field in schema)
 
 ## Field with placeholder
 
-<MaterialForms schema={schemaPlaceholder} />
+<FormField schema={schemaPlaceholder} />
 
 **Schema:**
 
@@ -43,7 +43,7 @@ Properties used by this field (inside meta field in schema)
 
 ## Readonly field
 
-<MaterialForms schema={schemaReadonly} />
+<FormField schema={schemaReadonly} />
 
 **Schema:**
 
@@ -51,7 +51,7 @@ Properties used by this field (inside meta field in schema)
 
 ## Disabled field
 
-<MaterialForms schema={schemaDisabled} />
+<FormField schema={schemaDisabled} />
 
 **Schema:**
 
@@ -61,7 +61,7 @@ Properties used by this field (inside meta field in schema)
 
 Click on `Submit` with and without value.
 
-<MaterialForms schema={schemaRequired} />
+<FormField schema={schemaRequired} />
 
 **Schema:**
 
@@ -74,7 +74,7 @@ Only supports alphanumeric characters. Special characters are not supported.
 <br />
 Enter any special character (!@#$%^&*) and click on `Submit`.
 
-<MaterialForms schema={schemaPattern} />
+<FormField schema={schemaPattern} />
 
 **Schema:**
 
@@ -84,7 +84,7 @@ Enter any special character (!@#$%^&*) and click on `Submit`.
 
 Try to enter more than 10 characters.
 
-<MaterialForms schema={schemaMinMax} />
+<FormField schema={schemaMinMax} />
 
 **Schema:**
 
@@ -92,7 +92,7 @@ Try to enter more than 10 characters.
 
 ## Schema with info msg
 
-<MaterialForms schema={schemaInfo} />
+<FormField schema={schemaInfo} />
 
 **Schema:**
 

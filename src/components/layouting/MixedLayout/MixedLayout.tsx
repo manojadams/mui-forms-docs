@@ -1,10 +1,13 @@
 import React from "react";
-import Metaform from "mui-forms";
 import schema from "./schema.json";
+import MuiForms from "mui-forms";
+import { useClient } from "@/common/hooks";
 
 function MixedLayout() {
-    return (
-        <Metaform
+    const render = useClient();
+
+    return render && (
+        <MuiForms
             schema={schema}
             onSubmit={() => {
                 // to be added

@@ -7,7 +7,7 @@ interface IProps {
     jsonData: string;
     setJsonData: (val: string) => void;
     handlePrevious: () => void;
-    handleNext: (arg) => void;
+    handleNext: (arg: string) => void;
 }
 function SchemaOutput(props: IProps) {
     const [schema, setSchema] = useState("");

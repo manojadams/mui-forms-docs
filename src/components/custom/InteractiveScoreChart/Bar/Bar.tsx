@@ -4,7 +4,7 @@ import { Bar as BarChart } from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export const getChartData = (gokuPower, vegetaPower) => ({
+export const getChartData = (gokuPower: number, vegetaPower: number) => ({
     labels: ["Goku", "Vegeta"],
     datasets: [
         {
@@ -26,7 +26,6 @@ function Bar(props: IMetaProps) {
     const [data, setData] = useState(getChartData(19, 12));
 
     useEffect(() => {
-        console.log("hi, done");
         const gokuPower = props.form?.default?.goku_power?.value;
         const vegetaPower = props.form?.default?.vegeta_power?.value;
         setData({ ...getChartData(gokuPower, vegetaPower) });

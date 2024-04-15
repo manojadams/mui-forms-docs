@@ -4,7 +4,7 @@ import schema from "@/components/fields/DateField/schema.json";
 import schemaMin from "@/components/fields/DateField/schema-min.json";
 import schemaMax from "@/components/fields/DateField/schema-max.json";
 import CommonProperties from "./common-properties.mdx";
-import MaterialForms from "mui-forms";
+import FormField from "@/componentsv2/fields/FormField";
 
 # Date field
 
@@ -35,7 +35,7 @@ import MaterialForms from "mui-forms";
 
 ## Min. allowed date
 
-<MaterialForms schema={schemaMin} />
+<FormField schema={schemaMin} />
 
 **Schema:**
 
@@ -43,7 +43,7 @@ import MaterialForms from "mui-forms";
 
 ## Max. allowed date
 
-<MaterialForms schema={schemaMax} />
+<FormField schema={schemaMax} />
 
 **Schema:**
 

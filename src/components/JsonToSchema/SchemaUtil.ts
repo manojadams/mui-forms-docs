@@ -2,12 +2,12 @@ class SchemaUtil {
     static jsonToSchema(jsonData: string) {
         const json = JSON.parse(jsonData);
         const allKeys = Object.keys(json);
-        const fields = [];
+        const fields: Array<Field> = [];
         allKeys.forEach((key) => {
             const meta = new Meta({
                 displayName: key,
                 displayType: "text_field",
-                value: allKeys[key] as string
+                value: allKeys[key as any] as string
             });
             const field = new Field(key, meta);
             fields.push(field);

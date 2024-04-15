@@ -1,10 +1,13 @@
 import React from "react";
-import Metaform from "mui-forms";
 import schema from "./schema.json";
+import { useClient } from "@/common/hooks";
+import MuiForms from "mui-forms";
 
 function TextField() {
-    return (
-        <Metaform
+    const render = useClient();
+
+    return render && (
+        <MuiForms
             schema={schema}
             onSubmit={() => {
                 // do nothing

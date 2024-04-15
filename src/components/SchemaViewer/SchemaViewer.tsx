@@ -2,7 +2,6 @@ import React from "react";
 import { JsonViewer, NamedColorspace } from "@textea/json-viewer";
 
 interface IProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     value: Record<string, any>;
 }
 
