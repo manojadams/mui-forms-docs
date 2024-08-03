@@ -1,0 +1,80 @@
+## Custom components
+
+These are user defined components used to display custom components in the form.
+
+#### Steps
+1. Create a new component. For example: `BarChart`.
+2. New component can declare the following properties to read all field values and its internal states. To read the value of the field, use `field.value`
+
+|Name|Description|
+|--|--|
+|field|It contains readonly field related properties. | 
+|form|It contains readonly properties of all the form fields. The data is divided into different groups(grouped fields). For simple forms, the group key name is default|  
+
+3. Specify `displayType` as **template**
+
+4. Specify custom component name in schema through `config` -> `template` property
+```json
+{
+    "name": "compare_chart",
+    "meta": {
+        "config": {
+            "template": "barChart"
+        },
+        "displayType": "template"
+    }
+}
+```
+5. Pass the custom component and its name as an input property as following
+
+```typescript
+    import React from "react";
+    import MuiForms from "mui-forms";
+    import BarChart from "<location>";
+
+    function MyForm() {
+        return (
+            <MuiForms
+                ...
+                components={{
+                    "barChart": BarChart
+                }}
+                ...
+            />
+        )
+    }
+```
+
+import InteractiveScoreChart from "@/components/custom/InteractiveScoreChart";
+
+## Basic example
+
+An interactive custom score chart form
+
+<InteractiveScoreChart />
+
+## Schema
+
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/components/custom/InteractiveScoreChart/schema.json";
+
+<SchemaViewer value={schema} />
+
+## Usage
+
+```tsx copy
+import MuiForms from "mui-forms";
+import schema from "<schema_location.json>";
+import Bar from "<my_bar_chart_location>";
+
+<MuiForms
+    name="myForm"
+    components={{
+        piechartbarchart: Bar
+    }}
+    schema={schema}
+    onSubmit={(formData) => {
+        // handle form submission
+    }}
+/>;
+```

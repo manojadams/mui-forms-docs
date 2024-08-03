@@ -1,5 +1,5 @@
 import React from "react";
-import Metaform from "mui-forms";
+import MuiForms from "mui-forms";
 // import { ISchema } from "@manojadams/metaforms-core";
 
 interface IProps {
@@ -8,7 +8,7 @@ interface IProps {
 
 function Field(props: IProps) {
     return (
-        <Metaform
+        <MuiForms
             schema={props.schema}
             onSubmit={() => {
                 // do nothing

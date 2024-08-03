@@ -1,0 +1,21 @@
+{
+    "items": [{
+        "name": "Simple form1",
+        "description": "A simple form",
+        "type": "simple",
+        "path": "/examples/simple-form",
+        "children": [{
+            "name": "Simple form1.1",
+            "description": "A simple form",
+            "type": "simple",
+            "path": "/examples/simple-form",
+            "children": []
+        }]
+    }, {
+        "name": "Simple form2",
+        "description": "A simple form",
+        "type": "simple",
+        "path": "/examples/simple-form2",
+        "children": []
+    }]
+}

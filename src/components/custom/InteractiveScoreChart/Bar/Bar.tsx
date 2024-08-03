@@ -24,6 +24,7 @@ interface IMetaProps {
 
 function Bar(props: IMetaProps) {
     const [data, setData] = useState(getChartData(19, 12));
+    console.log('pie props', props);
 
     useEffect(() => {
         const gokuPower = props.form?.default?.goku_power?.value;

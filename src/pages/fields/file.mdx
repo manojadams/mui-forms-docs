@@ -1,6 +1,19 @@
 # File field
 
-## Default
+### Display type
+
+- file
+
+### Config
+
+|Name |Description|Notes|
+|-----|-----------|-----|
+| accept | Type of file to be accepted|For example: image/jpeg,image/png|
+| filePreview | Whether to preview file in display. Enabled for images only|Type: boolean|
+| blob | Whether to submit data in binary format on form submission. Else it will be converted to **base64** format|Type: boolean|
+| multiple | Whether to allow multiple file uploads |Type: boolean |
+
+## Basic example
 
 import FileField from "@/componentsv2/fields/FileField";
 
@@ -8,7 +21,19 @@ import FileField from "@/componentsv2/fields/FileField";
 
 ## Schema Details
 
-import SchemaViewer from "@/components/SchemaViewer";
 import schema from "@/componentsv2/fields/FileField/schema.json";
 
 <SchemaViewer value={schema} />
+
+## Example: upload multiple images with preview
+
+import { MultiFileField } from "@/componentsv2/fields/FileField";
+
+<MultiFileField />
+
+## Schema Details
+
+import SchemaViewer from "@/components/SchemaViewer";
+import schema2 from "@/componentsv2/fields/FileField/schema2.json";
+
+<SchemaViewer value={schema2} />

@@ -1,0 +1,13 @@
+{
+    "templates": [{
+        "name": "1",
+        "title": "1",
+        "description": "1",
+        "path": "1"
+    }, {
+        "name": "2",
+        "title": "2",
+        "description": "2",
+        "path": "2"
+    }]
+}

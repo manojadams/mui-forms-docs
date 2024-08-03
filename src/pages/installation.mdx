@@ -1,0 +1,78 @@
+import { Tabs } from 'nextra/components'
+
+## Install
+
+<Tabs items={['npm', 'yarn', 'pnpm']}>
+  <Tabs.Tab>
+    ```bash copy
+        npm install mui-forms
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+        yarn add mui-forms
+    ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```bash copy
+        pnpm add mui-forms
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+## Peer dependencies
+
+```json copy
+"peerDependencies": {
+  "react": "^18.0.0"
+}
+```
+
+## Basic usage
+
+1. Define your schema:
+
+```json copy
+{
+    "fields": [
+        {
+            "name": "first_name",
+            "meta": {
+                "displayType": "text",
+                "displayName": "First Name"
+            }
+        },
+        {
+            "name": "last_name",
+            "meta": {
+                "displayType": "text",
+                "displayName": "Last Name"
+            }
+        }
+    ]
+}
+```
+
+2. Import and use **MuiForms**:
+
+```tsx copy
+import MuiForms from "mui-forms";
+import schema from "<schema_location.json>";
+
+<MuiForms
+    name="myForm"
+    schema={schema}
+    onChange={(...data) => {
+        // handle data on change
+    }}
+    onError={(...fieldData) => {
+        // handle error
+    }}
+    onNext={(formData) => {
+        // handle next
+    }}
+    onSubmit={(formData) => {
+        // handle form submission
+    }}
+/>;
+```

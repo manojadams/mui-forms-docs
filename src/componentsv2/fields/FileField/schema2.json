@@ -1,0 +1,15 @@
+{
+    "fields": [{
+        "name": "upload-photos",
+        "meta": {
+            "config": {
+                "accept": "image/jpeg,image/png",
+                "filePreview": true,
+                "multiple": true,
+                "blob": true
+            },
+            "displayType": "file",
+            "displayName": "Upload photos"
+        }
+    }]
+}

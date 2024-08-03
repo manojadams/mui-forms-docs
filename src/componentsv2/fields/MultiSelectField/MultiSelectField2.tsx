@@ -1,9 +1,12 @@
 import React from "react";
 import FormField from "../FormField";
-import schema2 from "./schema.json";
+import schema2 from "./schema2.json";
+import { useClient } from "@/common/hooks";
    
 function MultiSelectFieldV2 () {
-    return (
+    const render = useClient();
+
+    return render && (
         <FormField schema={schema2} />
     );
 }

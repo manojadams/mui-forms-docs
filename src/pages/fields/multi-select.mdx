@@ -1,25 +1,29 @@
 # Multi select field
 
-## Default
+### Display type
 
-import { MultiSelectFieldV2 } from "@/componentsv2/fields/MultiSelectField";
-import SchemaViewer from "@/components/SchemaViewer";
+- multiselect
 
-<MultiSelectFieldV2 />
-
-### Schema details
-
-import schema2 from "@/componentsv2/fields/MultiSelectField/schema2.json";
-
-<SchemaViewer value={schema2} />
-
-## With chips config
+### Basic example
 
 import MultiSelectField from "@/componentsv2/fields/MultiSelectField";
+import SchemaViewer from "@/components/SchemaViewer";
 
 <MultiSelectField />
+
+### Schema details
 
 import schema from "@/componentsv2/fields/MultiSelectField/schema.json";
 
 <SchemaViewer value={schema} />
+
+## Example with chip config
+
+import { MultiSelectFieldV2 } from "@/componentsv2/fields/MultiSelectField";
+
+<MultiSelectFieldV2 />
+
+import schema2 from "@/componentsv2/fields/MultiSelectField/schema2.json";
+
+<SchemaViewer value={schema2} />
 

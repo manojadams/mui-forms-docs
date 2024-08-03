@@ -1,0 +1,15 @@
+{
+    "fields": [{
+        "name": "color",
+        "meta": {
+            "displayType": "radio",
+            "options": [{
+                "label": "Blue",
+                "value": "blue"
+                }, {
+                "label": "Yellow",
+                "value": "yellow"
+            }]
+        }
+    }]
+}

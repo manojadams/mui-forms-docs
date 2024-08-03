@@ -1,0 +1,33 @@
+## Preload data
+
+For preloading form data, provide input data in the same format as onSubmit event. 
+
+### Basic example
+
+import FormWithPreloadedData from "../componentsv2/FormWithPreloadedData";
+
+<FormWithPreloadedData />
+
+### Usage
+
+```typescript
+    <MuiForms
+        data={{
+            "first_name": "Jyoti",
+            "last_name": "Baruah",
+            "email": "jyoti.baruah@gmail.com",
+            "age": 24
+        }}
+        schema={schema}
+        onSubmit={(data) => {
+            // handle submit
+        }}
+    />
+```
+
+### Schema details
+
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/componentsv2/FormWithPreloadedData/schema.json";
+
+<SchemaViewer value={schema} />

@@ -1,0 +1,39 @@
+## Loader
+
+Show a loader with next/submit form actions. It is disabled by default.
+
+- To enable it, set `config` -> `loader` -> `enabled` to true.
+
+### Basic example
+
+import FormWithLoader from "../componentsv2/FormWithLoader";
+
+<FormWithLoader />
+
+### Usage
+
+```typescript
+    <MuiForms
+        config={{
+            loader: {
+                enabled: true
+            }
+        }}
+        useNextResponse={true}
+        schema={schema}
+        onNext={async (data) => {
+            const response = await axios.post("/submit", data);
+            return true;
+        }}
+        onSubmit={async (data) => {
+            const response = await axios.post("/submit", data);
+            return true;
+        }}
+    />
+```
+### Schema details
+
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/componentsv2/FormWithLoader/schema.json";
+
+<SchemaViewer value={schema} />

@@ -9,13 +9,32 @@
         }
     },
     "getting-started": "Getting Started",
+    "installation": "Installation",
+    "basic-properties": "Basic Properties",
+    "config": "Configuration",
+    "forms": "Forms",
+    "simple-forms": "Simple Forms",
+    "grouped-forms": "Grouped Forms",
     "fields": "Fields",
+    "custom-fields": "Custom Fields",
+    "field-dependencies": "Field Relationships",
+    "field-events": "Field Events",
+    "layouting": "Layouting",
+    "spacing": "Field Spacing",
+    "styling": "Styling",
+    "loader": "Loader",
+    "preload-data": "Preload Form Data",
+    "meta-api": "Meta API",
     "icons": "Icons",
-    "animation": "Animation",
-    "v1": {
-        "title": "Version 1.x.x",
-        "display": "hidden",
-        "type": "page"
+    "animation": {
+        "title": "Animation",
+        "type": "hidden"
+    },
+    "discussions": {
+        "title": "Discussions",
+        "type": "page",
+        "href": "https://github.com/manojadams/mui-forms/discussions",
+        "newWindow": true
     },
     "versions": {
         "title": "Versions",
@@ -23,7 +42,7 @@
         "items": {
             "version2": {
                 "title": "Version 2.0.1 (Latest)",
-                "href": "/getting-started2"
+                "href": "/getting-started"
             },
             "version1": {
                 "title": "Version 1.X.X",
@@ -31,5 +50,8 @@
             }
         }
     },
-    "release-v2": "Release - Version 2.0"
+    "schema": "Schema",
+    "faq": "FAQs",
+    "release-v2": "Release - Version 2.0",
+    "examples": "Examples"
 }

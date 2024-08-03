@@ -1,0 +1,16 @@
+{
+    "fields": "About",
+    "general-properties": "General Properties",
+    "common-properties": "Common Properties",
+    "displayType-properties": "DisplayType Properties",
+    "text-field": "Text Field",
+    "password": "Password",
+    "number-field": "Number Field",
+    "email-field": "Email Field",
+    "date-field": "Date Field",
+    "radio-field": "Radio Field",
+    "radio-button": "Radio Button",
+    "checkbox": "Checkbox",
+    "select-field": "Select Field",
+    "multi-select": "Multi select Field"
+}

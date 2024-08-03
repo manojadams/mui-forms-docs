@@ -2,9 +2,6 @@
     "fields": [{
         "name": "searchFields",
         "meta": {
-            "config": {
-                "variant": "chip"
-            },
             "displayName": "Search items",
             "displayType": "multiselect",
             "options": [{

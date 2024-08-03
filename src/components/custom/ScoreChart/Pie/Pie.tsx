@@ -17,7 +17,7 @@ export const data = {
     ]
 };
 
-function Pie() {
+function Pie(props: any) {
     return <PieChart data={data} />;
 }
 
