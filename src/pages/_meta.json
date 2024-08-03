@@ -46,7 +46,7 @@
             },
             "version1": {
                 "title": "Version 1.X.X",
-                "href": "/v1/getting-started"
+                "href": "https://mui-forms-v1.vercel.app"
             }
         }
     },
