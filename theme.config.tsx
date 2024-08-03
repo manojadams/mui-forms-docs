@@ -12,7 +12,7 @@ const config: DocsThemeConfig = {
     project: {
         link: "https://github.com/manojadams/mui-forms"
     },
-    docsRepositoryBase: "https://github.com/manojadams/mui-forms/tree/docs/docs",
+    docsRepositoryBase: "https://github.com/manojadams/mui-forms-docs/tree/main",
     footer: {
         text: "© Copyright 2023 MUI forms",
         component: Footer
