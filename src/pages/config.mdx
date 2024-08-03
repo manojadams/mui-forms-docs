@@ -2,7 +2,14 @@
 
 | Name    | Values                     | Default Value | Description                                                          | Type     |
 | ------- | -------------------------- | ------------- | -------------------------------------------------------------------- | -------- |
-| variant | outlined, standard, filled | outlined      | Specified the field outlook.                                         | Optional |
-| size    | small, medium, large       | medium        | Specified the field sizes.                                           | Optional |
+| variant | outlined, standard, filled | outlined      | Sets the layout appearance of all fields in the form              | Optional |
+| size    | small, medium, large       | medium        | Sets the sizes of all fields in the form                                           | Optional |
 | gapX    | Any number                 | NA            | Adds horizontal spacing between fields. <br /> All units are in rem. | Optional |
 | gapY    | Any number                 | NA            | Adds vertical spacing between fields. <br /> All units are in rem.   | Optional |
+| loader  | Object | NA | Loader specific config related to footer buttons | Optional |
+
+### Loader properties
+
+| Name | Description | Default Value | 
+|------|-------------|--|
+| enabled | Setting this to `true` will display the loader during form `next` and `submit` actions. | false |

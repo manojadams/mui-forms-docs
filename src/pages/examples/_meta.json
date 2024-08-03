@@ -1,8 +1,74 @@
 {
-    "customer-feedback-form": "Customer Feedback Form",
-    "score-chart": "A custom score chart",
-    "payment-form": "Payment Form",
-    "rating-form": "Rating Form",
-    "account-form": "Account Opening Form",
-    "registration-form": "Registration Form"
+    "index": {
+        "title": "Examples",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": true
+        }
+    },
+    "customer-feedback-form": {
+        "title": "Customer Feedback Form",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
+    "interactive-chart": {
+        "title": "An Interactive Chart",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
+    "score-chart": {
+        "title": "A Custom Score Chart",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
+    "payment-form": {
+        "title": "Payment Form",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
+    "rating-form": {
+        "title": "Rating Form",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
+    "account-form": {
+        "title": "Account Opening Form",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
+    "registration-form": {
+        "title": "Registration Form",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    }
 }

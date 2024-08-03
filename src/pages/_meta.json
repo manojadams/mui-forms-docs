@@ -52,6 +52,9 @@
     },
     "schema": "Schema",
     "faq": "FAQs",
-    "release-v2": "Release - Version 2.0",
-    "examples": "Examples"
+    "examples": {
+        "title": "Examples",
+        "type": "page"
+    },  
+    "release-v2": "Release - Version 2.0"
 }
