@@ -1,0 +1,15 @@
+{
+    "fields": [
+        {
+            "name": "age",
+            "meta": {
+                "config": {
+                    "minRows": "4",
+                    "maxRows": "10"
+                },
+                "displayName": "Age",
+                "displayType": "multitext"
+            }
+        }
+    ]
+}

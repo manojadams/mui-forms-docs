@@ -1,0 +1,23 @@
+# Multitext field
+
+## Display type
+- multitext
+
+## Config
+| Name | Description | Type |
+|---|---|--|
+| minRows | Minimum number of rows within the field box | number or string |
+| maxRows | Maximum number of rows wihint the field box | number or string |
+
+## Basic example
+
+import MultitextField from "../../components/fields/MultitextField";
+
+<MultitextField />
+
+## Schema details
+
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/components/fields/MultitextField/schema.json";
+
+<SchemaViewer value={schema} />

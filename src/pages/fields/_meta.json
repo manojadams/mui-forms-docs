@@ -12,5 +12,6 @@
     "radio-button": "Radio Button",
     "checkbox": "Checkbox",
     "select-field": "Select Field",
-    "multi-select": "Multi select Field"
+    "multi-select": "Multi select Field",
+    "multitext": "Multitext Field"
 }
