@@ -5,7 +5,7 @@ import schema from "./schema.json";
 import { ColorsStyles } from "./styles";
 import { useClient } from "@/common/hooks";
 
-const FORM_THEME = createTheme({
+export const FORM_THEME = createTheme({
     palette: {
         primary: {
             main: "rgb(46,51,54)"

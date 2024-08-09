@@ -86,3 +86,7 @@ input:focus-visible {
 .text-center {
     text-align: center;
 }
+
+.material-icons {
+    color: gray;
+}

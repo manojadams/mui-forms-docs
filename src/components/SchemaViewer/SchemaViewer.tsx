@@ -3,13 +3,14 @@ import { JsonViewer, NamedColorspace } from "@textea/json-viewer";
 
 interface IProps {
     value: Record<string, any>;
+    theme?: "light" | "dark" | "auto";
 }
 
 function SchemaViewer(props: IProps) {
     return (
         <JsonViewer
             value={props.value}
-            theme={ocean}
+            theme={props.theme ?? ocean}
             groupArraysAfterLength={3}
             className="mjson-viewer" 
             displayDataTypes={false}
@@ -25,7 +26,7 @@ export const ocean: NamedColorspace = {
     author: "Chris Kempson (http://chriskempson.com)",
     base00: "var(--md-theme-bg, rgba(0, 93, 199, 0.05))",
     base01: "#343d46",
-    base02: "#4f5b66",
+    base02: "lightgray",
     base03: "#65737e",
     base04: "#a7adba",
     base05: "#c0c5ce",
