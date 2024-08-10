@@ -8,7 +8,7 @@ function PaymentForm() {
     
     return render && (
         <MuiForms
-            schema={schema}
+            schema={schema as any}
             onSubmit={() => {
                 // to do
             }}
