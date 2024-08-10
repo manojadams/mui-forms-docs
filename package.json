@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@manojadams/metaforms-core": "^4.0.8",
+    "@manojadams/metaforms-core": "^4.0.10",
     "@manojadams/nextra-theme-docs": "^2.14.3",
     "@mui/icons-material": "^5.15.15",
     "@textea/json-viewer": "^3.4.1",
@@ -17,7 +17,7 @@
     "chart.js": "^4.4.2",
     "framer-motion": "^11.0.28",
     "material-icons": "^1.13.12",
-    "mui-forms": "^2.0.17",
+    "mui-forms": "^2.0.18",
     "next": "14.1.4",
     "nextra": "^2.13.4",
     "react": "^18",

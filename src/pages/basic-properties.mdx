@@ -19,3 +19,20 @@
 | changeResponseMode | Value: "form-data", "section-data", "default". <br /> **`form-data`**: onChange event will pass all the form data as a second parameter. <br />**`section-data`**: onChange event will pass all the section data as a second parameter.                  | Optional  |
 | nextResponseMode   | Value: "form-data", "page-data" <br/> **`form-data`**: onNext event will send all the form data (onNext). <br /> **`page-data`**: onNext event will send all the date of the current page. <br/> `Note`: onNext is triggered on click of **Next** button | Optional  |
 | useNextResponse    | Setting this to true ensures that the onNext call will wait for a server response before proceeding. | Optional |
+
+
+### onNext, onSubmit
+It accepts the following three arguments: 
+- formData
+- pageNumber
+- setErrors
+
+#### formData
+It is the form data in key/value pair.
+
+#### pageNumber
+For grouped forms, all the different form sections are paged from page number 1 to last page number.
+This argument returns the current page number of the section where **onNext** is called.
+
+#### setErrors
+It is a callback function which can be used for handling server side errors. [Read more](/error-handling)

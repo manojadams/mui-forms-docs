@@ -1,0 +1,73 @@
+## Error handling
+
+There are two kinds of error handling:
+- Client side validation and error handling
+- Server side error handling
+
+### Client side validation
+
+Client side validation is done by the browser at the front-end and provides a quick feedback to user.
+Currently it is done by making use of validation fields defined within the schema.
+
+[Check more details here](/fields/field-validation)
+
+### Server side error handling
+
+This is done by the back-end server and provides validation and other feedbacks to user.
+Currently it is done by making use of **setErrors** callback function available with `onNext`, `onSubmit` actions.
+
+#### setErrors
+It accepts an argument containing error info or an array of error info (in case of multiple errors).
+- field
+- hasError
+- errorMsg
+
+Here is the function signature:
+```ts
+    interface IFieldError {
+        field: string;
+        hasError: boolean;
+        errorMsg: string;
+    }
+    const setErrors = (errors: IFieldError | Array<IFieldError>) => void;
+```
+
+### Basic example
+
+Try to move to next section of form by clicking `Next` button without filling first name, last name.
+
+import FormWithServerSideErrorHandling from "@/componentsv2/FormWithServerSideErrorHandling";
+import schema from "@/componentsv2/FormWithServerSideErrorHandling/schema.json";
+import SchemaViewer from "@/components/SchemaViewer";
+
+<FormWithServerSideErrorHandling />
+
+### Usage
+
+```tsx
+    <MuiForms
+        sectionLayout="tabs"
+        schema={schema}
+        useNextResponse={true}
+        onNext={async (data, pageNumber, setErrors) => {
+            try {
+                await submitData(data);
+                return true;
+            } catch(error) {
+                setErrors([
+                    {field: "first_name", hasError: true, errorMsg: "First and last name are required"},
+                    {field: "last_name", hasError: true, errorMsg: "Both first and last name are required"},
+                ])
+                return false;
+            }
+        }}
+        onSubmit={(data, pageNumber, setErrors) => {
+
+        }}
+    />
+```
+
+### Schema details
+
+<SchemaViewer value={schema} />
+
