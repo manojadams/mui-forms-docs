@@ -21,18 +21,18 @@
 #### Requried validation
 ```json
 {
-    validation: {
-        required: true
+    "validation": {
+        "required": true
     }
 }
 ```
 #### Requried validation with custom error message
 ```json
 {
-    validation: {
-        required: {
-            value: true,
-            errorMsg: "This is a custom error message"
+    "validation": {
+        "required": {
+            "value": true,
+            "errorMsg": "This is a custom error message"
         }
     }
 }
@@ -41,18 +41,18 @@
 #### Pattern validation
 ```json
 {
-    validation: {
-        pattern: "^[A-Za-z]{1,32}$"
+    "validation": {
+        "pattern": "^[A-Za-z]{1,32}$"
     }
 }
 ```
 #### Pattern validation with custom error message
 ```json
 {
-    validation: {
-        pattern: {
-            value: "^[A-Za-z]{1,32}$",
-            errorMsg: "The data pattern is not correct"
+    "validation": {
+        "pattern": {
+            "value": "^[A-Za-z]{1,32}$",
+            "errorMsg": "The data pattern is not correct"
         }
     }
 }

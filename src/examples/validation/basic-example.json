@@ -18,7 +18,8 @@
                     "max": {
                         "value": "10",
                         "errorMsg": "First name max length should be 20"
-                    }
+                    },
+                    "info": "First name should be between 3 to 20 characters"
                 }
             }
         },
