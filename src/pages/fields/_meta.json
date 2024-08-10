@@ -2,6 +2,7 @@
     "fields": "About",
     "general-properties": "General Properties",
     "common-properties": "Common Properties",
+    "field-validation": "Field Validation",
     "displayType-properties": "DisplayType Properties",
     "text-field": "Text Field",
     "password": "Password",

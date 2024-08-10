@@ -1,0 +1,88 @@
+## Field validation
+
+| Field          | Description                                                                                                                                 | Value |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |-------|
+| required       | Marks a field as mandatory.                                                                                                |It accepts either a boolean value or an object with `value` and `errorMsg` as child props|
+| pattern        | Adds a pattern validation for the field. For `email`, pattern is supported by default                                                       |It accepts either a boolean value or an object with `value` and `errorMsg` as child props|
+| min            | For Textbox fields, it is the minimum number of characters required for the field, <br/> For number fields, it is the minimum value allowed |It accepts either a boolean value or an object with `value` and `errorMsg` as child props|
+| max            | For Textbox fields it is the maximum number of characters allowed. <br/> For number fields, it is the maximum value allowed                 |It accepts either a boolean value or an object with `value` and `errorMsg` as child props|
+| info           | This is for providing hints or more info about the field. Type is string | Type is string |
+| patternDetail (_deprecated_)  | Contains info msg and error msg for pattern validation property                                                                             ||
+| minDetail (_deprecated_)      | Contains error and info msg for min validation property                                                                                     ||
+| maxDetail (_deprecated_)     | Contains error and info msg for max validation property                                                                                     ||
+| infoDetail (_deprecated_)    | Contains general info msg about the field                                                                                                   ||
+| requiredDetail (_deprecated_)| Contains info msgs about the required validation property ||
+
+
+**Note**: Deprecated properties will not be supported in future releases.
+
+### Validation schema format
+
+#### Requried validation
+```json
+{
+    validation: {
+        required: true
+    }
+}
+```
+#### Requried validation with custom error message
+```json
+{
+    validation: {
+        required: {
+            value: true,
+            errorMsg: "This is a custom error message"
+        }
+    }
+}
+```
+
+#### Pattern validation
+```json
+{
+    validation: {
+        pattern: "^[A-Za-z]{1,32}$"
+    }
+}
+```
+#### Pattern validation with custom error message
+```json
+{
+    validation: {
+        pattern: {
+            value: "^[A-Za-z]{1,32}$",
+            errorMsg: "The data pattern is not correct"
+        }
+    }
+}
+```
+
+#### Minimum and maximum characters validation
+```json
+{
+    "validation": {
+        "min": {
+            "value": "3",
+            "errorMsg": "Password should be of minimum 3 length"
+        },
+        "max": {
+            "value": "20",
+            "errorMsg": "Password max length should be 20"
+        }
+    }
+}
+```
+
+#### Basic example
+
+import Form from "@/components/Form";
+import schema from "@/examples/validation/basic-example.json";
+
+<Form schema={schema} />
+
+#### Schema details
+
+import SchemaViewer from "@/components/SchemaViewer";
+
+<SchemaViewer value={schema} />
