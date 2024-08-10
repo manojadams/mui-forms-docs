@@ -13,11 +13,11 @@
                     "required": true,
                     "min": {
                         "value": "3",
-                        "errorMsg": "Password should be of minimum 3 length"
+                        "errorMsg": "First name should be of minimum 3 length"
                     },
                     "max": {
-                        "value": "20",
-                        "errorMsg": "Password max length should be 20"
+                        "value": "10",
+                        "errorMsg": "First name max length should be 20"
                     }
                 }
             }
