@@ -3,11 +3,15 @@
         {
             "name": "card_number",
             "meta": {
+                "config": {
+                    "mask": "9999-9999-9999-9999"
+                },
                 "displayName": "Card Number",
-                "displayType": "number",
+                "displayType": "input-mask",
                 "placeholder": "Enter Your Card Number Here",
                 "validation": {
-                    "max": 3
+                    "max": 3,
+                    "required": true
                 }
             }
         },
@@ -18,7 +22,8 @@
                 "displayType": "text_field",
                 "placeholder": "Enter Your Name On Card",
                 "validation": {
-                    "max": 30
+                    "max": 30,
+                    "required": true
                 }
             }
         },
@@ -29,19 +34,26 @@
                 "displayType": "date",
                 "displayProps": {
                     "md": 6
+                },
+                "validation": {
+                    "required": true
                 }
             }
         },
         {
             "name": "card_cvv",
             "meta": {
+                "config": {
+                    "mask": "999"
+                },
                 "displayName": "Card CVV",
-                "displayType": "number",
+                "displayType": "input-mask",
                 "displayProps": {
                     "md": 6
                 },
                 "validation": {
-                    "max": 3
+                    "max": 3,
+                    "required": true
                 }
             }
         }
