@@ -6,9 +6,7 @@
                 "displayName": "Name",
                 "displayType": "text_field",
                 "validation": {
-                    "infoDetail": {
-                        "infoMsg": "Enter your name carefully"
-                    }
+                    "info": "Enter your first and last name"
                 }
             }
         }

@@ -6,8 +6,8 @@
                 "displayName": "Name",
                 "displayType": "text_field",
                 "validation": {
-                    "pattern": "^[a-zA-Z0-9]+$",
-                    "patternDetail": {
+                    "pattern": {
+                        "value": "^[a-zA-Z0-9]+$",
                         "errorMsg": "Please enter alphanumeric characters only"
                     }
                 }

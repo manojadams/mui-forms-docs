@@ -7,8 +7,8 @@
                 "displayType": "text_field",
                 "value": "",
                 "validation": {
-                    "required": true,
-                    "requiredDetail": {
+                    "required": {
+                        "value": true,
                         "errorMsg": "Please enter name"
                     }
                 }
