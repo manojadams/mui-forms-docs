@@ -7,6 +7,7 @@ import { Box, createTheme, ThemeProvider } from "@mui/material";
 import { FORM_THEME } from "../ComponentWithCustomTheme/ComponentWithCustomTheme";
 import styled from "@emotion/styled";
 import { axios } from "@/common/Util";
+import { useRouter } from "next/router";
 
 const landingPageTheme = createTheme({
     palette: {
@@ -21,10 +22,11 @@ const landingPageTheme = createTheme({
 
 const LandingPageForm = () => {
     const shouldRender = useClient();
+    const router = useRouter();
 
     return shouldRender && (
         <ThemeProvider theme={FORM_THEME}>
-            <Box sx={{backgroundColor: "#fff", maxWidth: "800px", margin: "auto", marginBottom: "60px", "borderRadius": "20px"}}>
+            <Box sx={{backgroundColor: "#fff", margin: "auto", marginBottom: "60px", "borderRadius": "20px"}}>
                 <FormBox>
                     <MuiForms
                         config={{
@@ -37,8 +39,9 @@ const LandingPageForm = () => {
                             const response = await axios.post("/submit", data);
                             return true;
                         }}
-                        onSubmit={(data) => {
-
+                        onSubmit={async (data) => {
+                            const response = await axios.post("/submit", data);
+                            router.push("/examples/form-with-basic-details")
                         }} 
                     />
                 </FormBox>

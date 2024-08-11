@@ -5,7 +5,8 @@
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
-    padding-top: 64px;
+    margin-top: -16px;
+    padding-top: 0;
 }
 
 .gradient {
@@ -53,7 +54,7 @@
     flex-direction: row;
     align-items: center;
     /* background-color: rgb(17 24 39 / var(--tw-bg-opacity)); */
-    background: linear-gradient(90deg, #434343 0%, #000 100%);
+    background: linear-gradient(90deg, #434343 40%, #000 100%);
     @media (max-width: 950px) {
         flex-direction: column;
     }

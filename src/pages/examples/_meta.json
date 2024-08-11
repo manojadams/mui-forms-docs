@@ -8,6 +8,15 @@
             "toc": true
         }
     },
+    "form-with-basic-details": {
+        "title": "Form With Basic Details",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
     "customer-feedback-form": {
         "title": "Customer Feedback Form",
         "type": "page",

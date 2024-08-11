@@ -1,5 +1,10 @@
 [
     {
+        "title": "Form With Basic Details",
+        "img": "/images/form-with-basic-details.png",
+        "href": "/examples/form-with-basic-details"
+    },
+    {
         "title": "Customer Feedback Form",
         "img": "/images/customer-feedback-form.png",
         "href": "/examples/customer-feedback-form"

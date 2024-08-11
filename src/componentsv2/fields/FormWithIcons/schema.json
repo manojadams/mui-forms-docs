@@ -17,7 +17,11 @@
                     },
                     "validation": {
                         "required": true,
-                        "max": 100
+                        "max": 30,
+                        "pattern": {
+                            "value": "^[a-zA-Z]$",
+                            "errorMsg": "Oh, invalid characters"
+                        }
                     }
                 }
             }, {
@@ -34,7 +38,11 @@
                             "value": true,
                             "errorMsg": "This is a custom error message"
                         },
-                        "max": 100
+                        "pattern": {
+                            "value": "^[a-zA-Z]$",
+                            "errorMsg": "Oh, invalid characters again"
+                        },
+                        "max": 30
                     }
                 }
             }, {
@@ -46,8 +54,7 @@
                         "md": 6
                     },
                     "validation": {
-                        "required": true,
-                        "info": "You should be at least 18 years"
+                        "required": true
                     }
                 }
             }, {
@@ -58,6 +65,7 @@
                     "iconName": "mail",
                     "validation": {
                         "required": true,
+                        "info": "You should have a valid email address",
                         "max": 100
                     }
                 }
@@ -225,14 +233,26 @@
             "displayName": "Document Details"
         },
         "fields": [{
-            "name": "pancard",
+            "name": "aadhaar",
+            "meta": {
+                "config": {
+                    "mask": "9999-9999-9999"
+                },
+                "displayName": "Aadhaar number",
+                "displayType": "input-mask",
+                "validation": {
+                    "required": true
+                }
+            }
+        }, {
+            "name": "aadhaar-card",
             "meta": {
                 "config": {
                     "accept": "image/jpeg,image/png",
                     "filePreview": true
                 },
                 "displayType": "file",
-                "displayName": "Upload your PAN",
+                "displayName": "Upload your AADHAAR card",
                 "validation": {
                     "required": true
                 }
