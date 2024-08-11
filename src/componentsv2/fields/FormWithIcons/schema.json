@@ -51,21 +51,6 @@
                     }
                 }
             }, {
-                "name": "rent",
-                "meta": {
-                    "displayName": "Rent",
-                    "displayType": "currency",
-                    "iconName": "password",
-                    "displayProps": {
-                        "md": 6,
-                        "max": "50000"
-                    },
-                    "validation": {
-                        "required": true,
-                        "max": 10
-                    }
-                }
-            }, {
                 "name": "email",
                 "meta": {
                     "displayName": "Email",
@@ -86,96 +71,168 @@
         },
         "fields": [
             {
-                "name": "address",
+                "name": "about",
                 "meta": {
-                    "displayName": "Address",
-                    "displayType": "header"
-                }
-            }, {
-                "name": "address_1",
-                "meta": {
-                    "displayName": "House No / Street",
+                    "displayName": "This is a disabled field",
                     "displayType": "text",
-                    "validation": {
-                        "required": true,
-                        "max": 100
+                    "isDisabled": true
+                }
+            },
+            {
+                "name": "provide_address",
+                "meta": {
+                    "displayName": "",
+                    "displayType": "checkbox",
+                    "options": [
+                        {
+                            "label": "Provide address",
+                            "value": "true"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "prefill_address",
+                "meta": {
+                    "displayName": "",
+                    "displayType": "checkbox",
+                    "options": [
+                        {
+                            "label": "Prefill",
+                            "value": "true"
+                        }
+                    ],
+                    "displayProps": {
+                        "md": 6
+                    },
+                    "dependencies": {
+                        "exists": {
+                            "ref": "provide_address",
+                            "value": "true"
+                        }
                     }
                 }
-            }, {
-                "name": "address_2",
+            },
+            {
+                "name": "street_address",
+                "meta": {
+                    "displayName": "Street",
+                    "displayType": "text_field",
+                    "validation": {
+                        "max": 30,
+                        "required": true
+                    },
+                    "dependencies": {
+                        "exists": {
+                            "ref": "provide_address",
+                            "value": "true"
+                        },
+                        "prop_update": {
+                            "ref": "prefill_address",
+                            "propName": "value",
+                            "valueMap": {
+                                "true": "random street",
+                                "": ""
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "landmark",
                 "meta": {
                     "displayName": "Landmark",
-                    "displayType": "text",
+                    "displayType": "text_field",
                     "validation": {
-                        "required": true,
-                        "max": 100
-                    }
-                }
-            }, {
-                "name": "state",
-                "meta": {
-                    "displayName": "State",
-                    "displayType": "select",
-                    "options": [{
-                        "label": "Assam", "value": "assam"
-                    }],
-                    "displayProps": {
-                        "md": 6
-                    },
-                    "validation": {
+                        "max": 30,
                         "required": true
-                    }
-                }
-            }, {
-                "name": "zipcode",
-                "meta": {
-                    "displayName": "Zipcode",
-                    "displayType": "text",
-                    "displayProps": {
-                        "md": 6
                     },
-                    "validation": {
-                        "required": true,
-                        "max": 6
+                    "dependencies": {
+                        "exists": {
+                            "ref": "provide_address",
+                            "value": "true"
+                        },
+                        "prop_update": {
+                            "ref": "prefill_address",
+                            "propName": "value",
+                            "valueMap": {
+                                "true": "random landmark",
+                                "": ""
+                            }
+                        }
                     }
                 }
-            }, {
+            },
+            {
                 "name": "country",
                 "meta": {
+                    "config": {
+                        "url": "/api/countries",
+                        "valueKey": "code",
+                        "labelKey": "name"
+                    },
                     "displayName": "Country",
                     "displayType": "select",
-                    "value": "INDIA",
-                    "isDisabled": true,
-                    "options": [{
-                        "label": "India", "value": "INDIA"
-                    }],
                     "displayProps": {
-                        "md": 6
+                        "md": 6,
+                        "sm": 6,
+                        "xs": 6
                     },
                     "validation": {
+                        "max": 30,
                         "required": true
+                    },
+                    "dependencies": {
+                        "exists": {
+                            "ref": "provide_address",
+                            "value": "true"
+                        },
+                        "prop_update": {
+                            "ref": "prefill_address",
+                            "propName": "value",
+                            "valueMap": {
+                                "true": "EC",
+                                "": ""
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "rent",
+                "meta": {
+                    "displayName": "What is your rent",
+                    "displayType": "currency",
+                    "iconName": "currency_dollar",
+                    "validation": {
+                        "required": true,
+                        "max": {
+                            "value": 50000,
+                            "errorMsg": "Rent not allowed above Rs. 50,000"
+                        },
+                        "min": {
+                            "value": 2000,
+                            "errorMsg": "Rent should be atleast Rs. 2000"
+                        }
                     }
                 }
             }
         ]
     }, {
-        "name": "group-details",
+        "name": "doc-details",
         "meta": {
             "type": "section",
-            "displayName": "Group Details"
+            "displayName": "Document Details"
         },
         "fields": [{
-            "name": "group",
+            "name": "pancard",
             "meta": {
-                "displayType": "select",
-                "displayName": "Select Your Group",
-                "options": [{
-                    "label": "Group1",
-                    "value": "group1"
-                }, {
-                    "label": "Group2",
-                    "value": "group2"
-                }],
+                "config": {
+                    "accept": "image/jpeg,image/png",
+                    "filePreview": true
+                },
+                "displayType": "file",
+                "displayName": "Upload your PAN",
                 "validation": {
                     "required": true
                 }
