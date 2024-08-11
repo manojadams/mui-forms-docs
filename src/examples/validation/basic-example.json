@@ -56,7 +56,15 @@
                 "displayType": "password",
                 "displayName": "Your password",
                 "validation": {
-                    "required": true
+                    "required": true,
+                    "min": {
+                        "value": "3",
+                        "errorMsg": "First name should be of minimum 3 length"
+                    },
+                    "max": {
+                        "value": "10",
+                        "errorMsg": "First name max length should be 20"
+                    }
                 }
             }
         }
