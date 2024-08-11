@@ -13,12 +13,11 @@
 | lastPageNumber     | The last page number will exclude any tabs that appear after the lastPageNumber tab | Optional |
 | onChange           | A function that will be called whenever the value of a field changes. The second parameter provided to this function contains the complete form data. | Optional |                                                                                                                                                                                                                | Optional  |
 | onError            | A function that will be called whenever there is an error with a field.                                                                                                                                                                                                                     | Optional  |
-| onNext             | A function that will be called when when the user attempts to navigate to the next section of a grouped form. For async data, use property `useNextResponse` as true                                                                                                                                                                         | Optional  |
+| onNext             | A function that will be called when when the user attempts to navigate to the next section of a grouped form.                                                                                                                                                                        | Optional  |
 | onPrevious         | A function that will be called when when the user attempts to navigate to the previous section of a grouped form                                                                                                                                                                | Optional  |
 | onSubmit           | A function that will be called when the form is submitted                                                                                                                                                                                                                  | Mandatory |
 | changeResponseMode | Value: "form-data", "section-data", "default". <br /> **`form-data`**: onChange event will pass all the form data as a second parameter. <br />**`section-data`**: onChange event will pass all the section data as a second parameter.                  | Optional  |
 | nextResponseMode   | Value: "form-data", "page-data" <br/> **`form-data`**: onNext event will send all the form data (onNext). <br /> **`page-data`**: onNext event will send all the date of the current page. <br/> `Note`: onNext is triggered on click of **Next** button | Optional  |
-| useNextResponse    | Setting this to true ensures that the onNext call will wait for a server response before proceeding. | Optional |
 
 
 ### onNext, onSubmit
@@ -26,6 +25,11 @@ It accepts the following three arguments:
 - formData
 - pageNumber
 - setErrors
+
+#### Return type of onNext, onSubmit
+- boolean or Promise<boolean>
+
+If return type is a Promise, the step will move forward only if the Promise response resolves to true.
 
 #### formData
 It is the form data in key/value pair.

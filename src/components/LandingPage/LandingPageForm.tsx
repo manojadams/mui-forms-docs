@@ -6,6 +6,7 @@ import { useClient } from "@/common/hooks";
 import { Box, createTheme, ThemeProvider } from "@mui/material";
 import { FORM_THEME } from "../ComponentWithCustomTheme/ComponentWithCustomTheme";
 import styled from "@emotion/styled";
+import { axios } from "@/common/Util";
 
 const landingPageTheme = createTheme({
     palette: {
@@ -25,7 +26,21 @@ const LandingPageForm = () => {
         <ThemeProvider theme={FORM_THEME}>
             <Box sx={{backgroundColor: "#fff", maxWidth: "800px", margin: "auto", marginBottom: "60px", "borderRadius": "20px"}}>
                 <FormBox>
-                    <MuiForms schema={schema} onSubmit={() => {}} />
+                    <MuiForms
+                        config={{
+                            loader: {
+                                enabled: true
+                            }
+                        }}
+                        schema={schema}
+                        onNext={async (data) => {
+                            const response = await axios.post("/submit", data);
+                            return true;
+                        }}
+                        onSubmit={(data) => {
+
+                        }} 
+                    />
                 </FormBox>
             </Box>
         </ThemeProvider>

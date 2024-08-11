@@ -24,6 +24,13 @@ export const FORM_THEME = createTheme({
             styleOverrides: {
                 root: ColorsStyles
             }
+        },
+        MuiFormHelperText: {
+            styleOverrides: {
+                root: {
+                    color: "#275DAD"
+                }
+            }
         }
     }
 });

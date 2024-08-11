@@ -30,7 +30,10 @@
                         "md": 6
                     },
                     "validation": {
-                        "required": true,
+                        "required": {
+                            "value": true,
+                            "errorMsg": "This is a custom error message"
+                        },
                         "max": 100
                     }
                 }
@@ -43,17 +46,19 @@
                         "md": 6
                     },
                     "validation": {
-                        "required": true
+                        "required": true,
+                        "info": "You should be at least 18 years"
                     }
                 }
             }, {
-                "name": "phone",
+                "name": "rent",
                 "meta": {
-                    "displayName": "Phone Number",
-                    "displayType": "text",
+                    "displayName": "Rent",
+                    "displayType": "currency",
                     "iconName": "password",
                     "displayProps": {
-                        "md": 6
+                        "md": 6,
+                        "max": "50000"
                     },
                     "validation": {
                         "required": true,

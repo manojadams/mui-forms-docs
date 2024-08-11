@@ -19,7 +19,6 @@ import FormWithLoader from "../componentsv2/FormWithLoader";
                 enabled: true
             }
         }}
-        useNextResponse={true}
         schema={schema}
         onNext={async (data) => {
             const response = await axios.post("/submit", data);

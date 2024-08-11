@@ -20,7 +20,6 @@ function FormWithServerSideErrorHandling() {
         <MuiForms
             sectionLayout="tabs"
             schema={schema}
-            useNextResponse={true}
             onNext={async (data, pageNumber, setErrors) => {
                 try {
                     await submitData(data);

@@ -2,15 +2,7 @@ import React from "react";
 import MuiForms from "mui-forms";
 import schema from "./schema.json";
 import { useClient } from "@/common/hooks";
-
-const axios = {
-    post: async (endpoint: string, data: any) => {
-        return new Promise((resolve) => {
-            console.log(endpoint);
-            setTimeout(() => resolve(data), 1000)
-        });
-    }
-}
+import { axios } from "@/common/Util";
 
 const FormWithLoader = () => {
     const render = useClient();
@@ -22,7 +14,6 @@ const FormWithLoader = () => {
                     enabled: true
                 }
             }}
-            useNextResponse={true}
             schema={schema}
             onNext={async (data) => {
                 const response = await axios.post("/submit", data);
