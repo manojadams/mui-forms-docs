@@ -65,7 +65,7 @@
                     "iconName": "mail",
                     "validation": {
                         "required": true,
-                        "info": "You should have a valid email address",
+                        "info": "This is a custom info message",
                         "max": 100
                     }
                 }
