@@ -19,7 +19,7 @@
                         "required": true,
                         "max": 30,
                         "pattern": {
-                            "value": "^[a-zA-Z]$",
+                            "value": "^[a-zA-Z]*$",
                             "errorMsg": "Oh, invalid characters"
                         }
                     }
@@ -39,7 +39,7 @@
                             "errorMsg": "This is a custom error message"
                         },
                         "pattern": {
-                            "value": "^[a-zA-Z]$",
+                            "value": "^[a-zA-Z]*$",
                             "errorMsg": "Oh, invalid characters again"
                         },
                         "max": 30

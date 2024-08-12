@@ -13,7 +13,7 @@ input:focus-visible {
     box-shadow: none!important;
 }
 
-.footer button {
+.footer [data-btn-type="submit"] button, [data-btn-type="next"] button {
     background-color: var(--primary);
 }
 
