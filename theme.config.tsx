@@ -21,14 +21,6 @@ const config: DocsThemeConfig = {
         defaultTheme: "light"
     },
     darkMode: false,
-    banner: {
-        key: '2.0-release',
-        text: (
-          <a href="/release-v2" target="_blank">
-            🎉 MuiForms 2.0 is released. Read more →
-          </a>
-        )
-    },
     versions: [{
         name: "version1",
         dir: "v1"
