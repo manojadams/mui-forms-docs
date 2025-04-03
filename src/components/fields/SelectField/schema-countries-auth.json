@@ -1,0 +1,21 @@
+{
+    "fields": [
+        {
+            "name": "countries",
+            "meta": {
+                "config": {
+                    "lazy": true,
+                    "url": "/api/countriesWithAuth",
+                    "valueKey": "code",
+                    "labelKey": "name",
+                    "requestHeaders": {
+                        "authorization": "Basic dGVzdHVzZXI6dGVzdHBhc3N3b3Jk"
+                    }
+                },
+                "displayName": "Select Country",
+                "displayType": "select",
+                "options": []
+            }
+        }
+    ]
+}

@@ -27,6 +27,7 @@ The configuration defines how to load dropdown options for the `select` field. U
 | pathParams | The path parameters of the url. Use this for dynamic path parameters |
 | queryParams | List of query parameters. Use this for dynamic query parameters |
 | requestType | Represents HTTP method used for url. Options are `get`, `post`, `put`, `delete`. <br /> If none is specified and **url** key is present, then default value is **`get`**|
+| requestHeaders | A mapping of header key and value pairs. Use this for authentication, content type, caching policies, custom headers etc.  |
 | requestBody | A JSON payload. Parameters are representes as `$0`, `$1` and so forth. <br />Parameters are 0 indexed.|
 | requestBodyParams | List of parameter values of request body. Each index value in the requestBodyParams represents the same index parameter form requestParams |
 | valueKey | The key from the response for value of the field |
@@ -105,3 +106,50 @@ import schemaCountries from "@/components/fields/SelectField/schema-countries.js
 ## Schema
 
 <SchemaViewer value={schemaCountries} />
+
+## How to load options from remote api that require auth
+
+### Approach 1: using request headers configured for specific field
+
+import SelectWithCountriesWithAuth from "@/components/fields/SelectField/SelectWithCountriesWithAuth";
+import schemaCountriesWithAuth from "@/components/fields/SelectField/schema-countries-auth.json";
+
+<SelectWithCountriesWithAuth />
+
+#### Schema
+
+<SchemaViewer value={schemaCountriesWithAuth} />
+
+### Approach 2: using global config headers
+
+import SelectWithCountriesWithConfigAuth from "@/components/fields/SelectField/SelectWithCountriesWithConfigAuth";
+import schemaCountriesWithAuthConfig from "@/components/fields/SelectField/schema-countries-auth-config.json";
+
+<SelectWithCountriesWithConfigAuth />
+
+#### Schema
+
+<SchemaViewer value={schemaCountriesWithAuthConfig} />
+
+#### Usage
+
+```tsx
+import React from "react";
+import MuiForms from "mui-forms";
+import schema from "./schema.json";
+
+function RatingForm() {
+    return (
+        <MuiForms
+            config={{
+                headers: {
+                    "authorization": "Basic dGVzdHVzZXI6dGVzdHBhc3N3b3Jk"
+                }
+            }}
+            schema={schema}
+            onSubmit={() => {
+                // do nothing
+            }}
+        />
+    );
+}

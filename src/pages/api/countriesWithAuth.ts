@@ -1,7 +1,35 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
+const isAuthenticated = (req: NextApiRequest) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Basic ")) {
+        return false;
+    }
+
+    // Extract the Base64-encoded credentials
+    const base64Credentials = authHeader.split(" ")[1];
+
+    const decodedCredentials = Buffer.from(base64Credentials, "base64").toString();
+
+    const [username, password] = decodedCredentials.split(":");
+
+    if (!username || !password) {
+        return false;
+    }
+
+    if (username === "testuser" && password === "testpassword") {
+        return true;
+    }
+
+    return false;
+}
+
 const getCountries = (req: NextApiRequest, res: NextApiResponse) => {
-    return res.json(countries);
+    if (isAuthenticated(req)) {
+        return res.json(countries);
+    } else {
+        res.status(401).json({error: "Unauthorized"});
+    }
 };
 
 export const countries = [
