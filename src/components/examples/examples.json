@@ -5,6 +5,11 @@
         "href": "/examples/form-with-basic-details"
     },
     {
+        "title": "Form With Multiple Address",
+        "img": "/images/form-with-multiple-address.png",
+        "href": "/examples/form-with-multiple-address"
+    },
+    {
         "title": "Customer Feedback Form",
         "img": "/images/customer-feedback-form.png",
         "href": "/examples/customer-feedback-form"

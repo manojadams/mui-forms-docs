@@ -1,0 +1,316 @@
+{
+    "fields": [
+      
+        {
+            "name": "addressSelector",
+            "meta": {
+                "displayName": "Address",
+                "displayType": "radio",
+                "className": "input-container nominee-form-address-selector-field",
+                "displayProps": {
+                    "md": 12
+                },
+                "options": [
+                    {
+                        "label": "Home1",
+                        "value": "add_Jnc9EecufoumVe4uZvP583"
+                    },
+                    {
+                        "label": "1-471, Bengaluru",
+                        "value": "add_LaJ8xypzxaRhgXAAzo8Bg3"
+
+                    },
+                    {
+                        "label": "Naruto, Bengaluru",
+                        "value": "add_L4ziGnA5sqhCBGY8Kgyn98"
+                    },
+                    {
+                        "label": "fkjdsfklsjdf, skjdfhsdfkj",
+                        "value": "add_6zqdZY5VvPr9WHqKiT4poQ"
+
+                    },
+                    {
+                        "label": "Add New Address",
+                        "value": "new_address"
+                    }
+                ],
+                "validation": {
+                    "required": true
+                },
+                "events": {
+                    "change": [
+                        {
+                            "type": "setter",
+                            "ref": "line1",
+                            "valueMap": {
+                                "add_Jnc9EecufoumVe4uZvP583": "WEALTHY",
+                                "add_LaJ8xypzxaRhgXAAzo8Bg3": "1-471",
+                                "add_L4ziGnA5sqhCBGY8Kgyn98": "GROUND FLOOR, PN PLAZA",
+                                "add_6zqdZY5VvPr9WHqKiT4poQ": "IKFHASDKJFL HWERAHMFJ ",
+                                "new_address": ""
+                            }
+                        },
+                        {
+                            "type": "setter",
+                            "ref": "line2",
+                            "valueMap": {
+                                "add_Jnc9EecufoumVe4uZvP583": "WEALTHY",
+                                "add_LaJ8xypzxaRhgXAAzo8Bg3": "SEETHARAMA NAGAR",
+                                "add_L4ziGnA5sqhCBGY8Kgyn98": "HSR SECTOR 8",
+                                "add_6zqdZY5VvPr9WHqKiT4poQ": "FKJHSDFK SDFJKSHF,KEAHIJRSE FK",
+                                "new_address": ""
+                            }
+                        }, {
+                            "type": "setter",
+                            "ref": "line3",
+                            "valueMap": {
+                                "add_Jnc9EecufoumVe4uZvP583": "TEST",
+                                "add_LaJ8xypzxaRhgXAAzo8Bg3": "GANGAPURAM,CHINNATHIPPASAMUDRAM,CHINNATIPPASAMUDRAM,ANNAMAYYA,ANDHRA PRADESH,517319",
+                                "add_L4ziGnA5sqhCBGY8Kgyn98": "SLFKJSDF LSKDFJ LSDF, ASKDFJH SF",
+                                "add_6zqdZY5VvPr9WHqKiT4poQ": "SDFKJASHDFKJASDHFSADK JF",
+                                "new_address": ""
+                            }
+                        },
+                        {
+                            "type": "setter",
+                            "ref": "pincode",
+                            "valueMap": {
+                                "add_Jnc9EecufoumVe4uZvP583": "560035",
+                                "add_LaJ8xypzxaRhgXAAzo8Bg3": "517319",
+                                "add_L4ziGnA5sqhCBGY8Kgyn98": "517319",
+                                "add_6zqdZY5VvPr9WHqKiT4poQ": "887738",
+                                "new_address": ""
+                            }
+                        },
+                        {
+                            "type": "setter",
+                            "ref": "districtOrCity" ,                           "valueMap": {
+                                "add_Jnc9EecufoumVe4uZvP583": "BANGALORE",
+                                "add_LaJ8xypzxaRhgXAAzo8Bg3": "BENGALURU",
+                                "add_L4ziGnA5sqhCBGY8Kgyn98": "BENGALURU",
+                                "add_6zqdZY5VvPr9WHqKiT4poQ": "SKJDFHSDFKJ",
+                                "new_address": ""
+                            }
+                        },
+                        {
+                            "type": "setter",
+                            "ref": "country",
+                            "valueMap": {
+                                "add_Jnc9EecufoumVe4uZvP583": "INDIA",
+                                "add_LaJ8xypzxaRhgXAAzo8Bg3": "INDIA",
+                                "add_L4ziGnA5sqhCBGY8Kgyn98": "FRANCE",
+                                "add_6zqdZY5VvPr9WHqKiT4poQ": "ANGOLA",
+                                "new_address": ""
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "line1",
+            "meta": {
+                "displayName": "Address Line 1.",
+                "displayType": "text",
+                "className": "input-container",
+                "displayProps": {
+                    "md": 12
+                },
+                "validation": {
+                    "required": true,
+                    "max": {
+                        "value": 38,
+                        "errorMsg": "Maximum characters exceeded"
+                    }
+                },
+                "value": "Wealthy"
+            }
+        },
+        {
+            "name": "line2",
+            "meta": {
+                "displayName": "Address Line 2.",
+                "displayType": "text",
+                "className": "input-container",
+                "displayProps": {
+                    "md": 12
+                },
+                "validation": {
+                    "max": {
+                        "value": 38,
+                        "errorMsg": "Maximum characters exceeded"
+                    }
+                },
+                "value": "Wealthy"
+            }
+        },
+        {
+            "name": "line3",
+            "meta": {
+                "displayName": "Address Line 3.",
+                "displayType": "text",
+                "className": "input-container",
+                "displayProps": {
+                    "md": 12
+                },
+                "validation": {
+                    "max": {
+                        "value": 38,
+                        "errorMsg": "Maximum characters exceeded"
+                    }
+                },
+                "value": "test"
+            }
+        },
+        {
+            "name": "pincode",
+            "meta": {
+                "displayName": "Zip Code/Pincode",
+                "displayType": "text",
+                "className": "input-container",
+                "displayProps": {
+                    "md": 6,
+                    "xs": 12
+                },
+                "validation": {
+                    "required": true,
+                    "pattern": {
+                        "value": "^[0-9]{6}$",
+                        "errorMsg": "Please enter valid 6-digit pincode"
+                    }
+                },
+                "value": "560035"
+            }
+        },
+        {
+            "name": "districtOrCity",
+            "meta": {
+                "displayName": "City",
+                "displayType": "text",
+                "className": "input-container",
+                "displayProps": {
+                    "md": 6
+                },
+                "validation": {
+                    "required": true
+                },
+                "value": "Bangalore"
+            }
+        },
+        {
+            "name": "country",
+            "meta": {
+                "displayName": "Country",
+                "displayType": "select",
+                "className": "input-container",
+                "options": [
+                    {
+                        "label": "Afghanistan",
+                        "value": "AFGHANISTAN"
+                    },
+                    {
+                        "label": "Algeria",
+                        "value": "ALGERIA"
+                    },
+                    {
+                        "label": "Angola",
+                        "value": "ANGOLA"
+                    },
+                    {
+                        "label": "Anguilla",
+                        "value": "ANGUILLA"
+                    },
+                    {
+                        "label": "Argentina",
+                        "value": "ARGENTINA"
+                    },
+                    {
+                        "label": "Armenia",
+                        "value": "ARMENIA"
+                    },
+                    {
+                        "label": "Aruba",
+                        "value": "ARUBA"
+                    },
+                    {
+                        "label": "Australia",
+                        "value": "AUSTRALIA"
+                    },
+                    {
+                        "label": "Austria",
+                        "value": "AUSTRIA"
+                    },
+                    {
+                        "label": "Azerbaijan",
+                        "value": "AZERBAIJAN"
+                    },
+                    {
+                        "label": "Bahamas",
+                        "value": "BAHAMAS"
+                    },
+                    {
+                        "label": "Bahrain",
+                        "value": "BAHRAIN"
+                    },
+                    {
+                        "label": "Bangladesh",
+                        "value": "BANGLADESH"
+                    },
+                    {
+                        "label": "Belarus",
+                        "value": "BELARUS"
+                    },
+                    {
+                        "label": "Belgium",
+                        "value": "BELGIUM"
+                    },
+                    {
+                        "label": "Belize",
+                        "value": "BELIZE"
+                    },
+                    {
+                        "label": "Benin",
+                        "value": "BENIN"
+                    },
+                    {
+                        "label": "Bermuda",
+                        "value": "BERMUDA"
+                    },
+                    {
+                        "label": "Bhutan",
+                        "value": "BHUTAN"
+                    },
+                    {
+                        "label": "Bolivia",
+                        "value": "BOLIVIA"
+                    },
+                    {
+                        "label": "India",
+                        "value": "INDIA"
+                    },
+                    {
+                        "label": "France",
+                        "value": "FRANCE"
+                    }
+                ],
+                "displayProps": {
+                    "md": 12
+                },
+                "validation": {
+                    "required": true
+                },
+                "value": "India"
+            }
+        }
+    ],
+    "buttons": [
+        {
+            "name": "Add",
+            "meta": {
+                "type": "submit",
+                "displayName": "Next",
+                "className": "col"
+            }
+        }
+    ]
+}

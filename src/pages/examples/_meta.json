@@ -17,6 +17,15 @@
             "toc": false
         }
     },
+    "form-with-multiple-address": {
+        "title": "Form With Multiple Address",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
     "customer-feedback-form": {
         "title": "Customer Feedback Form",
         "type": "page",
