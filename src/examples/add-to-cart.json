@@ -75,7 +75,7 @@
             "responseKey": "products",
             "labelKey": "title",
             "valueKey": "total",
-            "lazy": "true"
+            "lazy": true
           },
           "displayName": "Product Details",
           "displayType": "select",

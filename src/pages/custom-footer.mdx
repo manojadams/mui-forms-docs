@@ -1,0 +1,124 @@
+## Custom Footer
+
+The forms footer section can be customised using a __custom footer component__.
+
+### Properties
+
+|Name | Description |
+|-----|------|
+| previousBtn | The previous button for grouped forms. |
+| nextBtn | The next button for grouped forms. |
+| submitBtn | The submit button for form. |
+
+### Example
+
+import FormWithCustomFooter from "@/examples/FormWithCustomFooter";
+
+<FormWithCustomFooter />
+
+### Custom footer component
+```tsx
+interface IProps {
+    previousBtn: JSX.Element;
+    nextBtn: JSX.Element;
+    submitBtn: JSX.Element;
+};
+
+const CustomFooter = (props: IProps) => {
+  const handleValidate = () => {
+    // handle code validation
+  }
+
+  return (
+    <ThemeProvider theme={CUSTOM_FOOTER_THEME}>
+      <Box
+        sx={{
+          bottom: 0,
+          width: '100%',
+          backgroundColor: 'background.paper',
+          borderTop: '1px solid #e0e0e0',
+          py: 2,
+          zIndex: 1000,
+        }}
+      >
+        <Container maxWidth="md">
+          <Stack direction="row" justifyContent="space-between">
+            <Button type="reset">Reset</Button>
+            <Button variant="outlined" onClick={handleValidate}>Validate</Button>
+            {props.previousBtn}
+            {props.nextBtn}
+            {props.submitBtn}
+          </Stack>
+        </Container>
+      </Box>
+    </ThemeProvider>
+  );
+}
+```
+
+### Form with custom footer
+
+```tsx
+import React from "react";
+import MuiForms from "mui-forms";
+import schema from "./schema.json";
+
+function AccountForm() {
+    return (
+        <MuiForms
+            schema={schema}
+            footer={CustomFooter}
+            onSubmit={() => {
+                // handle code
+            }}
+        />
+    );
+}
+```
+
+### Customize footer buttons
+
+The following buttons in the footer section are provided by default:
+1. previous - For previous button
+2. next - For next button
+3. submit - For submit/save button
+
+To further customize these, custom buttons can be provided using __buttons__ property.
+When provided custom buttons, the new buttons will be automatically bounded to the __onPrevious, onNext and onSubmit__ form events.
+
+Note: Do note that the default loader will not work with custom buttons.
+
+### Property
+|Name | Description|
+|--|--|
+| buttons | <ul><li>1. previous</li><li>2. next</li><li>3. submit</li></ul> |
+
+### Example:
+
+import FormWithCustomButtons from "@/examples/FormWithCustomButtons";
+
+<FormWithCustomButtons />
+
+
+ ```tsx
+import React from "react";
+import MuiForms from "mui-forms";
+import schema from "./schema.json";
+
+function MyForm() {
+    return (
+        <MuiForms
+          buttons={{
+            previous: <Button>Previous</Button>,
+            next: <Button>Next</Button>,
+            submit: <button style={{color: "white"}}>Save</button>
+          }}
+          schema={schema}
+          footer={CustomFooter}
+          onSubmit={() => {
+              // handle code
+          }}
+      />
+    );
+}
+```

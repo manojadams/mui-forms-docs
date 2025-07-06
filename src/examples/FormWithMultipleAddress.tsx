@@ -19,6 +19,14 @@ const landingPageTheme = createTheme({
     }
 });
 
+const Footer = () => {
+    return (
+        <div>
+            <button>Hi</button>
+        </div>
+    )
+}
+
 const FormWithMultipleAddress = () => {
     const shouldRender = useClient();
     const router = useRouter();
@@ -40,7 +48,7 @@ const FormWithMultipleAddress = () => {
                         }}
                         onSubmit={async (data) => {
                             const response = await axios.post("/submit", data);
-                            router.push("/examples/form-with-basic-details")
+                            router.push("/examples/form-with-multiple-address")
                         }} 
                     />
                 </FormBox>
