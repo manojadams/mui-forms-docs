@@ -11,7 +11,7 @@ const Products = () => {
 
     return shouldRender && (
         <MuiForms
-            schema={productSchema}
+            schema={productSchema as any}
             onSubmit={(data) => {
                 // submit data
             }}
