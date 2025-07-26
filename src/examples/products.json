@@ -1,0 +1,89 @@
+{
+    "fields": [
+      {
+        "name": "product_type",
+        "meta": {
+          "config": {
+            "url": "/api/category",
+            "labelKey": "name",
+            "valueKey": "id"
+          },
+          "displayName": "Product Type",
+          "displayType": "select",
+          "options": []
+        }
+      },
+      {
+        "name": "brand_id",
+        "meta": {
+          "displayName": "Brand",
+          "displayType": "select",
+          "options": [],
+          "config": {
+            "lazy": true,
+            "url": "/api/category/brands",
+            "queryParams": [
+              [
+                "category_id",
+                {
+                  "type": "fieldValue",
+                  "ref": "product_type"
+                }
+              ]
+            ],
+            "labelKey": "name",
+            "valueKey": "id"
+          },
+          "dependencies": {
+            "exists": {
+              "ref": "product_type",
+              "value": "$notempty"
+            },
+            "options": {
+              "ref": "product_type"
+            }
+          }
+        }
+      },
+      {
+        "name": "model_id",
+        "meta": {
+          "displayName": "Model",
+          "displayType": "select",
+          "options": [],
+          "config": {
+            "lazy": true,
+            "url": "/api/category/models",
+            "queryParams": [
+              [
+                "brand_id",
+                {
+                  "type": "fieldValue",
+                  "ref": "brand_id"
+                }
+              ],
+              [
+                "category_id",
+                {
+                  "type": "fieldValue",
+                  "ref": "product_type"
+                }
+              ]
+            ],
+            "labelKey": "name",
+            "valueKey": "id"
+          },
+          "dependencies": {
+            "exists": {
+              "ref": "brand_id",
+              "value": "$notempty"
+            },
+            "options": {
+              "ref": "brand_id"
+            }
+          }
+        }
+      }
+    ]
+  }
+  

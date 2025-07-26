@@ -1,0 +1,31 @@
+## Form With Products/Brands/Models
+
+import Products from "@/examples/Products";
+import SchemaViewer from "@/components/SchemaViewer";
+import productSchema from "@/examples/products.json";
+
+<Products />
+
+### Schema
+
+<SchemaViewer value={productSchema} />
+
+
+### Usage
+
+```tsx
+import React from "react";
+import MuiForms from "mui-forms";
+import schema from "./schema.json";
+
+function FormWithProducts() {
+    return (
+        <MuiForms
+            schema={schema}
+            onSubmit={async (data) => {
+                // submit data
+            }} 
+        />
+    );
+}
+```

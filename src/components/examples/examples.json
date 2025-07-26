@@ -10,6 +10,11 @@
         "href": "/examples/form-with-multiple-address"
     },
     {
+        "title": "Form With Products",
+        "img": "/images/form-with-products.png",
+        "href": "/examples/form-with-products"
+    },
+    {
         "title": "Customer Feedback Form",
         "img": "/images/customer-feedback-form.png",
         "href": "/examples/customer-feedback-form"

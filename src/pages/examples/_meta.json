@@ -26,6 +26,15 @@
             "toc": false
         }
     },
+    "form-with-products": {
+        "title": "Form With Products",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
     "customer-feedback-form": {
         "title": "Customer Feedback Form",
         "type": "page",
