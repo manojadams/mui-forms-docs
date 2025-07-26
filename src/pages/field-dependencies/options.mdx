@@ -1,0 +1,24 @@
+# Options dependency
+
+This dependency is used to dynamically load the list of dropdown options for a select field based on the value of another field.
+When the referenced field’s value changes, the target field’s dropdown options are reloaded (often via a configured API or data source).
+
+## Properties for options dependency
+
+| Name      | Description                                                                                                                                                                 |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ref       | It is the reference name of the dependent field    |
+
+**Note**: This dependency supports cascade behaviour which is ideal for multi-level dropdowns.
+
+import SchemaViewer from "@/components/SchemaViewer";
+import productSchema from "@/examples/products.json";
+import Products from "@/examples/Products";
+
+### Example to load options
+
+<Products />
+
+### Example Schema
+
+<SchemaViewer value={productSchema} />
