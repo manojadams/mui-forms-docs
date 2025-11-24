@@ -14,6 +14,25 @@
             }
         },
         {
+            "name": "category",
+            "meta": {
+                "displayName": "Category",
+                "displayType": "text_field",
+                "value": "Senior Engineer",
+                "isReadonly": true,
+                "dependencies": {
+                    "exists": {
+                        "ref": "salary",
+                        "value": "$condition",
+                        "condition": [
+                            [{ "ref": "salary" }, ">=", "100000", "&&"],
+                            [{ "ref": "salary_source"}, "===", "IT"]
+                        ]
+                    }
+                }
+            }
+        },
+        {
             "name": "salary",
             "meta": {
                 "displayName": "Salary",
