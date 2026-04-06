@@ -33,6 +33,23 @@ To update the `fields` and `form` status from outside of the library, `api's` ha
     );
 ```
 
+// Import meta API
+import { metaAPI } from "mui-forms";
+
+// Call validateForm method
+const errorDetails = metaAPI.metaForm.validateForm(
+  <metaFormName>
+);
+
+// errorDetails structure:
+// hasErrors: boolean → indicates if the form contains any validation errors
+// errors: Array<{
+//   id: string;        // Format: <formName>.<fieldName>
+//   errorMsg: string;  // Validation error message
+// }>
+
+console.log(errorDetails);
+
 ## Arguments
 
 | Name              | Description                                                                                                                                                                                            |
