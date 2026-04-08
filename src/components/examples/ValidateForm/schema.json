@@ -1,0 +1,78 @@
+{
+    "fields": [
+        {
+            "name": "full_name",
+            "meta": {
+                "displayType": "text",
+                "displayName": "Full Name",
+                "displayProps": {
+                    "md": 12,
+                    "sm": 12
+                },
+                "validation": {
+                    "required": true
+                }
+            }
+        },
+        {
+            "name": "email",
+            "meta": {
+                "displayType": "email",
+                "displayName": "Email Address",
+                "validation": {
+                    "required": {
+                        "value": true,
+                        "errorMsg": "Email is required"
+                    },
+                    "pattern": {
+                        "value": "^[A-Za-z0-9+_.-]+@(.+)$",
+                        "errorMsg": "Please enter a valid email address"
+                    }
+                }
+            }
+        },
+        {
+            "name": "password",
+            "meta": {
+                "displayType": "password",
+                "displayName": "Password",
+                "validation": {
+                    "required": {
+                        "value": true,
+                        "errorMsg": "Password is required"
+                    },
+                    "min": {
+                        "value": "8",
+                        "errorMsg": "Password must be at least 8 characters long"
+                    }
+                }
+            }
+        },
+        {
+            "name": "age",
+            "meta": {
+                "displayType": "number",
+                "displayName": "Age",
+                "validation": {
+                    "required": {
+                        "value": true,
+                        "errorMsg": "Age is required"
+                    }
+                }
+            }
+        },
+        {
+            "name": "phone",
+            "meta": {
+                "displayType": "text",
+                "displayName": "Phone Number",
+                "validation": {
+                    "pattern": {
+                        "value": "^[0-9\\-\\+]{10,}$",
+                        "errorMsg": "Please enter a valid phone number (minimum 10 digits)"
+                    }
+                }
+            }
+        }
+    ]
+}

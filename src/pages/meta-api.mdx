@@ -4,6 +4,7 @@ To update the `fields` and `form` status from outside of the library, `api's` ha
 
 -   updateField
 -   updateFormField
+-   validateForm
 -   destroy
 
 ## How to update a simple form field
@@ -33,22 +34,57 @@ To update the `fields` and `form` status from outside of the library, `api's` ha
     );
 ```
 
-// Import meta API
-import { metaAPI } from "mui-forms";
+## How to validate a form
 
-// Call validateForm method
-const errorDetails = metaAPI.metaForm.validateForm(
-  <metaFormName>
-);
+```tsx
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+    // call the `validateForm` method to validate all fields
+    const errorDetails = metaAPI.metaForm.validateForm(
+        <Name of metaform>
+    );
 
-// errorDetails structure:
-// hasErrors: boolean → indicates if the form contains any validation errors
-// errors: Array<{
-//   id: string;        // Format: <formName>.<fieldName>
-//   errorMsg: string;  // Validation error message
-// }>
+    // Check if form has errors
+    if (errorDetails.hasErrors) {
+        // Handle validation errors
+        errorDetails.errors.forEach((error) => {
+            console.log(`${error.id}: ${error.errorMsg}`);
+        });
+    } else {
+        console.log("Form is valid!");
+    }
+```
 
-console.log(errorDetails);
+## Validate Form Return Structure
+
+```tsx
+{
+    hasErrors: boolean,  // true if validation errors exist
+    errors: [
+        {
+            id: string,      // Format: <formName>.<fieldName>
+            errorMsg: string // Validation error message
+        }
+    ]
+}
+```
+
+### Example Response
+```tsx
+{
+    "hasErrors": true,
+    "errors": [
+        {
+            "id": "User Form.email",
+            "errorMsg": "Please enter a valid email address"
+        },
+        {
+            "id": "User Form.password",
+            "errorMsg": "Password must be at least 8 characters long"
+        }
+    ]
+}
+```
 
 ## Arguments
 
@@ -58,3 +94,7 @@ console.log(errorDetails);
 | Form section name | In a grouped form, this is the name of parent section. For simple forms, it is not applicable                                                                                                          |
 | Field name        | Name of the field                                                                                                                                                                                      |
 | Field value       | Value of the field that we want to update the field with. Datatype can be `String` or `Number` or `Boolean`                                                                                            |
+
+## Complete Example
+
+For a complete working example of the `validateForm` API in action, check out the [Validate Form Example](/examples/validate-form) showcasing how to validate a form and display validation errors.

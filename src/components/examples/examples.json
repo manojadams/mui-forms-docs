@@ -43,5 +43,10 @@
         "title": "Account Opening Form",
         "img": "/images/account-form.png",
         "href": "/examples/account-form"
+    },
+    {
+        "title": "Validate Form",
+        "img": "/images/validate-form.png",
+        "href": "/examples/validate-form"
     }
 ]

@@ -1,0 +1,141 @@
+## Validate Form
+
+Form validation is a critical aspect of any data collection process. The `metaAPI.metaForm.validateForm` method allows you to validate the entire form and get detailed validation errors from outside of the standard form submission flow.
+
+import ValidateForm from "@/components/examples/ValidateForm";
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/components/examples/ValidateForm/schema.json";
+
+<ValidateForm />
+
+## How it works
+
+The `validateForm` method checks all fields in a form against their validation rules and returns an object containing:
+- `hasErrors`: A boolean indicating if the form contains any validation errors
+- `errors`: An array of error objects, each containing:
+  - `id`: Field identifier (format: `<formName>.<fieldName>`)
+  - `errorMsg`: The validation error message
+
+## Schema
+
+The form above uses the following schema with various validation rules:
+
+<SchemaViewer value={schema} />
+
+## Usage
+
+```tsx
+import React, { useState } from "react";
+import MuiForms, { metaAPI } from "mui-forms";
+import schema from "./schema.json";
+import { Button, Alert, Box } from "@mui/material";
+
+function MyValidateFormExample() {
+    const [validationResult, setValidationResult] = useState(null);
+    const formName = "My Form";
+
+    const handleValidate = () => {
+        // Call validateForm to get validation errors
+        const errorDetails = metaAPI.metaForm.validateForm(formName);
+        setValidationResult(errorDetails);
+    };
+
+    return (
+        <>
+            <MuiForms
+                name={formName}
+                schema={schema}
+                onSubmit={() => {
+                    // handle submission
+                }}
+            />
+            
+            <Button 
+                variant="contained"
+                onClick={handleValidate}
+            >
+                Validate Form
+            </Button>
+
+            {validationResult && (
+                <Box>
+                    {validationResult?.hasErrors ? (
+                        <>
+                            <Alert severity="error">
+                                Form has validation errors
+                            </Alert>
+                            {validationResult?.errors?.map((error) => (
+                                <div key={error.id}>
+                                    <strong>{error.id}:</strong> {error.errorMsg}
+                                </div>
+                            ))}
+                        </>
+                    ) : (
+                        <Alert severity="success">
+                            All validation passed!
+                        </Alert>
+                    )}
+                </Box>
+            )}
+        </>
+    );
+}
+```
+
+## Validation Rules
+
+The validator supports multiple validation rules:
+
+### Required Field
+```json
+{
+    "validation": {
+        "required": {
+            "value": true,
+            "errorMsg": "This field is required"
+        }
+    }
+}
+```
+
+### Pattern Validation
+```json
+{
+    "validation": {
+        "pattern": {
+            "value": "^[A-Za-z0-9+_.-]+@(.+)$",
+            "errorMsg": "Invalid format"
+        }
+    }
+}
+```
+
+### Min/Max Length
+```json
+{
+    "validation": {
+        "min": {
+            "value": "8",
+            "errorMsg": "Minimum 8 characters required"
+        },
+        "max": {
+            "value": "50",
+            "errorMsg": "Maximum 50 characters allowed"
+        }
+    }
+}
+```
+
+## Use Cases
+
+- **Pre-submission validation**: Validate form before sending to server
+- **Real-time feedback**: Show validation errors without submitting
+- **Form quality assurance**: Check form completeness programmatically
+- **Custom validation workflows**: Implement custom validation logic before processing
+
+## Notes
+
+- The `validateForm` method can be called at any time, not just on form submission
+- The form name must match the `name` prop passed to the `MuiForms` component
+- Validation errors are returned in a consistent format for easy processing
+- This API works with both simple forms and grouped forms (tabs, steppers, wizards)
