@@ -153,3 +153,285 @@ function RatingForm() {
         />
     );
 }
+```
+
+---
+
+## Error Handling
+
+### Handling Failed API Calls
+
+When loading options from a remote API, handle failures gracefully:
+
+```json
+{
+  "fields": [
+    {
+      "name": "product",
+      "meta": {
+        "displayName": "Select Product",
+        "displayType": "select",
+        "placeholder": "Loading products...",
+        "config": {
+          "url": "https://api.example.com/products",
+          "labelKey": "name",
+          "valueKey": "id",
+          "lazy": true
+        },
+        "validation": {
+          "required": true
+        }
+      }
+    }
+  ]
+}
+```
+
+### How to handle API errors with onError Callback
+
+Use the `onError` callback to handle API failures globally across the form:
+
+```tsx
+import React from "react";
+import MuiForms from "mui-forms";
+import schema from "./schema.json";
+
+function MyForm() {
+  const handleErrorCallback = (error, section, field) => {
+    // error is the actual error from server
+    // section is the form section where the error occurred
+    // field is the source where api failure happened
+    
+    console.error(`API Error in ${section}.${field}:`, error);
+    
+    // Handle different error types
+    if (error.status === 401) {
+      // Handle authentication errors
+      console.error("Unauthorized - please login again");
+    } else if (error.status === 404) {
+      // Handle not found errors
+      console.error("Resource not found");
+    } else {
+      // Handle other errors
+      console.error("Failed to load products");
+      // showToast({ type: 'error', message: error.message });
+    }
+  };
+
+  return (
+    <MuiForms
+      onError={handleErrorCallback}
+      schema={schema}
+      onSubmit={(data) => {
+        // handle form submission
+      }}
+    />
+  );
+}
+
+export default MyForm;
+```
+
+**Callback Parameters:**
+- `error` - The error object returned from the API call (includes status, message, etc.)
+- `section` - The form section where the error occurred
+- `field` - The specific field name that triggered the API error
+
+**Use cases:**
+- Log errors to monitoring/analytics services
+- Show user-friendly error messages
+- Retry failed API calls
+- Update form state based on error type
+
+### Best Practices
+
+When loading options from a remote API, handle failures gracefully:
+
+**Best Practices:**
+- Use the `lazy` property to load options only when the dropdown opens
+- Provide a meaningful `placeholder` that indicates loading state
+- Set default options as fallback while data loads
+- Validate required fields to ensure selection is made
+
+### Response Data Transformation
+
+Use `responseKey` to extract data from nested API responses:
+
+```json
+{
+  "config": {
+    "url": "https://api.example.com/data",
+    "responseKey": "results",
+    "labelKey": "displayName",
+    "valueKey": "id"
+  }
+}
+```
+
+If your API returns:
+```json
+{
+  "results": [
+    { "id": 1, "displayName": "Option 1" },
+    { "id": 2, "displayName": "Option 2" }
+  ]
+}
+```
+
+---
+
+## Common Patterns
+
+### Pattern 1: Static Options (Hardcoded)
+
+Use this for small, fixed option lists:
+
+```json
+{
+  "meta": {
+    "displayType": "select",
+    "options": [
+      { "label": "Draft", "value": "draft" },
+      { "label": "Published", "value": "published" },
+      { "label": "Archived", "value": "archived" }
+    ]
+  }
+}
+```
+
+**When to use:** Status fields, predefined categories, priority levels
+
+---
+
+### Pattern 2: Remote API Options
+
+Use this for large, dynamic option lists:
+
+```json
+{
+  "meta": {
+    "displayType": "select",
+    "config": {
+      "url": "https://api.example.com/options",
+      "labelKey": "name",
+      "valueKey": "id",
+      "lazy": true
+    }
+  }
+}
+```
+
+**When to use:** User lists, product catalogs, geographic data
+
+---
+
+### Pattern 3: Cascading Selects
+
+Second select depends on first select value:
+
+```json
+{
+  "fields": [
+    {
+      "name": "country",
+      "meta": {
+        "displayName": "Country",
+        "displayType": "select",
+        "config": {
+          "url": "https://api.example.com/countries",
+          "labelKey": "name",
+          "valueKey": "code"
+        }
+      }
+    },
+    {
+      "name": "state",
+      "meta": {
+        "displayName": "State",
+        "displayType": "select",
+        "config": {
+          "url": "https://api.example.com/states",
+          "queryParams": [
+            ["country", { "type": "fieldValue", "ref": "country" }]
+          ],
+          "labelKey": "name",
+          "valueKey": "code"
+        },
+        "dependencies": {
+          "exists": {
+            "field": "country",
+            "operator": "$notempty"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+**Key points:**
+- Secondary select should only show when parent has a value
+- Use `queryParams` to pass parent value to API
+- Use `dependencies` to hide/show based on parent selection
+
+---
+
+### Pattern 4: Filtered Options with Search
+
+Enable server-side filtering as user types:
+
+```json
+{
+  "meta": {
+    "displayName": "Search User",
+    "displayType": "search",
+    "placeholder": "Type to search...",
+    "config": {
+      "url": "https://api.example.com/users/search",
+      "queryParams": [
+        ["q", { "type": "fieldValue", "ref": "searchQuery" }]
+      ],
+      "labelKey": "name",
+      "valueKey": "id"
+    }
+  }
+}
+```
+
+---
+
+## Performance Considerations
+
+| Strategy | Benefit | When to Use |
+|----------|---------|------------|
+| `lazy: true` | Don't load options until dropdown opens | Large option lists (100+ items) |
+| `queryParams` | Filter server-side | Data that changes based on other fields |
+| `responseKey` | Extract nested data | Complex API responses |
+| Static options | Instant loading, no network calls | Small, fixed lists |
+| Caching | Reduce API calls | Stable data that loads frequently |
+
+**Recommended approach:**
+- Use static options for UI status, constants
+- Use lazy loading for large remote datasets
+- Use query parameters to filter at the source
+- Implement backend caching for frequently accessed data
+
+---
+
+## Troubleshooting Select Fields
+
+| Issue | Solution |
+|-------|----------|
+| Options not loading | Check API URL, verify CORS headers, check network tab |
+| Wrong labels/values shown | Verify `labelKey` and `valueKey` match response |
+| Cascading not working | Ensure parent field has a value, check `queryParams` reference |
+| Change event not firing | Check `events` configuration, verify field name in dependencies |
+| Show/hide not working | Verify `dependencies.exists` condition matches actual field value |
+
+---
+
+## Related Topics
+
+- [Field Dependencies](/field-dependencies/about)
+- [Forms Example](/examples)
+- [Error Handling](/error-handling)
