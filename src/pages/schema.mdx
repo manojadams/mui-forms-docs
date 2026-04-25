@@ -1,9 +1,440 @@
 import SchemaViewer from "@/components/SchemaViewer";
 import schema from "@/components/About/schema.json";
 
-# The Json Schema
+# Form Schema Documentation
 
-Following schema gives an overview of the schema being used by MuiForms.<br/>
-Please check how to read a json schema defintion here: [Json Schema](https://json-schema.org/)
+MuiForms uses a JSON-based schema format to define form structure, validation rules, dependencies, and layout. This guide explains how to structure schemas to build powerful dynamic forms.
+
+## Understanding Schema Structure
+
+A complete MuiForms schema follows this basic structure:
+
+```json
+{
+  "fields": [
+    {
+      "name": "fieldName",
+      "prop": { /* field grouping */ },
+      "meta": { /* field configuration */ }
+    }
+  ]
+}
+```
+
+## Schema Anatomy
+
+### 1. Field Name (`name`)
+- **Required**: Yes
+- **Type**: String
+- **Description**: Unique identifier for the field used when submitting form data
+- **Rules**: No spaces, no special characters, must be unique within the form
+- **Example**: `firstName`, `email_address`, `contact_phone`
+
+### 2. Field Grouping Property (`prop`)
+- **Required**: Optional
+- **Type**: String
+- **Description**: Specifies a property key for organizing field data within the form submission payload. When provided, the field value is nested under the specified key in the submitted JSON structure. This enables hierarchical data organization during form submission events such as submit and next actions.
+- **Example**: 
+  ```json
+  {
+    "name": "firstName",
+    "prop": "personalDetails",
+    "meta": { /* field configuration */ }
+  }
+  ```
+- **Result on Submission**: Field value will be nested as `{ "personalDetails": { "firstName": "value" } }`
+
+### 3. Field Configuration (`meta`)
+- **Required**: Yes
+- **Type**: Object
+- **Description**: Controls how the field is displayed and behaves
+
+## Meta Properties
+
+The `meta` object defines the field's appearance and functionality:
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `displayName` | string | Yes | Label shown to users |
+| `displayType` | string | Yes | Field control type (text, email, select, checkbox, etc.) |
+| `value` | any | No | Initial or current field value |
+| `type` | string | No | Special type: "section" for grouping, "hidden" for hidden fields |
+| `options` | array | No | Available choices for select/radio/checkbox fields |
+| `placeholder` | string | No | Hint text inside the field |
+| `isDisabled` | boolean | No | Disables user interaction |
+| `isReadonly` | boolean | No | Prevents editing but shows value |
+| `validation` | object | No | Validation rules and constraints |
+| `dependencies` | object | No | Field visibility/data relationships |
+| `displayProps` | object | No | Responsive layout configuration |
+| `events` | object | No | Callbacks for field changes |
+
+## Validation Properties
+
+Define validation rules in the `validation` object:
+
+```json
+{
+  "meta": {
+    "validation": {
+      "required": true,
+      "pattern": "^[a-zA-Z]+$",
+      "min": 3,
+      "max": 50,
+      "minLength": 3,
+      "maxLength": 50
+    }
+  }
+}
+```
+
+| Property | Type | Field Types | Purpose |
+|----------|------|-------------|---------|
+| `required` | boolean | All | Field must be filled |
+| `pattern` | regex string | Text fields | Must match regex pattern |
+| `min` | number | Number/Date | Minimum value |
+| `max` | number | Number/Date | Maximum value |
+| `minLength` | number | Text fields | Minimum character count |
+| `maxLength` | number | Text fields | Maximum character count |
+
+[More on validation →](/fields/field-validation)
+
+## Display Props (Responsive Layout)
+
+Control field width across different screen sizes using Bootstrap-style breakpoints:
+
+```json
+{
+  "meta": {
+    "displayProps": {
+      "xs": "12",   // Extra small: 100% width
+      "sm": "12",   // Small: 100% width
+      "md": "6",    // Medium: 50% width
+      "lg": "4",    // Large: 33% width
+      "xl": "3",    // Extra large: 25% width
+      "xxl": "2"    // XXL: 16% width
+    }
+  }
+}
+```
+
+Valid values: 1-12 (12 is 100% width)
+
+[More on layouting →](/layouting)
+
+## Field Dependencies
+
+Create relationships between fields: show/hide, enable/disable, or update based on other field values.
+
+```json
+{
+  "meta": {
+    "dependencies": {
+      "exists": {
+        "field": "country",
+        "operator": "equals",
+        "value": "US"
+      }
+    }
+  }
+}
+```
+
+[Complete dependency guide →](/field-dependencies)
+
+## Events
+
+Respond to field changes with callbacks:
+
+```json
+{
+  "meta": {
+    "events": {
+      "onChange": "handleFieldChange",
+      "onBlur": "handleBlur"
+    }
+  }
+}
+```
+
+[More on field events →](/field-events)
+
+---
+
+## Progressive Examples
+
+### Example 1: Simple Text Field
+
+The most basic form field:
+
+```json
+{
+  "fields": [
+    {
+      "name": "firstName",
+      "meta": {
+        "displayName": "First Name",
+        "displayType": "text",
+        "placeholder": "Enter first name"
+      }
+    }
+  ]
+}
+```
+
+### Example 2: Text Field with Validation
+
+Add validation rules:
+
+```json
+{
+  "fields": [
+    {
+      "name": "email",
+      "meta": {
+        "displayName": "Email Address",
+        "displayType": "email",
+        "placeholder": "you@example.com",
+        "validation": {
+          "required": true,
+          "pattern": "^[^@]+@[^@]+\\.[^@]+$"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Example 3: Select Field with Options
+
+```json
+{
+  "fields": [
+    {
+      "name": "country",
+      "meta": {
+        "displayName": "Country",
+        "displayType": "select",
+        "options": [
+          { "label": "United States", "value": "US" },
+          { "label": "Canada", "value": "CA" },
+          { "label": "Mexico", "value": "MX" }
+        ],
+        "validation": {
+          "required": true
+        }
+      }
+    }
+  ]
+}
+```
+
+### Example 4: Select with Remote Options
+
+Load options from an API:
+
+```json
+{
+  "fields": [
+    {
+      "name": "state",
+      "meta": {
+        "displayName": "State",
+        "displayType": "select",
+        "config": {
+          "url": "https://api.example.com/states",
+          "queryParams": [
+            ["country", { "type": "fieldValue", "ref": "country" }]
+          ],
+          "labelKey": "name",
+          "valueKey": "code"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Example 5: Conditional Field Display
+
+Show field only when condition is met:
+
+```json
+{
+  "fields": [
+    {
+      "name": "hasShippingAddress",
+      "meta": {
+        "displayName": "Different shipping address?",
+        "displayType": "checkbox"
+      }
+    },
+    {
+      "name": "shippingAddress",
+      "meta": {
+        "displayName": "Shipping Address",
+        "displayType": "text",
+        "dependencies": {
+          "exists": {
+            "field": "hasShippingAddress",
+            "operator": "===",
+            "value": true
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+### Example 6: Grouped Form (Sections)
+
+Organize related fields into groups:
+
+```json
+{
+  "fields": [
+    {
+      "name": "personalInfo",
+      "meta": {
+        "displayName": "Personal Information",
+        "type": "section"
+      }
+    },
+    {
+      "name": "firstName",
+      "meta": {
+        "displayName": "First Name",
+        "displayType": "text"
+      }
+    },
+    {
+      "name": "lastName",
+      "meta": {
+        "displayName": "Last Name",
+        "displayType": "text"
+      }
+    },
+    {
+      "name": "billingInfo",
+      "meta": {
+        "displayName": "Billing Information",
+        "type": "section"
+      }
+    },
+    {
+      "name": "cardNumber",
+      "meta": {
+        "displayName": "Card Number",
+        "displayType": "text",
+        "validation": {
+          "required": true,
+          "minLength": 13,
+          "maxLength": 19
+        }
+      }
+    }
+  ]
+}
+```
+
+### Example 7: Fully Featured Field
+
+A complex field with all options:
+
+```json
+{
+  "fields": [
+    {
+      "name": "department",
+      "prop": {
+        "value": "engineering"
+      },
+      "meta": {
+        "displayName": "Department",
+        "displayType": "select",
+        "placeholder": "Select your department",
+        "config": {
+          "url": "https://api.example.com/departments",
+          "lazy": true,
+          "labelKey": "name",
+          "valueKey": "id"
+        },
+        "validation": {
+          "required": true
+        },
+        "displayProps": {
+          "xs": "12",
+          "md": "6",
+          "lg": "4"
+        },
+        "dependencies": {
+          "exists": {
+            "field": "employeeType",
+            "operator": "===",
+            "value": "full-time"
+          }
+        },
+        "events": {
+          "onChange": "handleDepartmentChange"
+        }
+      }
+    }
+  ]
+}
+```
+
+---
+
+## Complete Schema Reference
 
 <SchemaViewer value={schema} />
+
+---
+
+## Available Field Types
+
+Common `displayType` values:
+
+| Type | Purpose | Example |
+|------|---------|---------|
+| `text` | Single-line text input | Name fields |
+| `email` | Email input with validation | Email address |
+| `number` | Numeric input | Age, quantity |
+| `password` | Masked text input | Password field |
+| `select` | Dropdown selection | Country picker |
+| `multi-select` | Multiple choice dropdown | Tags, interests |
+| `checkbox` | True/false toggle | Agreements |
+| `radio` | Single choice from options | Yes/No/Maybe |
+| `date` | Date picker | Birth date |
+| `file` | File upload | Document upload |
+| `textarea` | Multi-line text | Comments, descriptions |
+| `search` | Searchable dropdown | Location search |
+
+[See all field types →](/fields)
+
+---
+
+## Best Practices
+
+✅ **DO:**
+- Keep field names simple and lowercase with underscores
+- Always provide `displayName` for user-facing labels
+- Group related fields into sections
+- Use responsive `displayProps` for better mobile UX
+- Validate critical fields (email, phone, etc.)
+- Use lazy loading for large option lists
+
+❌ **DON'T:**
+- Use spaces or special characters in field names
+- Skip validation on important fields
+- Hardcode all options (use APIs for large lists)
+- Duplicate field names
+
+---
+
+## Next Steps
+
+- [Learn about field validation →](/fields/field-validation)
+- [Explore all field types →](/fields/fields)
+- [Master field dependencies →](/field-dependencies/about)
+- [Create custom fields →](/custom-fields/about)
