@@ -1,16 +1,440 @@
-## Config properties
+# Form Configuration
 
-| Name    | Values                     | Default Value | Description                                                          | Type     |
-| ------- | -------------------------- | ------------- | -------------------------------------------------------------------- | -------- |
-| variant | outlined, standard, filled | outlined      | Sets the layout appearance of all fields in the form              | Optional |
-| size    | small, medium, large       | medium        | Sets the sizes of all fields in the form                                           | Optional |
-| gapX    | Any number                 | NA            | Adds horizontal spacing between fields. <br /> All units are in rem. | Optional |
-| gapY    | Any number                 | NA            | Adds vertical spacing between fields. <br /> All units are in rem.   | Optional |
-| loader  | Object | NA | Loader specific config related to footer buttons | Optional |
-| headers | A map of (key, value) pairs | NA | Used for setting common request headers of all api requests used in the form. Example usecase: authentication | Optional |  
+Configure global MuiForms behavior, appearance, and API settings.
 
-### Loader properties
+## Quick Reference
 
-| Name | Description | Default Value | 
-|------|-------------|--|
-| enabled | Setting this to `true` will display the loader during form `next` and `submit` actions. | false |
+```typescript
+const config: FormConfig = {
+  variant: 'outlined',
+  size: 'medium', 
+  gapX: 1,
+  gapY: 1,
+  headers: { 'Authorization': '<Bearer token>' },
+  loader: { enabled: true }
+};
+```
+
+---
+
+## Configuration Properties
+
+### variant
+
+**Sets the Material-UI TextField appearance across all fields**
+
+| Value | Appearance | Best For |
+|-------|-----------|----------|
+| `outlined` | Border around field | Modern UIs, most forms |
+| `filled` | Background fill with bottom border | Dense forms, dashboards |
+| `standard` | Minimal, bottom border only | Simple forms, legacy UIs |
+
+**Default**: `outlined`
+
+**Example:**
+
+```tsx
+<MuiForms
+  schema={schema}
+  config={{ variant: 'filled' }}
+  onSubmit={handleSubmit}
+/>
+```
+
+---
+
+### size
+
+**Controls field height and padding**
+
+| Value | Use Case |
+|-------|----------|
+| `small` | Dense forms, embedded forms, mobile |
+| `medium`| Standard forms, general purpose |
+| `large` | Accessibility, touch-friendly, prominent |
+
+**Default**: `medium`
+
+**Example:**
+
+```tsx
+<MuiForms
+  schema={schema}
+  config={{ size: 'small' }}
+  onSubmit={handleSubmit}
+/>
+```
+
+---
+
+### gapX
+
+**Horizontal spacing between fields**
+
+- **Type**: Number (rem units)
+- **Default**: None
+- **Range**: 0 - 4+
+- **Description**: Adds left/right margin between columns of fields
+
+**Example:**
+
+```tsx
+// Add 1.5rem horizontal gap
+<MuiForms
+  schema={schema}
+  config={{ gapX: 1.5 }}
+  onSubmit={handleSubmit}
+/>
+```
+
+---
+
+### gapY
+
+**Vertical spacing between fields**
+
+- **Type**: Number (rem units)  
+- **Default**: None
+- **Range**: 0 - 4+
+- **Description**: Adds top/bottom margin between field rows
+
+**Example:**
+
+```tsx
+// Add 2rem vertical gap
+<MuiForms
+  schema={schema}
+  config={{ gapY: 2 }}
+  onSubmit={handleSubmit}
+/>
+```
+
+**Common Values:**
+- `0.5` - Tight spacing
+- `1` - Standard spacing
+- `1.5` - Spacious
+- `2` - Very spacious
+
+---
+
+### headers
+
+**Global request headers common for API calls**
+
+These are common headers that apply to all API calls defined in the JSON schema, so individual APIs don’t need to redefine them.
+
+Used for authentication, content-type, custom headers, etc. Applied to all API requests in the forms that is managed by MuiForms.
+
+
+- **Type**: `Record<string, string>`
+- **Default**: None
+- **Description**: Headers sent with every fetch/API call
+
+**Example - Authentication:**
+
+```tsx
+<MuiForms
+  schema={schema}
+  config={{
+    headers: {
+      'Authorization': 'Bearer eyJhbGc...',
+      'X-Custom-Header': 'value'
+    }
+  }}
+  onSubmit={handleSubmit}
+/>
+```
+
+**Common Headers:**
+
+```typescript
+const authHeaders = {
+  'Authorization': 'Bearer <token>',
+  'Content-Type': 'application/json',
+  'X-API-Key': '<api_key>',
+  'X-Request-ID': '<unique_id>'
+};
+```
+
+---
+
+### loader
+
+**Configuration for loading indicators**
+
+Display loading spinner during form operations.
+
+#### loader.enabled
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Show loader during next/submit actions
+
+**Example:**
+
+```tsx
+<MuiForms
+  schema={schema}
+  config={{
+    loader: {
+      enabled: true
+    }
+  }}
+  onSubmit={handleSubmit}
+/>
+```
+
+---
+
+## Complete Configuration Example
+
+```tsx
+import React from 'react';
+import MuiForms from 'mui-forms';
+import { FormSchema, FormConfig } from 'mui-forms';
+
+const schema: FormSchema = {
+  fields: [
+    {
+      name: 'firstName',
+      meta: {
+        displayName: 'First Name',
+        displayType: 'text'
+      }
+    },
+    {
+      name: 'email',
+      meta: {
+        displayName: 'Email',
+        displayType: 'email'
+      }
+    },
+    {
+      name: 'country',
+      meta: {
+        displayName: 'Country',
+        displayType: 'select',
+        config: {
+          url: 'https://api.example.com/countries',
+          labelKey: 'name',
+          valueKey: 'code'
+        }
+      }
+    }
+  ]
+};
+
+const formConfig: FormConfig = {
+  variant: 'outlined',
+  size: 'medium',
+  gapX: 1,
+  gapY: 1.5,
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    'X-App-Version': '1.0'
+  },
+  loader: {
+    enabled: true
+  }
+};
+
+export const MyForm = () => {
+  const handleSubmit = (data) => {
+    console.log('Form submitted:', data);
+  };
+
+  return (
+    <MuiForms
+      schema={schema}
+      config={formConfig}
+      onSubmit={handleSubmit}
+    />
+  );
+};
+```
+
+---
+
+## Configuration Patterns
+
+### Dense Mobile Form
+
+Optimize for mobile devices with compact spacing:
+
+```typescript
+const mobileConfig: FormConfig = {
+  size: 'small',
+  variant: 'outlined',
+  gapX: 0.5,
+  gapY: 0.75
+};
+```
+
+### Enterprise Dashboard Form
+
+Professional, spacious layout:
+
+```typescript
+const enterpriseConfig: FormConfig = {
+  size: 'medium',
+  variant: 'standard',
+  gapX: 2,
+  gapY: 2,
+  headers: {
+    'Authorization': `Bearer ${authToken}`,
+    'X-Enterprise-ID': enterpriseId
+  }
+};
+```
+
+### Accessible Form
+
+Large, touch-friendly design:
+
+```typescript
+const accessibleConfig: FormConfig = {
+  size: 'large',
+  variant: 'filled',
+  gapX: 1.5,
+  gapY: 2
+};
+```
+
+### API-Heavy Form
+
+Configure authentication for remote data:
+
+```typescript
+const apiConfig: FormConfig = {
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json',
+    'X-Request-Source': 'form'
+  },
+  loader: {
+    enabled: true
+  }
+};
+```
+
+---
+
+## Responsive Configuration
+
+While there's no built-in responsive config, you can dynamically adjust:
+
+```typescript
+const getConfig = (): FormConfig => {
+  const isMobile = window.innerWidth < 768;
+  
+  return {
+    size: isMobile ? 'small' : 'medium',
+    gapX: isMobile ? 0.5 : 1,
+    gapY: isMobile ? 0.75 : 1.5
+  };
+};
+
+export const MyForm = () => {
+  return (
+    <MuiForms
+      schema={schema}
+      config={getConfig()}
+      onSubmit={handleSubmit}
+    />
+  );
+};
+```
+
+---
+
+## Advanced: Runtime Configuration
+
+Change configuration based on user state:
+
+```typescript
+const getConfigByUserRole = (role: string): FormConfig => {
+  const baseConfig: FormConfig = {
+    size: 'medium',
+    headers: {
+      'Authorization': `Bearer ${getToken()}`
+    }
+  };
+
+  if (role === 'admin') {
+    return {
+      ...baseConfig,
+      variant: 'standard',
+      size: 'small'
+    };
+  }
+
+  if (role === 'user') {
+    return {
+      ...baseConfig,
+      variant: 'outlined',
+      size: 'medium'
+    };
+  }
+
+  return baseConfig;
+};
+```
+
+---
+
+## API Configuration per Field
+
+For field-level API configuration, use `meta.config`:
+
+```typescript
+{
+  name: 'country',
+  meta: {
+    displayType: 'select',
+    config: {
+      url: 'https://api.example.com/countries',
+      labelKey: 'name',
+      valueKey: 'code'
+    }
+  }
+}
+```
+
+[More on API configuration →](/fields/select-field#how-to-load-options-from-remote-api)
+
+---
+
+## Best Practices
+
+✅ **DO:**
+- Use consistent spacing (gapX and gapY) throughout forms
+- Store authentication tokens securely
+- Add meaningful custom headers for debugging
+- Enable loader for long-running operations
+- Use `small` size for mobile, `medium` for desktop
+
+❌ **DON'T:**
+- Hardcode tokens in configuration
+- Use different variants for different fields (use field-level config)
+- Disable loader for forms with remote data
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Spacing too tight | Increase `gapX`/`gapY` values |
+| Fields overlap | Verify `displayProps` in schema, increase gap |
+| API requests failing | Check `headers` auth token validity |
+| Loader not showing | Verify `loader.enabled: true` and async operations |
+
+---
+
+## Related Documentation
+
+- [TypeScript Types →](/typescript-support#formconfig)
+- [Field Layout →](/layouting/about)
+- [Field Spacing →](/spacing)
+- [Error Handling →](/error-handling)
+- [API Configuration →](/fields/select-field)
