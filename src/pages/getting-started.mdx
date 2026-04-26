@@ -1,55 +1,316 @@
 import SchemaViewer from "@/components/SchemaViewer";
 import schema from "@/components/examples/RegistrationForm/schema.json";
 
-## Introduction - Version 2
+# Getting Started with MuiForms
 
-### Create beautiful advanced forms with a JSON-based schema.
+## What is MuiForms?
 
-## Features
+MuiForms is a powerful **JSON-schema based form builder** for React. It eliminates the need to write repetitive form HTML and validation logic.
 
--   [Mui Components](/fields/fields)
--   [Built-in layouting](/layouting/about)
--   [Supports custom components](/custom-fields/custom-components)
--   [Easily define field relationships and build advanced forms](/field-dependencies/about)
--   [Load data from remote api](/fields/select-field#how-to-load-options-from-remote-api)
--   Responsive
--   Extensible
--   Mobile-ready
--   Production-ready
+Describe your entire form as JSON, and MuiForms takes care of rendering, validation, state management, and API integration.
 
-## Basic example
 
-### Registration Form <sup><small><small><small>[Edit](https://codesandbox.io/s/mui-forms-mvnycy?file=/src/RegistrationForm.js)</small></small></small></sup>
+## Key Features
+
+| Feature | Benefit |
+|---------|---------|
+| **JSON-based Schema** | Define forms without JSX - easier to maintain and test |
+| **Material-UI Components** | Beautiful, responsive fields powered by MUI |
+| **Built in layouting** | Out of the box layouting support | 
+| **Conditional Logic** | Show/hide fields, define advanced field dependencies without writing any code  |
+| **API Integration** | Load dropdown options using api |
+| **Responsive Design** | Mobile-friendly with responsive layout controls |
+| **Custom Fields** | Extend with your own field types |
+| **TypeScript Support** | Full type safety and IDE autocompletion |
+| **Production status** | Production ready |
+
+## What You'll Learn
+
+Following this guide, you'll learn how to:
+
+✅ Create your first form with MuiForms<br/>
+✅ Define field validation rules<br/>
+✅ Handle form submission<br/>
+✅ Load data from APIs<br/>
+✅ Create conditional fields<br/>
+✅ Build multi-step forms<br/>
+✅ Customize styling and layout
+
+---
+
+## Basic Example: Registration Form
 
 import Home from "@/components/Home";
 
 <Home />
 
-## Schema <sup><small><small><small>[Edit](https://codesandbox.io/s/mui-forms-mvnycy?file=/src/RegistrationForm.js)</small></small></small></sup>
+### Try It Live
 
-Following is the json schema of the above registration form:
+Click the link below to edit this form on CodeSandbox and try different configurations:
+
+**[Edit in CodeSandbox →](https://codesandbox.io/s/mui-forms-mvnycy?file=/src/RegistrationForm.js)**
+
+---
+
+## Schema Structure
+
+Here's the JSON schema that powers the registration form above:
 
 <SchemaViewer value={schema} />
 
-## Usage <sup><small><small><small>[Edit](https://codesandbox.io/s/mui-forms-mvnycy?file=/src/RegistrationForm.js)</small></small></small></sup>
+### Understanding the Schema
+
+- **fields**: Array of form fields
+- **name**: Unique identifier for the field (used in form submission)
+- **meta**: Field configuration (display name, type, validation)
+- **displayName**: Label shown to users
+- **displayType**: The input type (text, email, select, etc.)
+- **validation**: Validation rules (required, pattern, etc.)
+- **dependencies**: Define dynamic field relationships to derive complex field behaviour
+
+[Learn more about schemas →](/schema)
+
+---
+
+## Basic Usage
 
 ```tsx
 import MuiForms from "mui-forms";
-import schema from "<schema_location>";
+import schema from "./schema.json";
 
 function MyForm() {
+    const handleSubmit = (formData) => {
+        console.log("Form submitted:", formData);
+        // Send to API, handle response, etc.
+    };
+
     return (
         <MuiForms
             schema={schema}
-            onSubmit={() => {
-                // handle submit
-            }}
+            onSubmit={handleSubmit}
+        />
+    );
+}
+
+export default MyForm;
+```
+
+### Passing Data
+
+```tsx
+// With TypeScript
+import { FormData, MuiFormsProps } from "mui-forms";
+
+const handleSubmit = (data: FormData) => {
+    // data.firstName, data.email, etc.
+    console.log(data);
+};
+
+<MuiForms schema={schema} onSubmit={handleSubmit} />
+```
+
+---
+
+## Processing Form Submission
+
+### Basic Submission
+
+```tsx
+const handleSubmit = (formData) => {
+    console.log("Your form data:", formData);
+    
+    // Submit to your API
+    fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(r => r.json())
+    .then(data => {
+        console.log("Success:", data);
+        // Show success message, redirect, etc.
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        // Handle error
+    });
+};
+```
+
+### With Error Handling
+
+```tsx
+const handleSubmit = (data) => {
+    // Validation passed, form is ready
+};
+
+const handleError = (errors, section, field) => {
+    // Validation failed
+    console.log("Validation errors:", section, field, errors);
+    // Show error messages to user
+};
+
+<MuiForms
+    schema={schema}
+    onSubmit={handleSubmit}
+    onError={handleError}
+/>
+```
+
+### With Loading State
+
+```tsx
+function MyForm() {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = async (data) => {
+        setIsLoading(true);
+        try {
+            const response = await fetch("/api/register", {
+                method: "POST",
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            console.log("Success:", result);
+        } catch (error) {
+            console.error("Error:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return (
+        <MuiForms
+            schema={schema}
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
         />
     );
 }
 ```
 
-## Built using
+---
+
+## Next Steps
+
+### 1. **Installation**
+Set up MuiForms in your project.
+[Installation Guide →](/installation)
+
+### 2. **Understand Schemas**
+Learn how to structure forms with JSON schemas.
+[Schema Guide →](/schema)
+
+### 3. **Add Validation**
+Validate your forms with built-in rules.
+[Validation Guide →](/fields/field-validation)
+
+### 4. **Explore Field Types**
+Discover all available field types.
+[Field Types →](/fields/fields)
+
+### 5. **Advanced Features**
+Build complex forms with dependencies and API integration.
+[Field Dependencies →](/field-dependencies/about)
+[API Integration →](/fields/select-field#how-to-load-options-from-remote-api)
+
+---
+
+## Common Patterns
+
+### Conditional Fields
+
+Show field Tax ID only if field with name accountType has value business
+```json
+{
+  "name": "businessTaxId",
+  "meta": {
+    "displayName": "Tax ID",
+    "displayType": "text",
+    "dependencies": {
+      "exists": {
+        "ref": "accountType",
+        "value": "business"
+      }
+    }
+  }
+}
+```
+
+### Cascading Dropdowns
+
+Load states based on selected country:
+
+```json
+{
+    "fields": [{
+        "name": "country",
+        "meta": {
+            "displayType": "select",
+            "options": [{
+                "label": "Country1",
+                "value": "1"
+            }, {
+                "label": "Country2",
+                "value": "2"
+            }]
+        }
+    }, {
+        "name": "state",
+        "meta": {
+            "displayType": "select",
+            "config": {
+                "url": "/api/states",
+                "queryParams": [["country", {"type": "fieldValue", "ref": "country"}]],
+                "labelKey": "name"
+            },
+            "dependencies": {
+                "options": { "ref": "country" }
+            }
+        }
+    }]
+}
+```
+
+### Custom Styling
+
+Global form configuration:
+
+```tsx
+<MuiForms
+    schema={schema}
+    config={{
+        variant: "filled",
+        size: "small",
+        gapX: 1.5,
+        gapY: 2
+    }}
+    onSubmit={handleSubmit}
+/>
+```
+
+---
+
+## Frequently Asked Questions
+
+**Q: Do I need Material-UI installed?**
+A: Yes, MuiForms uses MUI components. It's included as a peer dependency.
+
+**Q: Can I use custom fields?**
+A: Yes! Create your own field components and register them.
+
+**Q: Is TypeScript supported?**
+A: Yes, full TypeScript support with complete type definitions.
+
+**Q: Can I validate on the server?**
+A: Yes, use error handling in the `onSubmit` and `onNext` callback.
+
+**Q: How do I style fields?**
+A: Use global config or pass MUI theme customization.
+
+[More FAQs →](/faq)
+
+## Built Using
 
 <br />
 <ul
@@ -85,6 +346,17 @@ function MyForm() {
     </li>
 </ul>
 
-## Star us & show your support
+## Support & Community
 
+**Star us on GitHub to show your support:**
 https://github.com/manojadams/mui-forms
+
+**Join the community:**
+- [GitHub Discussions](https://github.com/manojadams/mui-forms/discussions)
+- [Issue Tracker](https://github.com/manojadams/mui-forms/issues)
+
+---
+
+## Ready to Build?
+
+[→ Install MuiForms now](/installation)
