@@ -7,5 +7,23 @@
 ### Basic example
 
 import RadioField from "../../components/fields/RadioField";
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/components/fields/RadioField/schema.json";
 
 <RadioField />
+
+### Schema
+
+<SchemaViewer value={schema} />
+
+### Example with row layout
+
+Set `displayProps.optionsLayout` to `row` to display the radio options in a single row.
+
+import RadioFieldRow from "../../components/fields/RadioFieldRow";
+import schema2 from "@/components/fields/RadioFieldRow/schema.json";
+
+<RadioFieldRow />
+
+### Schema
+<SchemaViewer value={schema2} />
