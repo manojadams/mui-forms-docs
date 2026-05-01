@@ -1,0 +1,35 @@
+{
+    "fields": [{
+        "name": "fromdate",
+        "meta": {
+            "displayType": "date",
+            "displayName": "From Date",
+            "validation": {
+                "required": {
+                    "value": true,
+                    "errorMsg": "From Date is required"
+                },
+                "fromDate": {
+                    "maxDate": "today",
+                    "errorMsg": "From Date cannot be in the future"
+                }
+            }
+        }
+    }, {
+        "name": "todate",
+        "meta": {
+            "displayType": "date",
+            "displayName": "To Date",
+            "validation": {
+                "required": {
+                    "value": true,
+                    "errorMsg": "To Date is required"
+                },
+                "toDate": {
+                    "compareWithFieldName": "fromdate",
+                    "errorMsg": "To Date cannot be less than From Date"
+                }
+            }
+        }
+    }]
+}

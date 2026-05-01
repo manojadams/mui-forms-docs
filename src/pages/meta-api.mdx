@@ -4,8 +4,66 @@ To update the `fields` and `form` status from outside of the library, `api's` ha
 
 -   updateField
 -   updateFormField
+-   getFieldValue
+-   getFieldProperty
 -   validateForm
 -   destroy
+
+## How to get a field value
+
+Use `getFieldValue` to read the current value of a field from outside the form.
+
+```tsx
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+
+    const value = metaAPI.metaForm.getFieldValue(
+        <Name of metaform>,
+        <Form section name>,
+        <Field name>
+    );
+```
+
+For simple forms, use `"default"` as the section name.
+
+```tsx
+    const fromDate = metaAPI.metaForm.getFieldValue(
+        "custom_validation_form",
+        "default",
+        "fromdate"
+    );
+```
+
+`getFieldValue` returns the field value when the form and field are available; otherwise it returns `undefined`.
+
+## How to get a field property
+
+Use `getFieldProperty` to read a specific property from a field.
+
+```tsx
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+
+    const propertyValue = metaAPI.metaForm.getFieldProperty(
+        <Name of metaform>,
+        <Form section name>,
+        <Field name>,
+        <Field property>
+    );
+```
+
+For simple forms, use `"default"` as the section name.
+
+```tsx
+    const displayName = metaAPI.metaForm.getFieldProperty(
+        "custom_validation_form",
+        "default",
+        "fromdate",
+        "displayName"
+    );
+```
+
+`getFieldProperty` returns the property value when the form, field, and property are available; otherwise it returns `undefined`.
 
 ## How to update a simple form field
 
@@ -91,8 +149,9 @@ To update the `fields` and `form` status from outside of the library, `api's` ha
 | Name              | Description                                                                                                                                                                                            |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Name of metaform  | This is the name of the `mui-forms` which must be given as an input property while using it. e.g.: `<MuiForms name="Basic details" schema={schema} />`. <br/> Here the name is **`Basic details`** |
-| Form section name | In a grouped form, this is the name of parent section. For simple forms, it is not applicable                                                                                                          |
+| Form section name | In a grouped form, this is the name of parent section. For simple forms, use `"default"` when calling `getFieldValue`, `getFieldProperty`, or `updateFormField`                                       |
 | Field name        | Name of the field                                                                                                                                                                                      |
+| Field property    | Name of the field property to read with `getFieldProperty`                                                                                                                                             |
 | Field value       | Value of the field that we want to update the field with. Datatype can be `String` or `Number` or `Boolean`                                                                                            |
 
 ## Complete Example

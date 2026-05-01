@@ -1,0 +1,109 @@
+## Custom Field Validation
+
+import ValidationFormCustom from "@/components/examples/ValidationFormCustom";
+import SchemaViewer from "@/components/SchemaViewer";
+import schema from "@/components/examples/ValidationFormCustom/schema.json";
+
+Custom validators are JavaScript functions that you register on `MuiForms` with the `validators` prop. The key in `validators` is the validator name that the schema can reference.
+
+```tsx
+const validators = {
+    fromDate: validateFromDate,
+    toDate: validateToDate
+};
+
+<MuiForms
+    name="custom_validation_form"
+    schema={schema}
+    validators={validators}
+    onSubmit={handleSubmit}
+/>
+```
+
+### Validator schema
+
+To use a custom validator, add an entry with the validator name under the field's `meta.validation` object. The validator configuration must include `errorMsg`. Any other properties are optional custom arguments and are passed to the validator as its second argument.
+
+There is no restriction on the number of custom validations. You can add more than one custom validator under a field's `meta.validation` object.
+
+```json
+{
+    "meta": {
+        "validation": {
+            "fromDate": {
+                "maxDate": "today",
+                "errorMsg": "From Date cannot be in the future"
+            },
+            "toDate": {
+                "compareWithFieldName": "fromdate",
+                "errorMsg": "To Date cannot be less than From Date"
+            }
+        }
+    }
+}
+```
+
+### Validator function
+
+A custom validator receives the field value as the first argument and the validator configuration from the schema as the second argument.
+
+The validator function must return a boolean value. Return `true` when validation passes and `false` when validation fails.
+
+```ts
+const validateToDate: TValidator = (value, validatorArgs) => {
+    const args = validatorArgs as { compareWithFieldName?: string; errorMsg: string };
+    // return true when valid and false when invalid
+    return true;
+};
+```
+
+### Example
+
+<ValidationFormCustom />
+
+### Schema
+
+<SchemaViewer value={schema} />
+
+### Validator definitions
+
+```ts
+const validateFromDate: TValidator = (value, validatorArgs) => {
+    const args = (validatorArgs ?? {}) as { maxDate?: string; errorMsg: string };
+    if (args.maxDate !== 'today') {
+        return true;
+    }
+
+    const fromDate = new Date(value as string);
+    const currentDate = new Date();
+    return fromDate.getTime() <= currentDate.getTime();
+};
+
+const validateToDate: TValidator = (value, validatorArgs) => {
+    const args = (validatorArgs ?? {}) as {
+        compareWithFieldName?: string;
+        errorMsg: string;
+    };
+
+    const fromDate = args.compareWithFieldName
+        ? metaAPI.metaForm.getFieldValue(
+            'custom_validation_form',
+            'default',
+            args.compareWithFieldName
+        )
+        : undefined;
+
+    if (!fromDate) {
+        return true;
+    }
+
+    const fromDateObj = new Date(fromDate as string);
+    const toDate = new Date(value as string);
+    return toDate.getTime() >= fromDateObj.getTime();
+};
+```
+
+### Related documentation
+
+- [Meta API](/meta-api)
+- [Field Validation](/fields/field-validation)

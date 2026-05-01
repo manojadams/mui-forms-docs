@@ -1,0 +1,130 @@
+# API Integration
+
+MuiForms can integrate with external or domain APIs through schema configuration, form configuration, and submit handlers.
+
+Use schema-driven API integration when the form itself can manage the request, such as loading dropdown options. Use field events or submit handlers when the request is domain-specific, such as checking availability, calculating pricing, or sending completed form data to your backend.
+
+## Loading options from an API
+
+Select fields can load options from a remote API by defining a `config` object in the field schema.
+
+```json
+{
+  "name": "country",
+  "meta": {
+    "displayName": "Country",
+    "displayType": "select",
+    "config": {
+      "url": "https://api.example.com/countries",
+      "requestType": "get",
+      "labelKey": "name",
+      "valueKey": "code",
+      "responseKey": "data",
+      "lazy": true
+    }
+  }
+}
+```
+
+Common select API configuration:
+
+| Property | Description |
+|----------|-------------|
+| `url` | API endpoint used to load options |
+| `requestType` | HTTP method. Currently supports `get` and `post`. Defaults to `get` when `url` is provided |
+| `labelKey` | Response property used as the option label |
+| `valueKey` | Response property used as the option value |
+| `responseKey` | Response property that contains the option list |
+| `lazy` | Load options only when the dropdown opens |
+
+## Passing request headers
+
+Use global `config.headers` when the same headers should apply to all API calls managed by MuiForms.
+
+```tsx
+<MuiForms
+  schema={schema}
+  config={{
+    headers: {
+      Authorization: 'Bearer <token>',
+      'X-Request-Source': 'form'
+    }
+  }}
+  onSubmit={handleSubmit}
+/>
+```
+
+Use field-level `requestHeaders` when a specific field API needs its own headers.
+
+```json
+{
+  "meta": {
+    "displayType": "select",
+    "config": {
+      "url": "https://api.example.com/products",
+      "requestHeaders": {
+        "X-API-Key": "<api_key>"
+      },
+      "labelKey": "name",
+      "valueKey": "id"
+    }
+  }
+}
+```
+
+## Passing form values to APIs
+
+Use `queryParams`, `pathParams`, `requestBody`, and `requestBodyParams` when an API request depends on form values.
+
+```json
+{
+  "name": "state",
+  "meta": {
+    "displayName": "State",
+    "displayType": "select",
+    "config": {
+      "url": "https://api.example.com/states",
+      "queryParams": [
+        ["country", { "type": "fieldValue", "ref": "country" }]
+      ],
+      "labelKey": "name",
+      "valueKey": "code"
+    },
+    "dependencies": {
+      "loadOptions": { "ref": "country" }
+    }
+  }
+}
+```
+
+In this example, the `state` field reloads its options when the `country` field changes, and the selected country value is sent as a query parameter.
+
+## Submitting data to your API
+
+Use `onSubmit` to send the completed form data to your backend or domain API.
+
+```tsx
+const handleSubmit = async (formData) => {
+  const response = await fetch('/api/orders', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  });
+
+  if (!response.ok) {
+    throw new Error('Unable to submit form');
+  }
+};
+
+<MuiForms schema={schema} onSubmit={handleSubmit} />
+```
+
+## Related documentation
+
+- [Select Field](/fields/select-field)
+- [Configuration](/config)
+- [Field Events](/field-events)
+- [Field Relationships](/field-dependencies)
+- [Meta API](/meta-api)
