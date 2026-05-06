@@ -10,7 +10,6 @@
                     "errorMsg": "From Date is required"
                 },
                 "fromDate": {
-                    "maxDate": "today",
                     "errorMsg": "From Date cannot be in the future"
                 }
             }
@@ -26,8 +25,7 @@
                     "errorMsg": "To Date is required"
                 },
                 "toDate": {
-                    "compareWithFieldName": "fromdate",
-                    "errorMsg": "To Date cannot be less than From Date"
+                    "errorMsg": "To Date cannot be less than or equal to From Date"
                 }
             }
         }
