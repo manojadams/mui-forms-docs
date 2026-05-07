@@ -6,7 +6,13 @@ Use schema-driven API integration when the form itself can manage the request, s
 
 ## Loading options from an API
 
-Select fields can load options from a remote API by defining a `config` object in the field schema.
+Fields that render selectable options can load those options from a remote API by defining a `config` object in the field schema.
+
+The following fields support loading options via API:
+
+- [`select`](/fields/select-field)
+- [`search`](/fields/search-field)
+- [`multiselect`](/fields/multi-select)
 
 ```json
 {
