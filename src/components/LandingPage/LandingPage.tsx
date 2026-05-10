@@ -63,16 +63,16 @@ const ComparisonTable = styled.table`
 
             td {
                 padding: 18px 20px;
-                font-size: 14px;
+                font-size: 16px;
                 line-height: 1.6;
                 color: #374151;
 
-                &:first-child {
+                &:last-child {
                     font-weight: 500;
                     color: #dc2626;
                 }
 
-                &:last-child {
+                &:first-child {
                     color: #059669;
                     font-weight: 500;
                 }
@@ -233,6 +233,9 @@ function LandingPage(props: IProps) {
                         <div className={css.main_content}>
                             <div className={css.main_content_heading}>
                                 <Heading />
+                                <p style={{ fontSize: '18px', color: '#6b7280', marginBottom: '30px', lineHeight: '1.6', textAlign: 'center', maxWidth: '600px', margin: '20px auto 30px' }}>
+                                    Build dynamic, interactive forms with JSON schemas. Reduce boilerplate code by up to 90% and ship faster without sacrificing flexibility or power.
+                                </p>
                                 <div className={css.text_block}>
                                     <div className={css.get_started_block}>
                                         <Button
@@ -260,6 +263,9 @@ function LandingPage(props: IProps) {
                                 </div>
                             </div>
                             <div className={css.card_wrapper}>
+                                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                                    <p style={{ fontSize: '14px', color: '#6b7280', fontWeight: 500 }}>👇 Try it yourself – This form is built entirely from a JSON schema</p>
+                                </div>
                                 <LandingPageForm />
                             </div>
                         </div>
@@ -269,52 +275,52 @@ function LandingPage(props: IProps) {
                     <div style={bodyStyles}>
                         <WhyMuiFormsSection>
                             <h2>Why Use MuiForms?</h2>
-                            <p>Compare traditional form development with MuiForms to understand the huge difference in productivity and code quality.</p>
+                            <p>See the dramatic difference in productivity and code quality. With MuiForms, you describe your form once in JSON and get validation, responsive design, and dynamic behavior—all automatically.</p>
                             <ComparisonTable>
                                 <thead>
                                     <tr>
-                                        <th>Without MuiForms</th>
                                         <th>With MuiForms</th>
+                                        <th>Without MuiForms</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td data-label="Without MuiForms">Manual state management for each field, leading to boilerplate code and potential bugs</td>
-                                        <td data-label="With MuiForms">Declarative JSON schema defines the entire form, reducing code by up to 90% and state management not required</td>
+                                        <td data-label="With MuiForms">JSON schema defines forms with 90% less code, no state management</td>
+                                        <td data-label="Without MuiForms">Manual state management creates boilerplate code and bugs</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">Repetitive JSX for form elements, increasing development time and maintenance overhead</td>
-                                        <td data-label="With MuiForms">Reusable schemas for consistent forms across applications</td>
+                                        <td data-label="With MuiForms">Reusable schemas for consistent forms across apps</td>
+                                        <td data-label="Without MuiForms">Repetitive JSX increases development time and maintenance</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">Custom validation logic scattered across components, hard to reuse and test</td>
-                                        <td data-label="With MuiForms">Built-in validation logic within the JSON schema, easy to reuse and test and custom validations</td>
+                                        <td data-label="With MuiForms">Built-in schema validation, easy to reuse and customize</td>
+                                        <td data-label="Without MuiForms">Validation logic scattered and hard to reuse</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">No built-in support for complex layouts, requiring additional CSS or layout libraries</td>
-                                        <td data-label="With MuiForms">Out-of-the-box responsive layouts and Material-UI styling</td>
+                                        <td data-label="With MuiForms">Built-in responsive layouts with Material-UI</td>
+                                        <td data-label="Without MuiForms">Complex layouts need additional CSS or libraries</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">API integration for dynamic fields (e.g., dropdowns) needs custom implementation</td>
-                                        <td data-label="With MuiForms">Easy API integration for dynamic options and data loading</td>
+                                        <td data-label="With MuiForms">Easy API integration for dynamic options</td>
+                                        <td data-label="Without MuiForms">Dynamic fields need custom API implementation</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">Limited responsiveness and styling consistency without deep MUI knowledge</td>
-                                        <td data-label="With MuiForms">Built-in responsive design and Material-UI styling</td>
+                                        <td data-label="With MuiForms">Built-in responsive design and styling</td>
+                                        <td data-label="Without MuiForms">Limited responsiveness without deep MUI knowledge</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">Difficult to implement conditional logic, often requiring complex state checks</td>
-                                        <td data-label="With MuiForms">Conditional fields and dependencies handled via schema configuration</td>
+                                        <td data-label="With MuiForms">Conditional fields handled via schema config</td>
+                                        <td data-label="Without MuiForms">Conditional logic requires complex state checks</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">TypeScript support is manual, prone to errors in form data typing</td>
-                                        <td data-label="With MuiForms">Full TypeScript support with inferred types from schemas</td>
+                                        <td data-label="With MuiForms">Full TypeScript with inferred types</td>
+                                        <td data-label="Without MuiForms">TypeScript support is manual and error-prone</td>
                                     </tr>
                                     <tr>
-                                        <td data-label="Without MuiForms">
-                                            <span className="code-label traditional">Code Example</span>
-                                            <div className="code-title traditional">Traditional React</div>
-                                            <pre><code>{`// 70+ lines of boilerplate
+                                        <td data-label="With MuiForms">
+                                            <span className="code-label muiforms">Code Example</span>
+                                            <div className="code-title muiforms">MuiForms</div>
+                                            <pre><code>{`// Simple JSON schema
 function RegistrationForm() {
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
@@ -364,10 +370,10 @@ function RegistrationForm() {
   );
 }`}</code></pre>
                                         </td>
-                                        <td data-label="With MuiForms">
-                                            <span className="code-label muiforms">Code Example</span>
-                                            <div className="code-title muiforms">MuiForms</div>
-                                            <pre><code>{`// Simple JSON schema
+                                        <td data-label="Without MuiForms">
+                                            <span className="code-label traditional">Code Example</span>
+                                            <div className="code-title traditional">Traditional React</div>
+                                            <pre><code>{`// 70+ lines of boilerplate
 const schema = {
   fields: [
     {
@@ -437,17 +443,15 @@ const schema = {
                                 <ul>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <a href="https://mui.com/material-ui/getting-started/supported-components/">
-                                            Material UI Components
-                                        </a>
+                                        <span>Full Material UI Components support</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <a href="/custom-fields/about">Custom components</a>
+                                        <span>Create custom field components</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <a href="/field-dependencies/about">Easily define field relationships</a>
+                                        <span>Define field dependencies & relationships</span>
                                     </li>
                                 </ul>
                             </div>
@@ -455,23 +459,19 @@ const schema = {
                                 <ul>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <a href="/fields/select-field#how-to-load-options-from-remote-api">
-                                            Material icons support
-                                        </a>
+                                        <span>Material Design icons integration</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <a href="/fields/select-field#how-to-load-options-from-remote-api">
-                                            Load data from API
-                                        </a>
+                                        <span>Load dynamic options from APIs</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <a href="/layouting/about">Built-in layouting</a>
+                                        <span>Smart responsive layouts</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <span>Responsive</span>
+                                        <span>Mobile-first design</span>
                                     </li>
                                 </ul>
                             </div>
@@ -479,15 +479,15 @@ const schema = {
                                 <ul>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <span>Production ready</span>
+                                        <span>Production-ready out of the box</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <span>Mobile ready</span>
+                                        <span>Full TypeScript support</span>
                                     </li>
                                     <li>
                                         <ArrowRightAltIcon />
-                                        <span>Extensible</span>
+                                        <span>Extensible and customizable</span>
                                     </li>
                                 </ul>
                             </div>
