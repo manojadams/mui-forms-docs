@@ -1,0 +1,31 @@
+{
+    "fields": [
+        {
+            "name": "employeeStatus",
+            "meta": {
+                "displayName": "Employee Status",
+                "displayType": "radio",
+                "options": [{
+                    "value": true,
+                    "label": "Employed"
+                }, {
+                    "value": false,
+                    "label": "Unemployed"
+                }]
+            }
+        }, {
+            "name": "employerName",
+            "meta": {
+                "displayName": "Employer Name",
+                "displayType": "text",
+                "dependencies": {
+                    "enabled": {
+                        "ref": "employeeStatus",
+                        "value": true,
+                        "resetValue": ""
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,16 +1,303 @@
-# Dependencies
+# Field Relationships & Dependencies
 
-Dependencies are used to define relationships and dependencies between different fields.
+Dependencies define dynamic relationships between form fields. They control field visibility, validation rules, available options, and data binding based on other field values.
 
-## Properties
+## Overview
+
+Field dependencies enable powerful interactions like:
+- **Conditional visibility**: Show/hide fields based on other field values
+- **Dynamic options**: Load dropdown options from APIs or other fields
+- **Cascading selections**: Changes in one field update another
+- **Conditional validation**: Apply different rules based on field values
+- **Property updates**: Dynamically change field properties like placeholder, disabled state, etc.
+
+---
+
+## Dependency Types Quick Reference
+
+| Type | Purpose | Use Case | Example |
+|------|---------|----------|---------|
+| **exists** | Show/hide field based on criteria | Conditional fields | Show "State" only when Country is selected |
+| **equals** | Enable field only if reference field equals value | Field enabling | Enable "Alt Email" only if "HasAlt"=true |
+| **enabled** | Enable/disable based on reference field state | Dependent enabling | Disable "Confirm" until "Accept"=true |
+| **options** | Load select options which is dependent on another field | Cascading selects | Load States based on selected Country |
+| **propUpdate** | Update field property (placeholder, label, etc.) | Dynamic properties | Change label based on user type |
+| **validation** | Apply conditional validation rules | Dynamic validation | Require phone if "Contactable"=true |
+| **patternMatchUrlLoader** | Call API and update field if regex matches | Advanced workflows | Auto-fill profile from URL pattern |
+
+---
+
+## When to Use Each Type
+
+### 1. **exists** - Conditional Field Display
+**Best for:** Show/hide entire fields based on conditions
+
+**When to use:**
+- Optional fields that depend on earlier choices
+- Complex forms with many optional sections
+- Progressive disclosure of form fields
+
+**Example - Show Address Fields:**
+```json
+{
+  "name": "shippingAddress",
+  "meta": {
+    "displayName": "Shipping Address",
+    "displayType": "text",
+    "dependencies": {
+      "exists": {
+        "ref": "usesDifferentShipping",
+        "value": true
+      }
+    }
+  }
+}
+```
+
+**Real-world example:** E-commerce checkout - show tax ID field only if "Business Account" is checked.
+
+---
+
+### 2. **equals** - Conditional Field Enabling
+**Best for:** Enable/disable based on exact value match
+
+**When to use:**
+- Toggling dependent fields on/off
+- Required acknowledgments before proceeding
+- Mutual exclusivity between options
+
+**Example - Enable Confirmation Field:**
+```json
+{
+  "name": "confirmChanges",
+  "meta": {
+    "displayName": "I confirm these changes",
+    "displayType": "checkbox",
+    "dependencies": {
+      "equals": {
+        "ref": "acceptTerms",
+        "value": true
+      }
+    }
+  }
+}
+```
+
+---
+
+### 3. **enabled** - Reference Field value
+**Best for:** Enable/disable based on reference field's value
+
+**When to use:**
+- Fields that depend on parent field being interactive
+- Multi-step workflows
+- Permission-based field access
+
+---
+
+#### For example: Employee status form
+
+_Employer name is enabled only if the employee is employed_
+
+import EmployeeForm from "@/components/examples/EmployeeForm";
+
+<EmployeeForm />
+
+### 4. **options** - Cascading Select Options
+**Best for:** Populate one select based on another select's value
+
+**When to use:**
+- Country → State hierarchies
+- Category → Product hierarchies  
+- Parent → Child relationships
+
+**Example - Country to State Cascade:**
+```json
+[
+  {
+    "name": "country",
+    "meta": {
+      "displayName": "Country",
+      "displayType": "select",
+      "options": [
+        { "label": "United States", "value": "US" },
+        { "label": "Canada", "value": "CA" }
+      ]
+    }
+  },
+  {
+    "name": "state",
+    "meta": {
+      "displayName": "State",
+      "displayType": "select",
+      "options": [
+        { "label": "California", "value": "CA", "ref": "US" },
+        { "label": "Texas", "value": "TX", "ref": "US" },
+        { "label": "Ontario", "value": "ON", "ref": "CA" }
+      ],
+      "dependencies": {
+        "options": { "ref": "country" }
+      }
+    }
+  }
+]
+```
+
+---
+
+### 5. **propUpdate** - Conditional Property Changes
+**Best for:** Dynamically update field properties
+
+**When to use:**
+- Change labels based on context
+- Change placeholder text dynamically
+- Toggle field attributes (required, disabled, etc.)
+
+**Example - Change Label Based on User Type:**
+```json
+{
+  "name": "companyName",
+  "meta": {
+    "displayName": "Your Organization",
+    "displayType": "text",
+    "dependencies": {
+      "propUpdate": {
+        "ref": "userType",
+        "propName": "displayName",
+        "valueMap": {
+          "individual": "Optional: Business Name",
+          "business": "Company Name (Required)",
+          "nonprofit": "Organization Name"
+        }
+      }
+    }
+  }
+}
+```
+
+---
+
+### 6. **patternMatchUrlLoader** - Advanced API Integration
+**Best for:** Call API and update field based on URL pattern matching
+
+**When to use:**
+- Auto-populating forms from URL parameters
+- Deep linking with data hydration
+- Marketing campaign URL handling
+
+---
+
+## Advanced: Condition Objects
+
+For complex dependencies, use condition arrays:
+
+```typescript
+type Condition = [Operand, Operator, Value, NextCondition?];
+
+Operators: "===" | ">=" | "<="
+
+NextCondition: "||" | "&&"
+```
+
+**Example - Show field if (Country="US" AND State="CA") OR (Country="MX"):**
+
+```json
+{
+  "dependencies": {
+    "exists": {
+      "value": "$condition",
+      "condition": [
+        [
+          { "ref": "country" },
+          "===",
+          "US",
+          "&&"
+        ],
+        [
+          { "ref": "state" },
+          "===",
+          "CA"
+        ],
+        "||",
+        [
+          { "ref": "country" },
+          "===",
+          "MX"
+        ]
+      ]
+    }
+  }
+}
+```
+
+---
+
+## Best Practices
+
+✅ **DO:**
+- Use `exists` for major conditional sections
+- Test cascading dependencies with different values
+- Keep condition logic simple and readable
+- Use `lazy` loading for large option lists
+- Document complex dependencies with comments
+
+❌ **DON'T:**
+- Nest too many dependencies (avoid "dependency hell")
+- Create circular dependencies between fields
+- Use `propUpdate` for complex calculations
+- Hardcode user-specific data in dependencies
+
+---
+
+## Detailed Documentation by Type
+
+Explore each dependency type in detail:
+
+- [**exists** - Conditional Display →](/field-dependencies/exists)
+- [**options** - Cascading Options →](/field-dependencies/options)
+- [**propUpdate** - Property Changes →](/field-dependencies/prop-update)
+
+---
+
+## Common Patterns
+
+### Properties
 
 | Name                     | Description                                                                                           |
 | ------------------------ | ----------------------------------------------------------------------------------------------------- |
 | enabled                  | Applies dependency only if the reference field is enabled                                             |
-| equals                   | Applies depdendency only if the reference field value has same value as current field                 |
+| equals                   | Applies dependency only if the reference field value matches the current field                          |
 | exists                   | Checks criteria whether to display field in the UI. This dependency is **transitive** in nature.      |
 | patternMatchUrlLoader | It calls an api and updates a reference field from the api response if a certain pattern match occurs |
-| loadOptions             | It loads options for a select field for the reference field                                           |
 | options                  | Loads dropdown options based on the value from a different field. This is specific for `select` field |
 | propUpdate              | Updates field property based on criteria                                                              |
 | validation               | It updates validation of the reference field based on some criteria                                   |
+
+---
+
+## Troubleshooting Dependencies
+
+| Problem | Solution |
+|---------|----------|
+| Field not showing/hiding | Verify `ref` field name matches exactly, check field value with browser devtools |
+| Options not loading | Check API endpoint, verify `queryParams` references correct field, check network errors |
+| Cascading broken | Ensure parent field has default value, verify `ref` is in same form, check `dependencies.options` |
+| Condition not working | Verify condition syntax, check operator types, test field values in browser |
+| Duplicate dependencies | Can combine multiple types in single `dependencies` object |
+
+---
+
+## Performance Tips
+
+- **Lazy load options**: Use `config.lazy: true` for select fields
+- **Minimize API calls**: Batch dependent fields that call the same API
+- **Cache results**: Ask backend to cache frequently accessed lists
+- **Debounce searches**: For searchable selects, add debouncing in config
+
+---
+
+## More Examples
+
+- [Products Cascade →](/field-dependencies/options)
+- [Customer Feedback Form →](/examples/customer-feedback-form)
+- [Salaried Form →](/field-dependencies/exists#exists-dependency-example)
