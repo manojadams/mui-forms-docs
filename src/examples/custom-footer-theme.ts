@@ -26,15 +26,15 @@ const CUSTOM_FOOTER_THEME = createTheme({
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           },
         },
-        containedPrimary: {
+        contained: {
           backgroundColor: '#000',
-          color: "#000",
+          color: "#fff",
           '&:hover': {
             backgroundColor: '#000',
             color: "#fff",
           },
         },
-        containedSecondary: {
+        colorSecondary: {
           backgroundColor: '#ff4081',
           '&:hover': {
             backgroundColor: '#e91e63',

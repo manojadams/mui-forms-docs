@@ -28,7 +28,7 @@ const CustomFooter = (props: IProps) => {
         }}
       >
         <Container maxWidth="md">
-          <Stack direction="row" justifyContent="space-between">
+          <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
             <Button type="reset">Reset</Button>
             <Button variant="outlined" onClick={handleValidate}>Validate</Button>
             {props.previousBtn}
