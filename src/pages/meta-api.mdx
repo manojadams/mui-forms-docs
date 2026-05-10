@@ -1,61 +1,76 @@
 # Meta API
 
-To update the `fields` and `form` status from outside of the library, `api's` have been provided:
+To update the `fields` and `form` status from outside of the library, the `metaAPI` provides direct access to the following methods:
 
--   updateField
--   updateFormField
--   getFieldValue
--   getFieldProperty
--   validateForm
--   destroy
+## Available Methods
+
+### Default Form Methods
+-   `getFieldValue(field)` - Get field value from default form
+-   `getFieldProperty(field, property)` - Get field property from default form
+-   `updateField(field, value)` - Update a field in default form
+-   `setFieldError(field, error)` - Set field error in default form
+-   `validateDefaultForm()` - Validate the default form
+
+### Any Form and Section Methods
+-   `getFormFieldValue(formName, section, field)` - Get field value from specific form and section
+-   `getFormFieldProperty(formName, section, field, property)` - Get field property from specific form and section
+-   `updateFormField(formName, section, field, value)` - Update a field in specific form and section
+-   `setFormFieldError(formName, section, field, error)` - Set field error in specific form and section
+-   `validateForm(formName)` - Validate a specific form
+-   `metaForm` - Direct access to the MetaFormUpdater instance for advanced operations
 
 ## How to get a field value
 
-Use `getFieldValue` to read the current value of a field from outside the form.
+### From Default Form
+
+Use `getFieldValue` to read the current value of a field from the default form:
 
 ```tsx
     // import `meta-api`
     import { metaAPI } from "mui-forms";
 
-    const value = metaAPI.metaForm.getFieldValue(
-        <Name of metaform>,
-        <Form section name>,
-        <Field name>
-    );
+    const value = metaAPI.getFieldValue("fromdate");
 ```
 
-For simple forms, use `"default"` as the section name.
+### From Any Form and Section
+
+For grouped forms or specific sections, use `getFormFieldValue`:
 
 ```tsx
-    const fromDate = metaAPI.metaForm.getFieldValue(
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+
+    const value = metaAPI.getFormFieldValue(
         "custom_validation_form",
         "default",
         "fromdate"
     );
 ```
 
-`getFieldValue` returns the field value when the form and field are available; otherwise it returns `undefined`.
+`getFieldValue` and `getFormFieldValue` return the field value when the form and field are available; otherwise they return `undefined`.
 
 ## How to get a field property
 
-Use `getFieldProperty` to read a specific property from a field.
+### From Default Form
+
+Use `getFieldProperty` to read a specific property from a field in the default form:
 
 ```tsx
     // import `meta-api`
     import { metaAPI } from "mui-forms";
 
-    const propertyValue = metaAPI.metaForm.getFieldProperty(
-        <Name of metaform>,
-        <Form section name>,
-        <Field name>,
-        <Field property>
-    );
+    const displayName = metaAPI.getFieldProperty("fromdate", "displayName");
 ```
 
-For simple forms, use `"default"` as the section name.
+### From Any Form and Section
+
+For grouped forms or specific sections, use `getFormFieldProperty`:
 
 ```tsx
-    const displayName = metaAPI.metaForm.getFieldProperty(
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+
+    const displayName = metaAPI.getFormFieldProperty(
         "custom_validation_form",
         "default",
         "fromdate",
@@ -63,44 +78,104 @@ For simple forms, use `"default"` as the section name.
     );
 ```
 
-`getFieldProperty` returns the property value when the form, field, and property are available; otherwise it returns `undefined`.
+`getFieldProperty` and `getFormFieldProperty` return the property value when the form, field, and property are available; otherwise they return `undefined`.
 
-## How to update a simple form field
+## How to update a field
+
+### Update Default Form Field
+
+Use `updateField` to update a field in the default form:
 
 ```tsx
     // import `meta-api`
     import { metaAPI } from "mui-forms";
-    // call the `updateFormField` method inside any update function
-    metaAPI.metaForm.updateField(
-        <Name of metaform>,
-        <Field name>,
-        <Field value>
+    
+    metaAPI.updateField("fromdate", "2024-01-15");
+```
+
+### Update Any Form and Section Field
+
+Use `updateFormField` to update a field in a specific form and section:
+
+```tsx
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+    
+    metaAPI.updateFormField(
+        "custom_validation_form",
+        "default",
+        "fromdate",
+        "2024-01-15"
     );
 ```
 
-## How to update a grouped form field
+## How to set field errors
+
+### Set Error in Default Form Field
+
+Use `setFieldError` to set an error on a field in the default form:
 
 ```tsx
     // import `meta-api`
     import { metaAPI } from "mui-forms";
-    // call the `updateFormField` method inside any update function
-    metaAPI.metaForm.updateFormField(
-        <Name of metaform>,
-        <Form section name>,
-        <Field name>,
-        <Field value>
+    
+    metaAPI.setFieldError("email", {
+        errorMsg: "Invalid email address",
+        isCustomError: true
+    });
+```
+
+### Set Error in Any Form and Section Field
+
+Use `setFormFieldError` to set an error on a field in a specific form and section:
+
+```tsx
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+    
+    metaAPI.setFormFieldError(
+        "custom_validation_form",
+        "default",
+        "email",
+        {
+            errorMsg: "Invalid email address",
+            isCustomError: true
+        }
     );
 ```
 
 ## How to validate a form
 
+### Validate Default Form
+
+Use `validateDefaultForm` to validate all fields in the default form:
+
 ```tsx
     // import `meta-api`
     import { metaAPI } from "mui-forms";
-    // call the `validateForm` method to validate all fields
-    const errorDetails = metaAPI.metaForm.validateForm(
-        <Name of metaform>
-    );
+    
+    const errorDetails = metaAPI.validateDefaultForm();
+
+    // Check if form has errors
+    if (errorDetails.hasErrors) {
+        // Handle validation errors
+        errorDetails.errors.forEach((error) => {
+            console.log(`${error.id}: ${error.errorMsg}`);
+        });
+    } else {
+        console.log("Form is valid!");
+    }
+```
+
+### Validate Any Form
+
+Use `validateForm` to validate a specific form:
+
+```tsx
+    // import `meta-api`
+    import { metaAPI } from "mui-forms";
+    
+    const errorDetails = metaAPI.validateForm("custom_validation_form");
 
     // Check if form has errors
     if (errorDetails.hasErrors) {
