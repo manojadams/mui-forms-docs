@@ -57,3 +57,54 @@ Check [here](https://mui.com/material-ui/customization/theming/#theme-provider) 
 import ComponentWithCustomTheme from "../components/ComponentWithCustomTheme";
 
 <ComponentWithCustomTheme />
+
+## Rounded input fields and buttons
+
+Use MUI `createTheme` to customize input fields through `ThemeProvider`. For form buttons, use the `className` property inside a button's `meta` object to apply Tailwind classes.
+
+```tsx
+import { createTheme, ThemeProvider } from "@mui/material";
+import MuiForms from "mui-forms";
+
+const roundedInputTheme = createTheme({
+    components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 24
+                }
+            }
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 24,
+                    paddingTop: 10,
+                    paddingBottom: 10
+                }
+            }
+        }
+    }
+});
+
+function MyForm() {
+    return (
+        <ThemeProvider theme={roundedInputTheme}>
+            <MuiForms schema={schema} onSubmit={handleSubmit} />
+        </ThemeProvider>
+    );
+}
+```
+
+import RoundedButtonForm from "../components/examples/RoundedButtonForm";
+import roundedButtonSchema from "../components/examples/RoundedButtonForm/schema.json";
+import SchemaViewer from "../components/SchemaViewer";
+
+### Rounded Fields Example
+
+<RoundedButtonForm />
+
+### Schema
+<br/>
+
+<SchemaViewer value={roundedButtonSchema} />

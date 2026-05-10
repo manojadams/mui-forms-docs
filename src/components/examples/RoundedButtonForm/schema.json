@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "full_name",
+            "meta": {
+                "displayName": "Full name",
+                "displayType": "text_field",
+                "validation": {
+                    "required": true
+                }
+            }
+        },
+        {
+            "name": "email",
+            "meta": {
+                "displayName": "Email",
+                "displayType": "email",
+                "validation": {
+                    "required": true
+                }
+            }
+        }
+    ],
+    "buttons": [
+        {
+            "name": "submit",
+            "meta": {
+                "type": "submit"
+            }
+        }
+    ]
+}
