@@ -1,0 +1,56 @@
+# Enabled dependency
+
+The `enabled` dependency is used to enable or disable a field based on the value of another field.
+
+Use it when the field should stay visible in the form, but should only become editable after another field has a specific value. If you want to hide the field completely, use the [`exists`](/field-dependencies/exists) dependency instead.
+
+## Properties for enabled dependency
+
+| Name    | Description                                                                                                                                                                 |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ref     | It is the reference name of the dependent field                                                                                                                             |
+| section | It is the section/group name of the reference field.<br/> It is optional and required only if form is a `grouped form` and the reference field belongs to a different group |
+| value   | It is the value of the reference field for which the current field should be enabled                                                                                        |
+| resetValue | The value when the field is disabled (optional)
+
+### The property `value`
+
+-   The current field is enabled only when the reference field value matches the configured `value`.
+-   When the reference field value does not match, the current field remains visible but disabled.
+-   The value type should match the value used by the reference field option. For example, use `true` for a boolean option and `"return"` for a string option.
+
+### Example
+
+In this example, `Return` date is enabled only when `Trip Type` is set to `Return`.
+For a one way trip, the return date field remains visible but disabled.
+
+```json
+{
+    "name": "return",
+    "meta": {
+        "displayName": "Return",
+        "displayType": "date",
+        "dependencies": {
+            "enabled": {
+                "ref": "tripType",
+                "value": "return",
+                "resetValue": ""
+            }
+        }
+    }
+}
+```
+
+## Enabled dependency example
+
+import BookingForm from "@/components/examples/BookingForm";
+import schema from "@/components/examples/BookingForm/schema.json";
+import SchemaViewer from "@/components/SchemaViewer";
+
+The booking form uses the `enabled` dependency to disable the return date for one way trips. Select `Return` as the trip type to enable the return date field.
+
+<BookingForm />
+
+## Schema
+
+<SchemaViewer value={schema} />
