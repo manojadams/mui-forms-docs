@@ -321,59 +321,6 @@ function LandingPage(props: IProps) {
                                             <span className="code-label muiforms">Code Example</span>
                                             <div className="code-title muiforms">MuiForms</div>
                                             <pre><code>{`// Simple JSON schema
-function RegistrationForm() {
-  const [firstName, setFirstName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
-
-  const validateEmail = (email) => {
-    return email.match(/^[^@]+@[^@]+\\.[^@]+$/);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {};
-    
-    if (!firstName.trim()) 
-      newErrors.firstName = 'Required';
-    if (!validateEmail(email)) 
-      newErrors.email = 'Invalid';
-    if (password.length < 8) 
-      newErrors.password = 'Min 8 chars';
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    console.log({ firstName, email, password });
-  };
-
-  return (
-    <Box component="form" onSubmit={handleSubmit}>
-      <TextField 
-        label="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        error={!!errors.firstName}
-        helperText={errors.firstName}
-        styles={{
-            marginBottom: '20px'
-            marginTop: '20px'
-            marginRight: '20px'
-        }}
-        fullWidth
-      />
-      {/* More fields... */}
-    </Box>
-  );
-}`}</code></pre>
-                                        </td>
-                                        <td data-label="Without MuiForms">
-                                            <span className="code-label traditional">Code Example</span>
-                                            <div className="code-title traditional">Traditional React</div>
-                                            <pre><code>{`// 70+ lines of boilerplate
 const schema = {
   fields: [
     {
@@ -422,6 +369,59 @@ const schema = {
   schema={schema} 
   onSubmit={(data) => console.log(data)}
 />`}</code></pre>
+                                        </td>
+                                        <td data-label="Without MuiForms">
+                                            <span className="code-label traditional">Code Example</span>
+                                            <div className="code-title traditional">Traditional React</div>
+                                            <pre><code>{`// 70+ lines of boilerplate
+function RegistrationForm() {
+  const [firstName, setFirstName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validateEmail = (email) => {
+    return email.match(/^[^@]+@[^@]+\\.[^@]+$/);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    
+    if (!firstName.trim()) 
+      newErrors.firstName = 'Required';
+    if (!validateEmail(email)) 
+      newErrors.email = 'Invalid';
+    if (password.length < 8) 
+      newErrors.password = 'Min 8 chars';
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    console.log({ firstName, email, password });
+  };
+
+  return (
+    <Box component="form" onSubmit={handleSubmit}>
+      <TextField 
+        label="First Name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        error={!!errors.firstName}
+        helperText={errors.firstName}
+        styles={{
+            marginBottom: '20px'
+            marginTop: '20px'
+            marginRight: '20px'
+        }}
+        fullWidth
+      />
+      {/* More fields... */}
+    </Box>
+  );
+}`}</code></pre>
                                         </td>
                                     </tr>
                                 </tbody>
