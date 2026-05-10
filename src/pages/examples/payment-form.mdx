@@ -28,3 +28,42 @@ function PaymentForm() {
     );
 }
 ```
+
+## Theme
+
+```js
+const paymentFormTheme = createTheme({
+    palette: {
+        mode: "dark",
+        primary: {
+            main: "#5B7EFF",
+            light: "#7B9EFF",
+            dark: "#4B6EFF",
+        },
+        secondary: {
+            main: "#10B981",
+            light: "#6EE7B7",
+            dark: "#059669",
+        },
+        background: {
+            default: "#0F172A",
+            paper: "#1E293B",
+        },
+        text: {
+            primary: "#F1F5F9",
+            secondary: "#CBD5E1",
+        },
+        divider: "#334155",
+    },
+    typography: {
+        button: {
+            fontWeight: 600,
+            textTransform: "none",
+            letterSpacing: "0.3px",
+        },
+    },
+    shape: {
+        borderRadius: 12,
+    }
+});
+```
