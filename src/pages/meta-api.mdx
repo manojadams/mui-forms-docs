@@ -223,11 +223,12 @@ Use `validateForm` to validate a specific form:
 
 | Name              | Description                                                                                                                                                                                            |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Name of metaform  | This is the name of the `mui-forms` which must be given as an input property while using it. e.g.: `<MuiForms name="Basic details" schema={schema} />`. <br/> Here the name is **`Basic details`** |
-| Form section name | In a grouped form, this is the name of parent section. For simple forms, use `"default"` when calling `getFieldValue`, `getFieldProperty`, or `updateFormField`                                       |
-| Field name        | Name of the field                                                                                                                                                                                      |
-| Field property    | Name of the field property to read with `getFieldProperty`                                                                                                                                             |
-| Field value       | Value of the field that we want to update the field with. Datatype can be `String` or `Number` or `Boolean`                                                                                            |
+| field             | Name of the field in the default form                                                                                                                                                                  |
+| formName          | This is the name of the `mui-forms` which must be given as an input property while using it. e.g.: `<MuiForms name="Basic details" schema={schema} />`. <br/> Here the name is **`Basic details`** |
+| section           | In a grouped form, this is the name of parent section. For simple forms, use `"default"` when calling `getFormFieldValue`, `getFormFieldProperty`, or `updateFormField`                              |
+| property          | Name of the field property to read with `getFieldProperty` or `getFormFieldProperty`                                                                                                                  |
+| value             | Value of the field that we want to update the field with. Datatype can be `String` or `Number` or `Boolean`                                                                                           |
+| error             | Error object with `errorMsg` (string) and optional `isCustomError` (boolean) properties                                                                                                               |
 
 ## Complete Example
 
