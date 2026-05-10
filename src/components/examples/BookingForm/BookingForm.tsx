@@ -1,5 +1,6 @@
 import React from "react";
 import MuiForms, { metaAPI } from "mui-forms";
+import type { ISchema } from "@manojadams/metaforms-core";
 import { useClient } from "@/common/hooks";
 import schema from "./schema.json";
 
@@ -56,7 +57,7 @@ const BookingForm = () => {
                 "returnDate": returnDateValidation,
                 "citysNotSame": citysNotSameValidation
             }}
-            schema={schema}
+            schema={schema as ISchema}
             onSubmit={(formData) => {
                 console.log(formData);
             }}
