@@ -30,7 +30,7 @@
         {
             "name": "expiry_month_year",
             "meta": {
-                "displayName": "Expriry Month & Year",
+                "displayName": "Expriry",
                 "displayType": "date",
                 "displayProps": {
                     "md": 6
@@ -38,6 +38,9 @@
                 "validation": {
                     "required": true
                 }
+            },
+            "customProps": {
+                "disablePast": true
             }
         },
         {

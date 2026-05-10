@@ -5,6 +5,11 @@
         "href": "/examples/booking-form"
     },
     {
+        "title": "Payment Form",
+        "img": "/images/payment-form.png",
+        "href": "/examples/payment-form"
+    },
+    {
         "title": "Form With Basic Details",
         "img": "/images/form-with-basic-details.png",
         "href": "/examples/form-with-basic-details"
@@ -33,11 +38,6 @@
         "title": "Custom Score chart",
         "img": "/images/score-chart.png",
         "href": "/examples/score-chart"
-    },
-    {
-        "title": "Payment Form",
-        "img": "/images/payment-form.png",
-        "href": "/examples/payment-form"
     },
     {
         "title": "Rating Form",
