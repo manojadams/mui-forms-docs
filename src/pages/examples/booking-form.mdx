@@ -79,3 +79,75 @@ const BookingForm = () => {
     );
 };
 ```
+
+### Theme
+
+```js
+const bookingFormTheme = createTheme({
+    palette: {
+        primary: {
+            main: green[600],
+            dark: green[800],
+            contrastText: "#fff"
+        }
+    },
+    components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 24,
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: green[600]
+                    }
+                }
+            }
+        },
+        MuiFormLabel: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-focused": {
+                        color: green[600]
+                    }
+                }
+            }
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 24,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    color: "#fff",
+                    backgroundColor: green[600],
+                    "&:hover": {
+                        backgroundColor: green[800]
+                    }
+                }
+            }
+        },
+        MuiRadio: {
+            defaultProps: {
+                color: "primary",
+                icon: <CheckBoxOutlineBlankRoundedIcon />,
+                checkedIcon: <CheckBoxRoundedIcon />
+            }
+        },
+        MuiFormControlLabel: {
+            styleOverrides: {
+                root: {
+                    minHeight: 40,
+                    marginLeft: 0,
+                    marginRight: 12,
+                    padding: "4px 14px 4px 8px",
+                    border: "1px solid rgba(0, 0, 0, 0.23)",
+                    borderRadius: 24,
+                    "&:has(.Mui-checked)": {
+                        borderColor: green[600],
+                        backgroundColor: green[50]
+                    }
+                }
+            }
+        }
+    }
+});
+```

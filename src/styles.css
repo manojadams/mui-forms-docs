@@ -1,5 +1,9 @@
 @import 'material-icons/iconfont/material-icons.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --primary: rgba(60, 132, 206, 1);
     --bg-primary: #132f4c;
@@ -13,9 +17,9 @@ input:focus-visible {
     box-shadow: none!important;
 }
 
-.footer [data-btn-type="submit"] button, [data-btn-type="next"] button {
+/* .footer [data-btn-type="submit"] button, [data-btn-type="next"] button {
     background-color: var(--primary);
-}
+} */
 
 .underline {
     text-decoration: underline;

@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@manojadams/metaforms-core": "^4.4.3",
     "@manojadams/nextra-theme-docs": "^2.14.3",
     "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^9.0.1",
     "@textea/json-viewer": "^3.4.1",
     "@vercel/analytics": "^1.2.2",
     "chart.js": "^4.4.2",

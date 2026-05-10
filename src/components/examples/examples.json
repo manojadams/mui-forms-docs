@@ -1,5 +1,10 @@
 [
     {
+        "title": "Booking Form",
+        "img": "/images/booking-form.png",
+        "href": "/examples/booking-form"
+    },
+    {
         "title": "Form With Basic Details",
         "img": "/images/form-with-basic-details.png",
         "href": "/examples/form-with-basic-details"
@@ -48,10 +53,5 @@
         "title": "Validate Form",
         "img": "/images/validate-form.png",
         "href": "/examples/validate-form"
-    },
-    {
-        "title": "Booking Form",
-        "img": "/images/booking-form.png",
-        "href": "/examples/booking-form"
     }
 ]

@@ -1,0 +1,74 @@
+# Custom Props
+
+`customProps` lets you pass supported MUI component props from the schema to the field rendered by MuiForms.
+
+Use it when a MUI control already supports the behavior you need and MuiForms does not expose a dedicated schema property for it.
+
+```json
+{
+    "name": "departure",
+    "meta": {
+        "displayName": "Departure",
+        "displayType": "date"
+    },
+    "customProps": {
+        "disablePast": true
+    }
+}
+```
+
+## How it works
+
+Props defined in `customProps` are forwarded to the MUI component used for the field. The prop must be supported by that MUI component.
+
+For example, date fields can use date picker props such as `disablePast`.
+
+```json
+{
+    "name": "returnDate",
+    "meta": {
+        "displayName": "Return date",
+        "displayType": "date"
+    },
+    "customProps": {
+        "disablePast": true,
+        "format": "DD/MM/YYYY"
+    }
+}
+```
+
+## Important note
+
+`customProps` does not override default props that MuiForms already controls internally.
+
+MuiForms passes several props to MUI controls to manage form state, validation, labels, values, events, layout, and errors. If a prop is already used by MuiForms, the value from `customProps` may not be applied.
+
+Use `customProps` for additional component-level configuration, not for replacing core form behavior.
+
+## Example
+
+```json
+{
+    "fields": [
+        {
+            "name": "departure",
+            "meta": {
+                "displayName": "Departure",
+                "displayType": "date",
+                "validation": {
+                    "required": true
+                }
+            },
+            "customProps": {
+                "disablePast": true
+            }
+        }
+    ]
+}
+```
+
+## When to use
+
+- Use `customProps` for supported MUI props that are not part of the MuiForms schema.
+- Prefer regular schema properties for labels, values, validation, dependencies, options, and layout.
+- Check the matching MUI component documentation before adding a prop.

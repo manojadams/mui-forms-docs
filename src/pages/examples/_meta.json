@@ -8,6 +8,15 @@
             "toc": true
         }
     },
+    "booking-form": {
+        "title": "Booking Form",
+        "type": "page",
+        "theme": {
+            "layout": "full",
+            "footer": true,
+            "toc": false
+        }
+    },
     "form-with-basic-details": {
         "title": "Form With Basic Details",
         "type": "page",
