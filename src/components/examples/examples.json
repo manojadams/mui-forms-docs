@@ -48,5 +48,10 @@
         "title": "Validate Form",
         "img": "/images/validate-form.png",
         "href": "/examples/validate-form"
+    },
+    {
+        "title": "Booking Form",
+        "img": "/images/booking-form.png",
+        "href": "/examples/booking-form"
     }
 ]

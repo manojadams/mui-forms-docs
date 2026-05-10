@@ -1,0 +1,159 @@
+{
+    "fields": [
+        {
+            "name": "tripType",
+            "meta": {
+                "displayName": "Trip Type",
+                "displayType": "radio",
+                "options": [
+                    {
+                        "label": "One Way",
+                        "value": "one_way"
+                    },
+                    {
+                        "label": "Return",
+                        "value": "return"
+                    }
+                ],
+                "value": "one_way",
+                "validation": {
+                    "required": true
+                },
+                "displayProps": {
+                    "optionsLayout": "row"
+                }
+            }
+        },
+        {
+            "name": "departure",
+            "meta": {
+                "config": {
+                    "views": ["day"]
+                },
+                "displayName": "Departure",
+                "displayType": "date",
+                "displayProps": {
+                    "md": 6
+                },
+                "validation": {
+                    "required": true
+                }
+            },
+            "customProps": {
+                "disablePast": true
+            }
+        },
+        {
+            "name": "return",
+            "meta": {
+                "displayName": "Return",
+                "displayType": "date",
+                "displayProps": {
+                    "md": 6
+                },
+                "config": {
+                    "views": ["day"]
+                },
+                "dependencies": {
+                    "enabled": {
+                        "ref": "tripType",
+                        "value": "return",
+                        "resetValue": ""
+                    }
+                },
+                "validation": {
+                    "returnDate": {
+                        "targetField": "departure",
+                        "errorMsg": "Return date is not valid"
+                    }
+                }
+            },
+            "customProps": {
+                "disablePast": true
+            }
+        },
+        {
+            "name": "from",
+            "meta": {
+                "config": {
+                    "url": "/api/cities",
+                    "queryParams": [
+                        [
+                            "filter",
+                            {
+                                "type": "fieldValue",
+                                "ref": "from"
+                            }
+                        ]
+                    ],
+                    "responseKey": "data"
+                },
+                "displayName": "From",
+                "displayType": "search",
+                "options": [],
+                "validation": {
+                    "required": true,
+                    "citysNotSame": {
+                        "targetField": "to",
+                        "errorMsg": "Origin city must be different from destination city."
+                    }
+                },
+                "displayProps": {
+                    "md": 6
+                }
+            }
+        },
+        {
+            "name": "to",
+            "meta": {
+                "displayName": "To",
+                "displayType": "search",
+                "config": {
+                    "url": "/api/cities",
+                    "queryParams": [
+                        [
+                            "filter",
+                            {
+                            "type": "fieldValue",
+                            "ref": "to"
+                            }
+                        ]
+                    ],
+                    "responseKey": "data"
+                },
+                "options": [
+                    {
+                        "label": "Bengaluru",
+                        "value": "bengaluru"
+                    },
+                    {
+                        "label": "Chennai",
+                        "value": "chennai"
+                    },
+                    {
+                        "label": "Delhi",
+                        "value": "delhi"
+                    },
+                    {
+                        "label": "Hyderabad",
+                        "value": "hyderabad"
+                    },
+                    {
+                        "label": "Mumbai",
+                        "value": "mumbai"
+                    }
+                ],
+                "displayProps": {
+                    "md": 6
+                },
+                "validation": {
+                    "required": true,
+                    "citysNotSame": {
+                        "targetField": "from",
+                        "errorMsg": "Destination city must be different from origin city."
+                    }
+                }
+            }
+        }
+    ]
+}
