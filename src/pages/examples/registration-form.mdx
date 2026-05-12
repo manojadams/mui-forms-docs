@@ -10,6 +10,65 @@ import schema from "@/components/examples/RegistrationForm/schema.json";
 
 <SchemaViewer value={schema} />
 
+## Schema Details
+
+This form demonstrates several key schema features:
+
+### Field Icons
+Each input field can display an icon using the `iconName` property:
+```json
+{
+  "iconName": "person"  // Renders a person icon in the field
+}
+```
+Common icons: `person`, `email`, `country`, etc.
+
+### Required Validation
+Fields are marked as required using the validation property:
+```json
+{
+  "validation": {
+    "required": true
+  }
+}
+```
+This ensures the field must have a value before form submission.
+
+### Value Dependencies
+The `country_id` field demonstrates how one field can depend on another field's value:
+```json
+{
+  "name": "country_id",
+  "meta": {
+    "displayType": "hidden",
+    "dependencies": {
+      "value": {
+        "ref": "country",      // References the 'country' field
+        "valueKey": "id"       // Extracts the 'id' property from selected country
+      }
+    }
+  }
+}
+```
+When a user selects a country, the `country_id` field automatically updates with the country's ID. The field is hidden since its value is automatically managed.
+
+### Display Types
+- `text`: Regular text input
+- `email`: Email input with validation
+- `select`: Dropdown selection
+- `hidden`: Not displayed but can store computed values
+
+### Display Props
+The `displayProps` controls the layout and appearance:
+```json
+{
+  "displayProps": {
+    "md": 12,           // Full width on medium screens
+    "sm": 12          // Full width on small screens
+  }
+}
+```
+
 ## Usage <sup><small><small><small>[Edit](https://codesandbox.io/s/mui-forms-mvnycy?file=/src/RegistrationForm.js)</small></small></small></sup>
 
 ```tsx

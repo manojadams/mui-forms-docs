@@ -21,6 +21,7 @@ Field dependencies enable powerful interactions like:
 | **equals** | Enable field only if reference field equals value | Field enabling | Enable "Alt Email" only if "HasAlt"=true |
 | **enabled** | Enable/disable based on reference field state | Dependent enabling | Disable "Confirm" until "Accept"=true |
 | **options** | Load select options which is dependent on another field | Cascading selects | Load States based on selected Country |
+| **value** | Set a field value from another field | Hidden metadata, derived values | Set Country ID from selected Country |
 | **propUpdate** | Update field property (placeholder, label, etc.) | Dynamic properties | Change label based on user type |
 | **validation** | Apply conditional validation rules | Dynamic validation | Require phone if "Contactable"=true |
 | **patternMatchUrlLoader** | Call API and update field if regex matches | Advanced workflows | Auto-fill profile from URL pattern |
@@ -145,7 +146,33 @@ import EmployeeForm from "@/components/examples/EmployeeForm";
 
 ---
 
-### 5. **propUpdate** - Conditional Property Changes
+### 5. **value** - Dependent Field Values
+**Best for:** Set one field's value when another field changes
+
+**When to use:**
+- Store hidden IDs or metadata from a selected option
+- Auto-fill a read-only field from another field
+- Compute a simple derived value through a registered `valueFn`
+
+**Example - Store Selected Country ID:**
+```json
+{
+  "name": "country_id",
+  "meta": {
+    "displayType": "hidden",
+    "dependencies": {
+      "value": {
+        "ref": "country",
+        "valueKey": "id"
+      }
+    }
+  }
+}
+```
+
+---
+
+### 6. **propUpdate** - Conditional Property Changes
 **Best for:** Dynamically update field properties
 
 **When to use:**
@@ -177,7 +204,7 @@ import EmployeeForm from "@/components/examples/EmployeeForm";
 
 ---
 
-### 6. **patternMatchUrlLoader** - Advanced API Integration
+### 7. **patternMatchUrlLoader** - Advanced API Integration
 **Best for:** Call API and update field based on URL pattern matching
 
 **When to use:**
@@ -255,6 +282,7 @@ Explore each dependency type in detail:
 
 - [**exists** - Conditional Display →](/field-dependencies/exists)
 - [**options** - Cascading Options →](/field-dependencies/options)
+- [**value** - Dependent Field Values →](/field-dependencies/value)
 - [**propUpdate** - Property Changes →](/field-dependencies/prop-update)
 
 ---
@@ -272,6 +300,7 @@ Explore each dependency type in detail:
 | options                  | Loads dropdown options based on the value from a different field. This is specific for `select` field |
 | propUpdate              | Updates field property based on criteria                                                              |
 | validation               | It updates validation of the reference field based on some criteria                                   |
+| value                    | Sets the current field value from a static value, selected option metadata, or a `valueFn`             |
 
 ---
 
@@ -282,6 +311,7 @@ Explore each dependency type in detail:
 | Field not showing/hiding | Verify `ref` field name matches exactly, check field value with browser devtools |
 | Options not loading | Check API endpoint, verify `queryParams` references correct field, check network errors |
 | Cascading broken | Ensure parent field has default value, verify `ref` is in same form, check `dependencies.options` |
+| Dependent value not setting | For `valueKey`, ensure the reference select option contains a `ref` object with that key |
 | Condition not working | Verify condition syntax, check operator types, test field values in browser |
 | Duplicate dependencies | Can combine multiple types in single `dependencies` object |
 
@@ -299,5 +329,6 @@ Explore each dependency type in detail:
 ## More Examples
 
 - [Products Cascade →](/field-dependencies/options)
+- [Registration Form →](/examples/registration-form)
 - [Customer Feedback Form →](/examples/customer-feedback-form)
 - [Salaried Form →](/field-dependencies/exists#exists-dependency-example)

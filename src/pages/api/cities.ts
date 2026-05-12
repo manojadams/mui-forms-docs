@@ -162,9 +162,10 @@ const cityNames = [
     "Warangal"
 ];
 
-const cities = cityNames.map((city) => ({
+const cities = cityNames.map((city, idx) => ({
     label: city,
-    value: city.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")
+    value: city.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, ""),
+    id: idx + 1
 }));
 
 function getCities(req: NextApiRequest, res: NextApiResponse) {

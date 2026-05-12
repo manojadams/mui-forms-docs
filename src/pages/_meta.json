@@ -46,7 +46,7 @@
         "type": "menu",
         "items": {
             "version2": {
-                "title": "Version 2.4.7 (Latest)",
+                "title": "Version 2.4.9 (Latest)",
                 "href": "/getting-started"
             },
             "version1": {

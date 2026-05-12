@@ -1,0 +1,106 @@
+# Value dependency
+
+The `value` dependency is used to set the value of one field when another field changes.
+
+Use it when a field should be populated automatically instead of edited directly. Common examples include hidden IDs, derived labels, read-only summary fields, or values copied from metadata on a selected option.
+
+## Properties for value dependency
+
+| Name     | Description                                                                                                                                                                 |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ref      | It is the reference name of the field that triggers the value update                                                                                                        |
+| section  | It is the section/group name of the reference field.<br/> It is optional and required only if form is a `grouped form` and the reference field belongs to a different group |
+| valueKey | Used with a `select` field when the selected option contains extra metadata from api response                                                                              |
+| valueFn  | Name of a function from the component `fns` prop. The function receives the reference field value and returns the new value                                                  |
+
+### The property `valueKey`
+
+Use `valueKey` when the reference field is a `select` and each option carries extra data from an api response. MuiForms finds the selected option and copies `responseItem[valueKey]` into the current field.
+
+```json
+[
+    {
+        "name": "country",
+        "meta": {
+            "displayType": "select",
+            "displayName": "Country",
+            "config": {
+                "url": "/api/countries"
+                "responeKey": "data"
+            },
+            "options": []
+        }
+    },
+    {
+        "name": "country_id",
+        "meta": {
+            "displayType": "hidden",
+            "dependencies": {
+                "value": {
+                    "ref": "country",
+                    "valueKey": "id"
+                }
+            }
+        }
+    }
+]
+```
+
+```js
+const countryApiResponse = {
+    "data": [{
+        "label": "country1",
+        "value": "1",
+        "id": 1
+    }, {
+        "label": "country2",
+        "value": "2",
+        "id": 2
+    }
+    ]
+}
+```
+
+When the user selects `country1`, `country_id` is set to `1`.
+
+### The property `valueFn`
+
+Use `valueFn` when the value needs to be computed in application code.
+
+```json
+{
+    "name": "account_code",
+    "meta": {
+        "displayType": "text",
+        "displayName": "Account Code",
+        "dependencies": {
+            "value": {
+                "ref": "accountType",
+                "valueFn": "getAccountCode"
+            }
+        }
+    }
+}
+```
+
+```tsx
+const fns = {
+    getAccountCode: (accountType: string) => {
+        return accountType === "business" ? "BUS" : "IND";
+    }
+};
+
+<MuiForms schema={schema} fns={fns} />;
+```
+
+## Value dependency example
+
+The registration form uses the `value` dependency to store the selected country's `id` in a hidden `country_id` field.
+
+[Please refer here](/examples/registration-form)
+
+## When to use value instead of propUpdate
+
+Use `value` when you need to change the field's submitted value.
+
+Use [`propUpdate`](/field-dependencies/prop-update) when you need to change a field property such as `displayName`, `placeholder`, `disabled`, or another schema property.
