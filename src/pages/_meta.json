@@ -20,6 +20,7 @@
     "custom-fields": "Custom Fields",
     "custom-props": "Custom Props",
     "custom-footer": "Custom Footer",
+    "adapters": "Adapters",
     "field-dependencies": "Field Relationships",
     "field-events": "Field Events",
     "api-integration": "API Integration",

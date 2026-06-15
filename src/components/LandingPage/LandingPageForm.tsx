@@ -42,7 +42,7 @@ const LandingPageForm = () => {
                         onSubmit={async (data) => {
                             const response = await axios.post("/submit", data);
                             router.push("/examples/form-with-basic-details")
-                        }} 
+                        }}
                     />
                 </FormBox>
             </Box>

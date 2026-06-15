@@ -1,0 +1,37 @@
+# Adapters
+
+Adapters let MuiForms render the same schema with a different field component set.
+
+## Available adapters
+
+| Adapter | Package | Usage |
+| ------- | ------- | ----- |
+| Native | `@mui-forms-adapters/native` | Renders supported fields with native HTML form inputs |
+| Ant Design | `@mui-forms-adapters/antd` | Renders supported fields with Ant Design components |
+
+## Default field support
+
+The table below uses the fields listed on the [Fields About](/fields/fields) page.
+
+| Field | MUI | Ant Design | Native |
+| ----- | --- | ---------- | ------ |
+| Text field | Yes | Yes | Yes |
+| Number field | Yes | Yes | Yes |
+| Email | Yes | Yes | Yes |
+| Phone | Yes | Yes | No |
+| Date | Yes | Yes | Yes |
+| Month | Yes | Yes | Yes |
+| Password | Yes | Yes | Yes |
+| Radio | Yes | Yes | Yes |
+| Radio Button | Yes | Partial | No |
+| Checkbox | Yes | Yes | Yes |
+| Select | Yes | No | Yes |
+| File | Yes | No | No |
+| Search | Yes | No | Yes |
+| Currency | Yes | No | No |
+| Custom | No | No | No |
+| Header | Yes | Yes | Yes |
+| Label | Yes | Yes | Yes |
+| Hidden | Yes | Yes | Yes |
+
+`Custom` fields are not included by default because they are supplied by the application. `Radio Button` is marked partial for Ant Design because the adapter currently exposes a mapping, but the default component is only a placeholder.

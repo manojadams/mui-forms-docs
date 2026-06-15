@@ -1,0 +1,81 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 8px;
+    background: rgba(248, 250, 252, 0.75);
+}
+
+.button,
+.activeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    min-width: 36px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    font: inherit;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.buttonGroup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.button {
+    color: #334155;
+    background: transparent;
+}
+
+.button:hover {
+    background: rgba(226, 232, 240, 0.75);
+}
+
+.activeButton {
+    color: #ffffff;
+    background: #2563eb;
+}
+
+.button svg,
+.activeButton svg {
+    width: 20px;
+    height: 20px;
+}
+
+.content {
+    width: 100%;
+}
+
+.codeBlock {
+    width: 100%;
+    margin: 0;
+    padding: 16px;
+    overflow-x: auto;
+    border-radius: 8px;
+    background: rgba(0, 93, 199, 0.05);
+    color: #0f172a;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.codeBlock code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    white-space: pre;
+}

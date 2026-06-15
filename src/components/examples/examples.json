@@ -58,5 +58,10 @@
         "title": "Validate Form",
         "img": "/images/validate-form.png",
         "href": "/examples/validate-form"
+    },
+    {
+        "title": "Validate Field mapper",
+        "img": "/images/validate-form.png",
+        "href": "/examples/vanilla-form"
     }
 ]
