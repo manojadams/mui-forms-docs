@@ -25,11 +25,12 @@ type ForwardedMuiFormsProps = Partial<Omit<IMuiFormRendererProps, "schema" | "fi
 
 interface Props {
     title?: string;
+    config?: Partial<IMuiFormRendererProps["config"]>;
     schema: IMuiFormRendererProps["schema"];
     defaultView?: View;
-    fieldMapper?: TFieldMapper;
     jsx?: string;
     muiFormsProps?: ForwardedMuiFormsProps;
+    onNext?: IMuiFormRendererProps["onNext"];
     onSubmit?: IMuiFormRendererProps["onSubmit"];
 }
 
@@ -40,23 +41,10 @@ function getDefaultJsx(hasFieldMapper: boolean) {
 />`;
 }
 
-function getFieldMapper(view: View, fieldMapper?: TFieldMapper) {
-    if (view === FORM_TYPE.antd) {
-        return AntDAdapter;
-    }
-
-    if (view === FORM_TYPE.native) {
-        return NativeAdapter;
-    }
-
-    return fieldMapper;
-}
-
 function MuiDocsForm(props: Props) {
     const shouldRender = useClient();
     const [view, setView] = useState<View>(props.defaultView ?? FORM_TYPE.mui);
-    const jsx = props.jsx ?? getDefaultJsx(Boolean(props.fieldMapper));
-    const isFormView = view === FORM_TYPE.mui || view === FORM_TYPE.antd || view === FORM_TYPE.native;
+    // const jsx = props.jsx ?? getDefaultJsx(Boolean(props.fieldMapper));
 
     if (!shouldRender) {
         return null;
@@ -131,7 +119,9 @@ function MuiDocsForm(props: Props) {
                     view === FORM_TYPE.mui && (
                         <MuiForms
                             {...props.muiFormsProps}
+                            config={props.config}
                             schema={props.schema}
+                            onNext={props.onNext ?? (() => {})}
                             onSubmit={props.onSubmit ?? (() => {})}
                         />
                     )
@@ -140,11 +130,13 @@ function MuiDocsForm(props: Props) {
                     view === FORM_TYPE.antd && (
                         <MuiForms
                             {...props.muiFormsProps}
+                            config={props.config}
                             schema={props.schema}
                             formAdapter={AntDAdapter}
                             adapterConfig={{
                                 layout: "vertical"
                             }}
+                            onNext={props.onNext ?? (() => {})}
                             onSubmit={props.onSubmit ?? (() => {})}
                         />
                     )
@@ -153,8 +145,10 @@ function MuiDocsForm(props: Props) {
                     view === FORM_TYPE.native && (
                         <MuiForms
                             {...props.muiFormsProps}
+                            config={props.config}
                             schema={props.schema}
                             formAdapter={NativeAdapter}
+                            onNext={props.onNext ?? (() => {})}
                             onSubmit={props.onSubmit ?? (() => {})}
                         />
                     )
@@ -163,7 +157,7 @@ function MuiDocsForm(props: Props) {
                     <SchemaViewer value={props.schema} />
                 ) : (
                     <pre className={styles.codeBlock}>
-                        <code>{jsx}</code>
+                        {/* <code>{jsx}</code> */}
                     </pre>
                 )}
             </div>
